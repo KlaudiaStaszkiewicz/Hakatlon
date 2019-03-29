@@ -2,39 +2,44 @@
 
 namespace Heart
 {
-    public class Worker
+    class Worker
     {
-        enum Status { casual = 1, leader, head, admin };
+        public int workerID, teamID, level, status;
+        public string name, teamName;
+        enum Status { absent = 0, working, onCoffee }
+        enum Level { casual = 1, leader, head, admin };
         public Worker()
         {
-            int ID, temID, password, level, status;
-            string name, teamName;
 
         }
-        void LogIn()
+
+
+
+        public void LogIn()
         {
 
         }
 
-        void LogOut()
+        public void LogOut()
         {
 
         }
 
-        void MakeCoffeeBreak()
+        public void MakeCoffeeBreak()
         {
 
         }
 
-        void CheckCoffeeBreak()
+        public void CheckCoffeeBreak()
         {
 
         }
 
-        void UpdatePosition()
+        public void UpdatePosition()
         {
 
         }
+        
     }
 }
 

@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace Heart
 {
-    class Head : Leader
+    class Admin : Head
     {
-        int departmentID;
-        List<Team> Teams = new List<Team>();
-
-        public static void AddTeam()
+        public static void RegisterWorker()
         {
 
         }
-
-        public static void RemoveTeam()
+        public static void RemoveWorker()
         {
 
         }

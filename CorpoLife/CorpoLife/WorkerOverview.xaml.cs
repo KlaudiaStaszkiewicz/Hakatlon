@@ -18,11 +18,19 @@ namespace CorpoLife
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WorkerOverview : Window
     {
-        public MainWindow()
+        public WorkerOverview()
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterWorker register = new RegisterWorker();
+            register.Show();
+        }
+
+
     }
 }
