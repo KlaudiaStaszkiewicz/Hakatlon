@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorpoLife", "CorpoLife\Corp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heart", "Heart\Heart.csproj", "{AA0ADA47-F8C1-4595-A3F2-3A647CF92EF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagesProto", "MessagesProto\MessagesProto.csproj", "{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{144B34A8-A984-4F10-A525-A8BA06B106A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{AA0ADA47-F8C1-4595-A3F2-3A647CF92EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA0ADA47-F8C1-4595-A3F2-3A647CF92EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA0ADA47-F8C1-4595-A3F2-3A647CF92EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
