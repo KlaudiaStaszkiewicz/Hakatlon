@@ -61,6 +61,8 @@
   <ItemGroup>
     <Build Include="Worker.sql" />
     <Build Include="ScheduleItem.sql" />
+    <Build Include="Team.sql" />
+    <Build Include="Department.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ProjectDatabase.refactorlog" />

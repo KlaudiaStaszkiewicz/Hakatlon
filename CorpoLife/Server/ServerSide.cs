@@ -9,26 +9,19 @@ namespace Server
     class TalkImpl : ServerEvents.ServerEventsBase
     {
         SqlConnection DBConnection = new SqlConnection("Server=localhost;Integrated security=SSPI;database=ProjectDatabase");
-        public TalkImpl()
-        {
-            try
-            {
-                DBConnection.Open();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+
         int GetNetWorkerID()
         {
+            DBConnection.Open();
             String command = "SELECT COUNT(*) FROM Worker";
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
-            Int32 number = (Int32)newCommand.ExecuteScalar();
+            int number = (int)newCommand.ExecuteScalar();
+            DBConnection.Close();
             return number;
         }
         public override Task<WorkerEventResponse> Register(RegisterRequest request, ServerCallContext context)
         {
+            DBConnection.Open();
             String command = "INSERT INTO Worker (WorkerID, Password, Name, TeamName, TeamID, Status, Level) VALUES (@Val1, @val2, @val3, @val4, @val5, @val6, @val7)";
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             int newWorkerID = GetNetWorkerID();
@@ -39,29 +32,65 @@ namespace Server
             newCommand.Parameters.AddWithValue("@val5", request.TeamID);
             newCommand.Parameters.AddWithValue("@val6", request.Status);
             newCommand.Parameters.AddWithValue("@val7", request.Level);
+            WorkerEventResponse resp = new WorkerEventResponse { State = false, Msg = "Worker cannot be created." };
             try { newCommand.ExecuteNonQuery(); } 
             catch(Exception ex) { Console.WriteLine(ex.Message); }
-            return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Worker registered without any specific errors that I can send You right now." });
+            resp.State = true;
+            resp.Msg = "Worker added with ID: " + newWorkerID;
+            DBConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(resp);
         }
 
         public override Task<WorkerEventResponse> LogIn(LoginRequest request, ServerCallContext context)
-        {
-            return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Worker logged in succesfuly." });
+        {//TODO add to active members list
+            DBConnection.Open();
+            String command = "SELECT Password FROM Worker WHERE WorkerID =" + request.Id;
+            SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            SqlDataReader dataReader = newCommand.ExecuteReader();
+            bool correct = false;
+            if (dataReader.HasRows)
+            {
+                if (dataReader.GetString(0) == request.Password)
+                {
+                    correct = true;
+                }
+            }
+            dataReader.Close();
+            DBConnection.Close();
+            if (correct)
+            {
+                return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Worker logged in succesfuly." });
+            }
+            else
+            {
+                return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = false, Msg = "Unable to log in." });
+            }
         }
 
         public override Task<WorkerEventResponse> LogOut(LogOutRequest request, ServerCallContext context)
-        {
+        {//TODO remove from active members list
+            bool loggedOut = false;
+            //find in List of active memnvers
+            //set loggedOut to true
+            //delete from that list
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Worker logged out succesfuly." });
         }
 
         public override Task<WorkerEventResponse> CoffeBreak(CoffeBreakRequest request, ServerCallContext context)
-        {
+        {//TODO
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Coffe break ready to be annouced" });
         }
 
         public override Task<TaskListResponse> GetTaskList(TaskListRequest request, ServerCallContext context)
-        {
+        {//TODO
             TaskListResponse taskList = new TaskListResponse();
+            DBConnection.Open();
+            String command = "";
+            SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            SqlDataReader dataReader = newCommand.ExecuteReader();
+
+            dataReader.Close();
+            DBConnection.Close();
             taskList.Tasks.Add(new MessagesPack.Task {Team = "Cool team", Status = 1, TeamID = 0, Text = "w/e"});
             return System.Threading.Tasks.Task.FromResult(taskList);
         }

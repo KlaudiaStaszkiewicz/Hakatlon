@@ -8,9 +8,55 @@ service ServerEvents {
   rpc LogOut (LogOutRequest) returns (WorkerEventResponse) {}
   rpc CoffeBreak (CoffeBreakRequest) returns (WorkerEventResponse) {}
   rpc GetTaskList (TaskListRequest) returns (TaskListResponse) {}
+  //TODO
+  rpc AddTeam (AddTeamRequest) returns (WorkerEventResponse) {}
+  rpc RemoveTeam (TeamDescription) returns (WorkerEventResponse) {}
+  rpc AddDepartment (AddDepRequest) returns (WorkerEventResponse) {}
+  rpc RemoveDepartment (DepartmentDescription) returns (WorkerEventResponse) {}
+  rpc GetTeamID (NameRequest) returns  (IntegerResponse) {}
+  rpc GetDepartments (BlankMsg) returns (DepartmentsListResp) {}
+  rpc GetDepartmetTeams (NameRequest) returns (TeamListResp) {}
+}
+
+message AddDepRequest {
+	string depName = 1;
+}
+
+message AddTeamRequest {
+	int32 departmentIndex = 1;
+	string teamName = 2;
+}
+
+message TeamDescription {
+	int32 index = 1;
+	string name = 2;
+}
+
+message TeamListResp {
+	repeated TeamDescription teamDesc = 1;
+}
+
+message BlankMsg {
+}
+
+message DepartmentDescription {
+	int32 index = 1;
+	string name = 2;
+}
+
+message DepartmentsListResp {
+	repeated DepartmentDescription depsDesc = 1;
+}
+
+message IntegerResponse {
+	int32 number = 1;
 }
 
 message TaskListRequest {
+	string teamName = 1;
+}
+
+message NameRequest {
 	string teamName = 1;
 }
 
@@ -30,11 +76,11 @@ message CoffeBreakRequest {
 }
 
 message LogOutRequest {
-	string login = 1;
+	string id = 1;
 }
 
 message LoginRequest {
-  string login = 1;
+  string id = 1;
   string password = 2;
 }
 
