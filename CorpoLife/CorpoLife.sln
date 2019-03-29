@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagesProto", "MessagesPr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{144B34A8-A984-4F10-A525-A8BA06B106A1}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ProjectDatabase", "ProjectDatabase\ProjectDatabase.sqlproj", "{C2E72473-F20C-4866-BBCD-27D6B85068CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
