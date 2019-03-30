@@ -24,10 +24,28 @@ namespace CorpoLife
             //InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Tasks_Click(object sender, RoutedEventArgs e)
         {
             TeamTaskWindow tasks = new TeamTaskWindow();
             tasks.Show();
+        }
+        
+        private void Ems_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            int _level = GlobalUsage.currentUser.level;
+            if(_level == 2)
+            {
+                Ems.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Ems.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

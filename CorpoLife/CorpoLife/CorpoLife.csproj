@@ -75,6 +75,9 @@
     <Compile Include="HeadsOverview.xaml.cs">
       <DependentUpon>HeadsOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HeadView.xaml.cs">
+      <DependentUpon>HeadView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Heart\Admin.cs" />
     <Compile Include="Heart\AdminSchedule.cs" />
     <Compile Include="Heart\DepartmentSchedule.cs" />
@@ -86,8 +89,11 @@
     <Compile Include="Heart\TeamSchedule.cs" />
     <Compile Include="Heart\Worker.cs" />
     <Compile Include="Heart\WorkerOnMap.cs" />
-    <Compile Include="MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerView.xaml.cs">
+      <DependentUpon>WorkerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NamePrompt.xaml.cs">
       <DependentUpon>NamePrompt.xaml</DependentUpon>
@@ -103,7 +109,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainView.xaml">
+    <Page Include="HeadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

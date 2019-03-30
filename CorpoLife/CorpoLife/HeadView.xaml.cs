@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace CorpoLife
 {
     /// <summary>
-    /// Interaction logic for TeamTaskWindow.xaml
+    /// Interaction logic for HeadView.xaml
     /// </summary>
-    public partial class TeamTaskWindow : Window
+    public partial class HeadView : Window
     {
-        public TeamTaskWindow()
+        public HeadView()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
