@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MessagesPack;
 
 namespace CorpoLife
 {
@@ -23,45 +24,63 @@ namespace CorpoLife
         {
             InitializeComponent();
         }
-        class tempDepartment
-        {
-            public int departmentID;
-            public string departmentName;
-        }
-        class tempTeam
-        {
-            public int teamID;
-            public string teamName;
-        }
 
+        public string depName, teamName, name, password, level;
+
+        
         private void DepartmentSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
-            //TODO get department list
-            List<tempDepartment> Departments = new List<tempDepartment>();
-            foreach(tempDepartment i in Departments)
+        {
+            //get department list and show them in ComboBox
+            var client = CorpoLife.GlobalUsage.Client();
+            var depList = client.GetDepartments(new MessagesPack.BlankMsg());
+            foreach (var dep in depList.DepsDesc)
             {
-                DepartmentSelection.Items.Add(i.departmentName);
+                DepartmentSelection.Items.Add(dep.Name);
             }
-            string department = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
-            //TODO send info about department for this worker
+            //remember chosen department
+            depName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
+            
         }
 
+        private void Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            GetName();
+            GetPassword();
+            var client = CorpoLife.GlobalUsage.Client();//TODO change to level
+            var resp = client.Register(new RegisterRequest {Level = 1, Name = name, Password = password, Team = "bc" });
+            MessageBox.Show(resp.Msg);
+        }
+
+        private void GetName()
+        {
+            name = NameSelection.Text;
+
+        }
+        private void GetPassword()
+        {
+            password = PasswordSelection.Password;
+        }
         private void TeamSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //TODO get teams for this department
-            List<tempTeam> Teams = new List<tempTeam>();
-            foreach (tempTeam i in Teams)
+            //get teams for this department and show them in ComboBox
+            var client = CorpoLife.GlobalUsage.Client();
+            var teamList = client.GetDepartmetTeams(new NameRequest {TeamName = depName });
+            foreach (var t in teamList.TeamDesc)
             {
-                TeamSelection.Items.Add(i.teamName);
+                TeamSelection.Items.Add(t.Name);
             }
-            string team = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
-            //TODO send info about team for this worker
+            //remember chosen team
+            teamName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
+            
         }
 
         private void LevelSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string level = ((ComboBoxItem)LevelSelection.SelectedItem).Content.ToString();
+            //remember selected level
+            level = ((ComboBoxItem)LevelSelection.SelectedItem).Content.ToString();
 
         }
+
+        
     }
 }

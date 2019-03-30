@@ -1,7 +1,7 @@
 ﻿using System;
 using MessagesPack;
 using Grpc.Core;
-namespace Heart
+namespace CorpoLife
 {
     class Worker
     {
