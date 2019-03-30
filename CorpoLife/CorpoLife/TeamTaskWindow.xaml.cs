@@ -38,7 +38,7 @@ namespace CorpoLife
             HeadTaskWindow head = new HeadTaskWindow();
             head.Show();
         }
-        private void ShowTasks()
+        /*private void ShowTasks()
         {
             TaskListResponse listTodo = new TaskListResponse();
             listTodo = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "todo" });
@@ -75,7 +75,7 @@ namespace CorpoLife
                 done.Items.Add(i.Text);
 
             }
-        }
+        }*/
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             int _level = GlobalUsage.currentUser.level;
@@ -87,7 +87,7 @@ namespace CorpoLife
             {
                 DeptTasks.Visibility = Visibility.Hidden;
             }
-            ShowTasks();
+            //ShowTasks();
          
         }
     }

@@ -32,7 +32,7 @@ namespace CorpoLife
         
         private void Ems_Click(object sender, RoutedEventArgs e)
         {
-            //TODO ems
+            GlobalUsage.Client().InvokeEmergency(new MessagesPack.IntIntRequest { TeamID = GlobalUsage.currentUser.teamID, WorkerID = GlobalUsage.currentUser.workerID });
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
