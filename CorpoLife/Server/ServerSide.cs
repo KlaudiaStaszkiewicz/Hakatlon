@@ -30,11 +30,9 @@ namespace Server
 
         int GetNewWorkerID()
         {
-            DBConnection.Open();
             String command = "SELECT COUNT(*) FROM Worker";
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             int number = (int)newCommand.ExecuteScalar();
-            DBConnection.Close();
             return number;
         }
         int GetTeamIdFromName(string name)

@@ -46,8 +46,8 @@ namespace CorpoLife
         {
             GetName();
             GetPassword();
-            var client = CorpoLife.GlobalUsage.Client();//TODO change to level
-            var resp = client.Register(new RegisterRequest {Level = 1, Name = name, Password = password, Team = "bc" });
+            var client = GlobalUsage.Client();//TODO change to level
+            var resp = client.Register(new RegisterRequest {Status=1, TeamID= 1, WorkerID= 1, Level = 1, Name = name, Password = password, Team = "bc" });
             MessageBox.Show(resp.Msg);
         }
 

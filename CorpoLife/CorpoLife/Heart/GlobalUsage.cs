@@ -13,8 +13,7 @@ namespace CorpoLife
         public static ServerEvents.ServerEventsClient Client()
         {
             Channel channel = new Channel("192.168.52.55:50051", ChannelCredentials.Insecure);
-            var client = new ServerEvents.ServerEventsClient(channel);
-            return client;
+            return new ServerEvents.ServerEventsClient(channel);
         }
     }
 }
