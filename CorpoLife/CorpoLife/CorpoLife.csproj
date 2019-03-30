@@ -72,8 +72,13 @@
     <Compile Include="AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="HeadsOverview.xaml.cs">
       <DependentUpon>HeadsOverview.xaml</DependentUpon>
+=======
+    <Compile Include="GlobalTaskWin.xaml.cs">
+      <DependentUpon>GlobalTaskWin.xaml</DependentUpon>
+>>>>>>> origin/master
     </Compile>
     <Compile Include="Heart\Admin.cs" />
     <Compile Include="Heart\AdminSchedule.cs" />
@@ -99,7 +104,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="HeadsOverview.xaml">
+=======
+    <Page Include="GlobalTaskWin.xaml">
+>>>>>>> origin/master
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,43 +6,28 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="AdminView" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="90" Background="#FFD9F9F3" BorderThickness="1" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Ellipse HorizontalAlignment="Left" Height="139" Margin="61,41,0,0" VerticalAlignment="Top" Width="138">
-            <Ellipse.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="#FFD9F9F3" Offset="0.906"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </RadialGradientBrush>
-            </Ellipse.Fill>
-        </Ellipse>
-        <Button Content="TASKS" BorderThickness="0" HorizontalAlignment="Left" Margin="61,97,0,0" VerticalAlignment="Top" Width="138" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="23" Click="Button_Click"/>
-        <Ellipse HorizontalAlignment="Left" Height="85" Margin="85,261,0,0" VerticalAlignment="Top" Width="85">
-            <Ellipse.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="#FFD9F9F3" Offset="0.906"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </RadialGradientBrush>
-            </Ellipse.Fill>
-        </Ellipse>
-        <Button Content="EMERGENCY" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Margin="85,280,625,0" VerticalAlignment="Top" Width="85" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="40" Click="Button_Click"/>
-        <Ellipse HorizontalAlignment="Left" Height="121" Margin="271,113,0,0" VerticalAlignment="Top" Width="120">
-            <Ellipse.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="#FFD9F9F3" Offset="0.906"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </RadialGradientBrush>
-            </Ellipse.Fill>
-        </Ellipse>
-        <Button Content="DEPARTMENTS" BorderThickness="0" HorizontalAlignment="Left" Margin="271,161,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="28" Click="Button_Click"/>
-        <Ellipse HorizontalAlignment="Left" Height="121" Margin="475,232,0,0" VerticalAlignment="Top" Width="120">
-            <Ellipse.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="#FFD9F9F3" Offset="0.906"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </RadialGradientBrush>
-            </Ellipse.Fill>
-        </Ellipse>
-        <Button Content="MORE" BorderThickness="0" HorizontalAlignment="Left" Margin="475,280,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="28" Click="Button_Click"/>
+        <Button Name="Tasks" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" Content="TASKS" BorderThickness="0" HorizontalAlignment="Left" Margin="61,56,0,0" VerticalAlignment="Top" Width="125" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="124" Click="Tasks_Click"/>
+        <Button Name="Ems" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" Content="EMERGENCY" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Margin="85,242,609,0" VerticalAlignment="Top" Width="101" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="102" Click="Ems_Click"/>
+        <Button Name="Deps" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" Content="DEPARTMENTS" BorderThickness="0" HorizontalAlignment="Left" Margin="278,118,0,0" VerticalAlignment="Top" Width="117" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="117" Click="Deps_Click"/>
+        <Button Name="More" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" Content="MORE" BorderThickness="0" HorizontalAlignment="Left" Margin="475,227,0,0" VerticalAlignment="Top" Width="118" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="117" Click="More_Click_1"/>
+        <Button Name="Workers" Visibility="Hidden" Content="WORKERS" HorizontalAlignment="Left" Margin="391,340,0,0" VerticalAlignment="Top" Width="84" Background="#FFD9F9F4" BorderBrush="#FFE7F2F0" Height="38" Click="Workers_Click"/>
+        <Button Name="Coffee" Visibility="Hidden" Content="COFFEE" HorizontalAlignment="Left" Margin="361,265,0,0" VerticalAlignment="Top" Width="85" Background="#FFD9F9F4" BorderBrush="#FFE7F2F0" Height="30" Click="Coffee_Click"/>
+        <Button Name="Map" Visibility="Hidden" Content="MAP" HorizontalAlignment="Left" Margin="443,198,0,0" VerticalAlignment="Top" Width="54" Background="#FFD9F9F4" BorderBrush="#FFE7F2F0" Height="29"/>
+        <Button Name="Callendar" Visibility="Hidden" Content="CALLENDAR" HorizontalAlignment="Left" Margin="542,181,0,0" VerticalAlignment="Top" Width="106" Background="#FFD9F9F4" BorderBrush="#FFE7F2F0" Height="35"/>
 
     </Grid>
 </Window>
