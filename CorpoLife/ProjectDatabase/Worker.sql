@@ -5,6 +5,6 @@
     [Name] TEXT NOT NULL, 
     [TeamName] TEXT NOT NULL, 
     [TeamID] INT NOT NULL, 
-    [Status] INT NOT NULL, 
+    [DepartmentID] INT NOT NULL, 
     [Level] INT NOT NULL
 )
