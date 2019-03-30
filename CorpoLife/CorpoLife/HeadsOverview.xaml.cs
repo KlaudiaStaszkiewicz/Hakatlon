@@ -42,10 +42,12 @@ namespace CorpoLife
                 tmpButton.Margin = new Thickness(LastLeftCornerX, LastLeftCornerY, 0, 0);
                 tmpButton.Background = new SolidColorBrush(Color.FromArgb(50, (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160))));
                 tmpButton.Name = "button_" + item.Name;
+                tmpButton.HorizontalAlignment = HorizontalAlignment.Left;
+                tmpButton.VerticalAlignment = VerticalAlignment.Top;
                 tmpButton.Content = item.Name + "\n" + client.GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name;
                 MainGrid.Children.Add(tmpButton);
-                LastLeftCornerX += new Random().Next(-30, 30);
-                LastLeftCornerY += new Random().Next(65, 90);
+                LastLeftCornerX += new Random().Next(-40, 150);
+                LastLeftCornerY += new Random().Next(65, 80);
             }            
         }
 
