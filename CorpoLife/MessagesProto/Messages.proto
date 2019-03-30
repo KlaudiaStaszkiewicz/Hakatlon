@@ -1,0 +1,100 @@
+﻿syntax = "proto3";
+
+package MessagesPack;
+
+service ServerEvents {
+  rpc Register (RegisterRequest) returns (WorkerEventResponse) {}
+  rpc LogIn (LoginRequest) returns (WorkerEventResponse) {}
+  rpc LogOut (LogOutRequest) returns (WorkerEventResponse) {}
+  rpc CoffeBreak (CoffeBreakRequest) returns (WorkerEventResponse) {}
+  rpc GetTaskList (TaskListRequest) returns (TaskListResponse) {}
+  //TODO
+  rpc AddTeam (AddTeamRequest) returns (WorkerEventResponse) {}
+  rpc RemoveTeam (TeamDescription) returns (WorkerEventResponse) {}
+  rpc AddDepartment (AddDepRequest) returns (WorkerEventResponse) {}
+  rpc RemoveDepartment (DepartmentDescription) returns (WorkerEventResponse) {}
+  rpc GetTeamID (NameRequest) returns  (IntegerResponse) {}
+  rpc GetDepartments (BlankMsg) returns (DepartmentsListResp) {}
+  rpc GetDepartmetTeams (NameRequest) returns (TeamListResp) {}
+}
+
+message AddDepRequest {
+	string depName = 1;
+}
+
+message AddTeamRequest {
+	int32 departmentIndex = 1;
+	string teamName = 2;
+}
+
+message TeamDescription {
+	int32 index = 1;
+	string name = 2;
+}
+
+message TeamListResp {
+	repeated TeamDescription teamDesc = 1;
+}
+
+message BlankMsg {
+}
+
+message DepartmentDescription {
+	int32 index = 1;
+	string name = 2;
+}
+
+message DepartmentsListResp {
+	repeated DepartmentDescription depsDesc = 1;
+}
+
+message IntegerResponse {
+	int32 number = 1;
+}
+
+message TaskListRequest {
+	string teamName = 1;
+}
+
+message NameRequest {
+	string teamName = 1;
+}
+
+message Task {
+	string team = 1;
+	int32 teamID = 2;
+	int32 status = 3;
+	string text = 4;
+}
+
+message TaskListResponse {	
+	repeated Task tasks = 1;
+}
+
+message CoffeBreakRequest {
+	string name = 1;
+}
+
+message LogOutRequest {
+	string id = 1;
+}
+
+message LoginRequest {
+  string id = 1;
+  string password = 2;
+}
+
+message WorkerEventResponse {
+  string msg = 1;
+  bool state = 2;
+}
+
+message RegisterRequest {
+	int32 workerID = 1;
+	string name = 2;
+	string password = 3;
+	string team = 4;
+	int32 teamID = 5;
+	int32 status = 6;
+	int32 level = 7;
+}
