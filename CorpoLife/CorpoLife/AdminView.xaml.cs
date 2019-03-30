@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace CorpoLife
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for AdminView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class AdminView : Window
     {
-        public MainView()
+        public AdminView()
         {
-            //InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TeamTaskWindow tasks = new TeamTaskWindow();
-            tasks.Show();
+            InitializeComponent();
         }
     }
 }

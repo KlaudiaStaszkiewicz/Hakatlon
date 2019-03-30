@@ -16,16 +16,16 @@
             </Canvas.Background>
         </Canvas>
 
-        <TextBox x:Name="NameSelection" HorizontalAlignment="Left" Margin="263,100,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="115,100,0,0" TextWrapping="Wrap" Text="Worker's Name:" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="115,140,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="115,180,0,0" TextWrapping="Wrap" Text="Department:" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="115,220,0,0" TextWrapping="Wrap" Text="Team:" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="DepartmentSelection" HorizontalAlignment="Left" Margin="263,180,0,0" VerticalAlignment="Top" Width="178" Height="24"/>
-        <PasswordBox x:Name="PasswordSelection" HorizontalAlignment="Left" Margin="263,140,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
-        <ComboBox x:Name="TeamSelection" SelectionChanged="TeamSelection_SelectionChanged" HorizontalAlignment="Left" Margin="263,220,0,0" VerticalAlignment="Top" Width="178"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="115,260,0,0" TextWrapping="Wrap" Text="Level:" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="LevelSelection" HorizontalAlignment="Left" Margin="263,260,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="LevelSelection_SelectionChanged" Height="24">
+        <TextBox BorderThickness="0" x:Name="NameSelection" HorizontalAlignment="Left" Margin="263,100,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
+        <TextBox BorderThickness="0" HorizontalAlignment="Left" Height="23" Margin="115,100,0,0" TextWrapping="Wrap" Text="Worker's Name:" VerticalAlignment="Top" Width="120"/>
+        <TextBox BorderThickness="0" HorizontalAlignment="Left" Height="23" Margin="115,140,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="120"/>
+        <TextBox BorderThickness="0" HorizontalAlignment="Left" Height="24" Margin="115,180,0,0" TextWrapping="Wrap" Text="Department:" VerticalAlignment="Top" Width="120"/>
+        <TextBox BorderThickness="0" HorizontalAlignment="Left" Height="22" Margin="115,220,0,0" TextWrapping="Wrap" Text="Team:" VerticalAlignment="Top" Width="120"/>
+        <ComboBox BorderThickness="0" x:Name="DepartmentSelection" HorizontalAlignment="Left" Margin="263,180,0,0" VerticalAlignment="Top" Width="178" Height="24"/>
+        <PasswordBox BorderThickness="0" x:Name="PasswordSelection" HorizontalAlignment="Left" Margin="263,140,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
+        <ComboBox BorderThickness="0" x:Name="TeamSelection" SelectionChanged="TeamSelection_SelectionChanged" HorizontalAlignment="Left" Margin="263,220,0,0" VerticalAlignment="Top" Width="178"/>
+        <TextBox BorderThickness="0" HorizontalAlignment="Left" Height="24" Margin="115,260,0,0" TextWrapping="Wrap" Text="Level:" VerticalAlignment="Top" Width="120"/>
+        <ComboBox BorderThickness="0" x:Name="LevelSelection" HorizontalAlignment="Left" Margin="263,260,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="LevelSelection_SelectionChanged" Height="24">
             <ComboBoxItem Content="Admin"/>
             <ComboBoxItem Content="Head"/>
             <ComboBoxItem Content="Leader"/>
