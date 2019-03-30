@@ -8,9 +8,9 @@ namespace CorpoLife
 {
     public class Task
     {
-        string text, teamName;
-        int status, teamID;
-        enum Status { notTaken = 0, toDo, inProgress, testing, done}
+        string text, teamName, status;
+        int teamID;
+        enum Status { nottaken, todo, inprogress, testing, done}
 
         public void Assign()
         {

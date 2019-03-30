@@ -21,7 +21,7 @@ namespace CorpoLife
     {
         public WorkerView()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
 
         private void Tasks_Click(object sender, RoutedEventArgs e)
