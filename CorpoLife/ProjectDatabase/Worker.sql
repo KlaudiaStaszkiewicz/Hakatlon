@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Worker]
 (
 	[WorkerID] INT NOT NULL PRIMARY KEY, 
-    [Password] NVARCHAR(20) NOT NULL, 
+    [Password] TEXT NOT NULL, 
     [Name] TEXT NOT NULL, 
     [TeamName] TEXT NOT NULL, 
     [TeamID] INT NOT NULL, 
