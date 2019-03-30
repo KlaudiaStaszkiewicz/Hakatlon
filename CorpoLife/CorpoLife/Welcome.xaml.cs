@@ -22,15 +22,14 @@ namespace CorpoLife
         public Welcome()
         {
             InitializeComponent();
-            
         }
 
         
-
-        private void TextBox_Loaded(object sender, RoutedEventArgs e)
+        
+        private void LogIn_Click(object sender, RoutedEventArgs e)
         {
-            System.Threading.Thread.Sleep(4000);
             int level = GlobalUsage.currentUser.level;
+
             switch (level)
             {
                 case 1:
@@ -51,7 +50,12 @@ namespace CorpoLife
                     break;
 
             }
+            this.Close();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

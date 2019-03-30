@@ -6,8 +6,54 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="TeamTaskWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox HorizontalContentAlignment="Center" Height="23" Margin="95,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}"/>
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="90" Background="#FFD9F9F3" BorderThickness="1" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Name="Grid" Loaded="Grid_Loaded">
+        <TextBox HorizontalContentAlignment="Center" Height="23" Margin="369,134,306,0" TextWrapping="Wrap" Text="TESTING" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="#FFD2FBF3"/>
+        <TextBox HorizontalContentAlignment="Center" Height="23" Margin="548,71,127,0" TextWrapping="Wrap" Text="IN PROGRESS" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="#FFD4FEF6"/>
+        <TextBox HorizontalContentAlignment="Center" Height="23" Margin="226,186,449,0" TextWrapping="Wrap" Text="DONE" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="#FFD7FFF7"/>
+        <TextBox HorizontalContentAlignment="Center" Height="23" Margin="68,71,607,0" TextWrapping="Wrap" Text="TO DO" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="#FFD8FFF8"/>
+        <Button Name="DeptTasks" Visibility="Hidden" HorizontalContentAlignment="Center" Content="DEPARTMENT &#xD;&#xA;TASKS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="226,36,0,0" VerticalAlignment="Top" Width="86" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="88" Click="DeptTasks_Click" FontWeight="Bold" Foreground="#FF5C5C5C" FlowDirection="RightToLeft"/>
+        <ListView HorizontalAlignment="Left" Height="239" Margin="68,99,0,0" VerticalAlignment="Top" Width="119">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView HorizontalAlignment="Left" Height="176" Margin="369,162,0,0" VerticalAlignment="Top" Width="119">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView HorizontalAlignment="Left" Height="239" Margin="549,99,0,0" VerticalAlignment="Top" Width="119">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView HorizontalAlignment="Left" Height="124" Margin="226,214,0,0" VerticalAlignment="Top" Width="119">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>
