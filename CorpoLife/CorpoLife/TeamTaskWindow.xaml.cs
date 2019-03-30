@@ -10,32 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CorpoLife
-{  
-
+{
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TeamTaskWindow.xaml
     /// </summary>
-    public partial class WorkerOverview : Window
+    public partial class TeamTaskWindow : Window
     {
-        public WorkerOverview()
+        public TeamTaskWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            RegisterWorker register = new RegisterWorker();
-            register.Show();
-        }
-
-        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged()
         {
 
         }
-
     }
 }
