@@ -11,6 +11,7 @@ namespace CorpoLife
         enum Level { casual = 1, leader, head, admin };
         public Worker()
         {
+            level = 1;
         }
         
         public void LogIn()

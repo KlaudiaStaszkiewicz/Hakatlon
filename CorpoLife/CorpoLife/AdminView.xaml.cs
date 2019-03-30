@@ -34,7 +34,8 @@ namespace CorpoLife
 
         private void Workers_Click(object sender, RoutedEventArgs e)
         {
-
+            WorkerOverview workerOver = new WorkerOverview();
+            workerOver.Show();
         }
 
         private void Tasks_Click(object sender, RoutedEventArgs e)
@@ -44,7 +45,8 @@ namespace CorpoLife
 
         private void Deps_Click(object sender, RoutedEventArgs e)
         {
-
+            HeadsOverview headsOver = new HeadsOverview();
+            headsOver.Show();
         }
 
         private void Ems_Click(object sender, RoutedEventArgs e)

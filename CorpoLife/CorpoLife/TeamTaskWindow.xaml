@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TeamTaskWindow" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="95,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalContentAlignment="Center" Height="23" Margin="95,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}"/>
 
     </Grid>
 </Window>

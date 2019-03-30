@@ -60,8 +60,9 @@ namespace CorpoLife
         private void NewDep_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new NamePrompt("Add new department", "hello");
-            dialog.Show();
+
             dialog.Closing += (_sender, _e) =>
+
             {
                 var d = _sender as NamePrompt;
                 if (!d.Canceled)
@@ -69,6 +70,7 @@ namespace CorpoLife
                     client.AddDepartment(new AddDepRequest { DepName = d.InputText });
                 }
             };
+            dialog.Show();
         }
     }
 }
