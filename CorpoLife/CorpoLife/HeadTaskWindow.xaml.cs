@@ -50,7 +50,7 @@ namespace CorpoLife
             }
         }
 
-        private void MainGrid_Loaded(object sender, RoutedEventArgs e)
+        /*private void MainGrid_Loaded(object sender, RoutedEventArgs e)
         {
             client = GlobalUsage.Client();
             depList = client.GetDepartments(new BlankMsg { });
@@ -85,6 +85,10 @@ namespace CorpoLife
                 LastLeftCornerX += new Random().Next(-80, 150);
                 LastLeftCornerY += new Random().Next(40, 80);
             }
+        }*/
+        private void DepTasks_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

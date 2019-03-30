@@ -1,6 +1,7 @@
 ﻿using System;
 using MessagesPack;
 using Grpc.Core;
+using System.Timers;
 namespace CorpoLife
 {
     class Worker
@@ -17,11 +18,31 @@ namespace CorpoLife
             name = "Brajan";
             teamID = 1;
         }
-        
-        public void CheckEmergency()
+        Timer timer = new System.Timers.Timer(TimeSpan.FromSeconds(40).TotalMilliseconds);
+        void Init()
         {
-
+            timer.AutoReset = true;
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(MyMethod);
+            timer.Start();
         }
+
+        public static void MyMethod(object sender, ElapsedEventArgs e)
+        {
+            var responceEm = GlobalUsage.Client().PullEmergency(new IntIntRequest { TeamID = GlobalUsage.currentUser.teamID, WorkerID = GlobalUsage.currentUser.workerID });
+            var responceCo = GlobalUsage.Client().PullCoffeBrake(new CoffeBreakRequest { Name = GlobalUsage.currentUser.name });
+            if(responceCo.State)
+            {
+                CoffeeBreak coffee = new CoffeeBreak();
+                coffee.Show();
+            }
+            if (responceEm.State)
+            {
+                Emergency emer = new Emergency();
+                emer.Show();
+            }
+        }
+
+    
         public void LogIn()
         {
 
