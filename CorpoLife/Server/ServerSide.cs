@@ -3,14 +3,32 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Grpc.Core;
 using MessagesPack;
+using System.Device.Location;
+using System.Collections.Generic;
 
 namespace Server
 {
+    class ActiveMember
+    {
+        int ID;
+        string Name;
+        GeoCoordinate coords;
+        public ActiveMember(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
+        void UpdateCoords(GeoCoordinate cords)
+        {
+            coords = cords;
+        }
+    }
     class TalkImpl : ServerEvents.ServerEventsBase
     {
         SqlConnection DBConnection = new SqlConnection("Server=localhost;Integrated security=SSPI;database=ProjectDatabase");
+        List<ActiveMember> activeMembers = new List<ActiveMember>();
 
-        int GetNetWorkerID()
+        int GetNewWorkerID()
         {
             DBConnection.Open();
             String command = "SELECT COUNT(*) FROM Worker";
@@ -19,18 +37,22 @@ namespace Server
             DBConnection.Close();
             return number;
         }
+        int GetTeamIdFromName(string name)
+        {
+            return 0;
+        }
         public override Task<WorkerEventResponse> Register(RegisterRequest request, ServerCallContext context)
         {
             DBConnection.Open();
-            String command = "INSERT INTO Worker (WorkerID, Password, Name, TeamName, TeamID, Status, Level) VALUES (@Val1, @val2, @val3, @val4, @val5, @val6, @val7)";
+            String command = "INSERT INTO Worker (WorkerID, Password, Name, TeamName, TeamID, DepartmentID, Level) VALUES (@Val1, @val2, @val3, @val4, @val5, @val6, @val7)";
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
-            int newWorkerID = GetNetWorkerID();
+            int newWorkerID = GetNewWorkerID();
             newCommand.Parameters.AddWithValue("@val1", newWorkerID);
             newCommand.Parameters.AddWithValue("@val2", request.Password);
             newCommand.Parameters.AddWithValue("@val3", request.Name);
             newCommand.Parameters.AddWithValue("@val4", request.Team);
-            newCommand.Parameters.AddWithValue("@val5", request.TeamID);
-            newCommand.Parameters.AddWithValue("@val6", request.Status);
+            newCommand.Parameters.AddWithValue("@val5", 1); //TODO get teamID from name
+            newCommand.Parameters.AddWithValue("@val6", 2); //TODO get dep ID from name
             newCommand.Parameters.AddWithValue("@val7", request.Level);
             WorkerEventResponse resp = new WorkerEventResponse { State = false, Msg = "Worker cannot be created." };
             try { newCommand.ExecuteNonQuery(); } 
@@ -53,6 +75,10 @@ namespace Server
                 if (dataReader.GetString(0) == request.Password)
                 {
                     correct = true;
+                    DBConnection.Open();
+                    command = "";
+                    newCommand = new SqlCommand(command, DBConnection);
+                    // activeMembers.Add(new ActiveMember(request.Id, ""));
                 }
             }
             dataReader.Close();
@@ -88,11 +114,30 @@ namespace Server
             String command = "";
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
-
+            while (dataReader.Read())
+            {
+                
+            }
             dataReader.Close();
             DBConnection.Close();
             taskList.Tasks.Add(new MessagesPack.Task {Team = "Cool team", Status = 1, TeamID = 0, Text = "w/e"});
             return System.Threading.Tasks.Task.FromResult(taskList);
+        }
+
+        public override Task<DepartmentsListResp> GetDepartments(BlankMsg request, ServerCallContext context)
+        {//TODO
+            DepartmentsListResp tmp = new DepartmentsListResp();
+            DBConnection.Open();
+            String command = "SELECT * FROM Department";
+            SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            SqlDataReader dataReader = newCommand.ExecuteReader();
+            while (dataReader.Read())
+            {
+                tmp.DepsDesc.Add(new DepartmentDescription {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
+            }
+            dataReader.Close();
+            DBConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(tmp);
         }
     }
     class Server
