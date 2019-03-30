@@ -22,6 +22,7 @@ namespace CorpoLife
         public AdminView()
         {
             InitializeComponent();
+            //Admin
         }
         
 
