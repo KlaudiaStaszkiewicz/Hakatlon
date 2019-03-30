@@ -32,7 +32,7 @@ namespace CorpoLife
         
         private void Ems_Click(object sender, RoutedEventArgs e)
         {
-            
+            //TODO ems
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -46,6 +46,12 @@ namespace CorpoLife
             {
                 Ems.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void Coffee_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalUsage.Client().CoffeBreak(new MessagesPack.CoffeBreakRequest { Name = GlobalUsage.currentUser.name });
+
         }
     }
 }

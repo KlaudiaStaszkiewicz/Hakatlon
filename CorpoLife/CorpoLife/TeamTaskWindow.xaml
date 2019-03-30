@@ -25,29 +25,29 @@
         <TextBox HorizontalContentAlignment="Center" Height="23" Margin="548,71,127,0" TextWrapping="Wrap" Text="IN PROGRESS" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="#FFD4FEF6"/>
         <TextBox HorizontalContentAlignment="Center" Height="23" Margin="226,186,449,0" TextWrapping="Wrap" Text="DONE" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="#FFD7FFF7"/>
         <TextBox HorizontalContentAlignment="Center" Height="23" Margin="68,71,607,0" TextWrapping="Wrap" Text="TO DO" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" FontWeight="Bold" Foreground="#FF656565" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Background="#FFD8FFF8"/>
-        <Button Name="DeptTasks" Visibility="Hidden" HorizontalContentAlignment="Center" Content="DEPARTMENT &#xD;&#xA;TASKS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="226,36,0,0" VerticalAlignment="Top" Width="86" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="88" Click="DeptTasks_Click" FontWeight="Bold" Foreground="#FF5C5C5C" FlowDirection="RightToLeft"/>
-        <ListView HorizontalAlignment="Left" Height="239" Margin="68,99,0,0" VerticalAlignment="Top" Width="119">
+        <Button Name="DeptTasks" Visibility="Hidden" HorizontalContentAlignment="Center" Content="HEAD &#xD;&#xA;VIEW" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="313,30,0,0" VerticalAlignment="Top" Width="86" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="88" Click="DeptTasks_Click" FontWeight="Bold" Foreground="#FF5C5C5C" FlowDirection="RightToLeft"/>
+        <ListView Name="todo" HorizontalAlignment="Left" Height="239" Margin="68,99,0,0" VerticalAlignment="Top" Width="119">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView HorizontalAlignment="Left" Height="176" Margin="369,162,0,0" VerticalAlignment="Top" Width="119">
+        <ListView Name="testing" HorizontalAlignment="Left" Height="176" Margin="369,162,0,0" VerticalAlignment="Top" Width="119">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView HorizontalAlignment="Left" Height="239" Margin="549,99,0,0" VerticalAlignment="Top" Width="119">
+        <ListView Name="inprogress" HorizontalAlignment="Left" Height="239" Margin="549,99,0,0" VerticalAlignment="Top" Width="119">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView HorizontalAlignment="Left" Height="124" Margin="226,214,0,0" VerticalAlignment="Top" Width="119">
+        <ListView Name="done" HorizontalAlignment="Left" Height="124" Margin="226,214,0,0" VerticalAlignment="Top" Width="119">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

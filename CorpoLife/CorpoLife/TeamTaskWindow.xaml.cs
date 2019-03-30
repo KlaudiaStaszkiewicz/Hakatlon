@@ -35,27 +35,45 @@ namespace CorpoLife
 
         private void DeptTasks_Click(object sender, RoutedEventArgs e)
         {
-
+            HeadTaskWindow head = new HeadTaskWindow();
+            head.Show();
         }
         private void ShowTasks()
         {
-            TaskListResponse listOfTasks = new TaskListResponse();
+            TaskListResponse listTodo = new TaskListResponse();
+            listTodo = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "todo" });
             
-            foreach (var item in listOfTasks.Tasks)
+            foreach(var i in listTodo.Tasks)
             {
-                Button tmpButton = new Button();
-                tmpButton.Height = 60;
-                tmpButton.Width = 100;
-                int LastLeftCornerX = 10;
-                int LastLeftCornerY = 10;
-                tmpButton = new Button();
-                tmpButton.Height = 60;
-                tmpButton.Width = 100;
-                tmpButton.Margin = new Thickness(LastLeftCornerX, LastLeftCornerY, 0, 0);
-                tmpButton.Background = new SolidColorBrush(Color.FromArgb(50, (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160))));
-                tmpButton.Name = "button_" + item.Name;
-                tmpButton.Content = item.Name + "\n" + client.GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name;
-                Grid.Children.Add(tmpButton);
+                todo.Items.Add(i.Text);
+
+            }
+
+            TaskListResponse listInprogress = new TaskListResponse();
+            listInprogress = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "inprogress" });
+
+            foreach (var i in listInprogress.Tasks)
+            {
+                inprogress.Items.Add(i.Text);
+
+            }
+
+            TaskListResponse listTesting = new TaskListResponse();
+            listTesting = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "testing" });
+
+            foreach (var i in listTesting.Tasks)
+            {
+                testing.Items.Add(i.Text);
+
+            }
+
+            TaskListResponse listDone = new TaskListResponse();
+            listDone = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "done" });
+
+            foreach (var i in listDone.Tasks)
+            {
+                done.Items.Add(i.Text);
+
             }
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)

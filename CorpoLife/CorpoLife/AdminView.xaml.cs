@@ -22,13 +22,11 @@ namespace CorpoLife
         public AdminView()
         {
             InitializeComponent();
-            //Admin
         }
         
 
         private void Coffee_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Coffee");
         }
 
 

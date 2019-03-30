@@ -257,7 +257,7 @@ namespace Server
         {
             TaskListResponse respList = new TaskListResponse();
             DBConnection.Open();
-            String command = "SELECT DepartmentID FROM Worker WHERE WorkerID =" + request.Index;
+            String command = "SELECT TeamID FROM Worker WHERE WorkerID =" + request.Index;
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             int teamID = (int)newCommand.ExecuteScalar();     
             
