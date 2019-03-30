@@ -48,7 +48,7 @@ namespace Server
     {
         EmergencyCaller emergencyCaller = new EmergencyCaller();
         CoffieInviter coffieInviter = new CoffieInviter();
-        SqlConnection DBConnection = new SqlConnection("Server=localhost;Integrated security=SSPI;database=ProjectDatabase");
+        SqlConnection DBConnection = new SqlConnection("Server=localhost;Integrated security=SSPI;database=ProjectDatabase2");
         List<ActiveMember> activeMembers = new List<ActiveMember>();
 
         int GetNewDepID()
@@ -396,7 +396,7 @@ namespace Server
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
-                tmp.TeamDesc.Add(new TeamDescription {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) })
+                tmp.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
             }
             dataReader.Close();
             DBConnection.Close();

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="Welcome" Height="450" Width="800">
-    <Grid>
+    <Grid Name="MainGrid" Loaded="MainGrid_Loaded">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFD7D6D6" Offset="0"/>
@@ -28,40 +28,6 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.Background>
-            <Label Content="User Name:" Canvas.Left="116" Canvas.Top="116"/>
-            <Label Content="Password:" Canvas.Left="126" Canvas.Top="147"/>
-        </Canvas>
-        <Canvas HorizontalAlignment="Left" Height="215" Margin="187,120,0,0" VerticalAlignment="Top" Width="232">
-            <Canvas.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8E8E8E" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Canvas.Background>
-            <PasswordBox Canvas.Left="25" Canvas.Top="88" Height="15" Width="110" BorderBrush="{x:Null}">
-                <PasswordBox.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFBBD3CD" Offset="1"/>
-                        <GradientStop Color="White"/>
-                    </LinearGradientBrush>
-                </PasswordBox.Background>
-            </PasswordBox>
-            <TextBox Height="16" Canvas.Left="25" TextWrapping="Wrap" Text="User Name" Canvas.Top="55" Width="110" BorderBrush="{x:Null}">
-                <TextBox.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFC7EEE5" Offset="1"/>
-                        <GradientStop Color="White"/>
-                    </LinearGradientBrush>
-                </TextBox.Background>
-            </TextBox>
-            <Button Content="Log In" Canvas.Left="115" Canvas.Top="152" Width="75" BorderBrush="{x:Null}" Click="LogIn_Click">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="1"/>
-                        <GradientStop Color="#FFE6FAF7"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
         </Canvas>
         <Canvas HorizontalAlignment="Left" Height="163" Margin="563,0,0,0" VerticalAlignment="Top" Width="232">
             <Canvas.Background>
