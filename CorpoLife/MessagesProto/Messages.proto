@@ -3,20 +3,19 @@
 package MessagesPack;
 
 service ServerEvents {
-  rpc Register (RegisterRequest) returns (WorkerEventResponse) {}
-  rpc LogIn (LoginRequest) returns (WorkerEventResponse) {}
-  rpc LogOut (LogOutRequest) returns (WorkerEventResponse) {}
-  rpc CoffeBreak (CoffeBreakRequest) returns (WorkerEventResponse) {}
-  rpc GetTaskList (TaskListRequest) returns (TaskListResponse) {}
-  //TODO
-  rpc AddTeam (AddTeamRequest) returns (WorkerEventResponse) {}
-  rpc RemoveTeam (TeamDescription) returns (WorkerEventResponse) {}
-  rpc AddDepartment (AddDepRequest) returns (WorkerEventResponse) {}
+  rpc Register (RegisterRequest) returns (WorkerEventResponse) {}				//ok
+  rpc LogIn (LoginRequest) returns (WorkerEventResponse) {}						//ok
+  rpc LogOut (LogOutRequest) returns (WorkerEventResponse) {}					//ok
+  rpc CoffeBreak (CoffeBreakRequest) returns (WorkerEventResponse) {}			
+  rpc GetTaskList (TaskListRequest) returns (TaskListResponse) {}				//ok
+  rpc AddTeam (AddTeamRequest) returns (WorkerEventResponse) {}					//ok
+  rpc RemoveTeam (TeamDescription) returns (WorkerEventResponse) {}				//ok
+  rpc AddDepartment (AddDepRequest) returns (WorkerEventResponse) {}			//ok
   rpc RemoveDepartment (DepartmentDescription) returns (WorkerEventResponse) {}
-  rpc GetTeamID (NameRequest) returns  (IntegerResponse) {}
-  rpc GetDepartments (BlankMsg) returns (DepartmentsListResp) {}
-  rpc GetDepartmetTeams (NameRequest) returns (TeamListResp) {}
-  rpc GetWorkerName (IntegerRequest) returns (WorkerEventResponse) {}
+  rpc GetTeamID (NameRequest) returns  (IntegerResponse) {}						//ok
+  rpc GetDepartments (BlankMsg) returns (DepartmentsListResp) {}				//OK
+  rpc GetDepartmetTeams (NameRequest) returns (TeamListResp) {}					//ok
+  rpc GetWorkerName (IntegerRequest) returns (WorkerEventResponse) {}			//ok
 }
 
 message IntegerRequest {
@@ -28,7 +27,7 @@ message AddDepRequest {
 }
 
 message AddTeamRequest {
-	int32 departmentIndex = 1;
+	string departmentName = 1;
 	string teamName = 2;
 }
 
@@ -59,6 +58,7 @@ message IntegerResponse {
 
 message TaskListRequest {
 	string teamName = 1;
+
 }
 
 message NameRequest {
@@ -68,7 +68,7 @@ message NameRequest {
 message Task {
 	string team = 1;
 	int32 teamID = 2;
-	int32 status = 3;
+	string status = 3;
 	string text = 4;
 }
 
@@ -81,7 +81,7 @@ message CoffeBreakRequest {
 }
 
 message LogOutRequest {
-	string id = 1;
+	int32 id = 1;
 }
 
 message LoginRequest {
@@ -95,11 +95,9 @@ message WorkerEventResponse {
 }
 
 message RegisterRequest {
-	int32 workerID = 1;
-	string name = 2;
-	string password = 3;
-	string team = 4;
-	int32 teamID = 5;
-	int32 status = 6;
-	int32 level = 7;
+	string name = 1;
+	string password = 2;
+	string teamName = 3;
+	string DepName = 4;
+	string level = 5;
 }

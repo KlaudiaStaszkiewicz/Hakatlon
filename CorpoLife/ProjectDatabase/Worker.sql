@@ -6,5 +6,6 @@
     [TeamName] TEXT NOT NULL, 
     [TeamID] INT NOT NULL, 
     [DepartmentID] INT NOT NULL, 
-    [Level] INT NOT NULL
+    [Level] INT NOT NULL, 
+    [DepartmentName] TEXT NOT NULL
 )
