@@ -72,6 +72,9 @@
     <Compile Include="AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HeadsOverview.xaml.cs">
+      <DependentUpon>HeadsOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Heart\Admin.cs" />
     <Compile Include="Heart\AdminSchedule.cs" />
     <Compile Include="Heart\DepartmentSchedule.cs" />
@@ -86,6 +89,9 @@
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NamePrompt.xaml.cs">
+      <DependentUpon>NamePrompt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegisterWorker.xaml.cs">
       <DependentUpon>RegisterWorker.xaml</DependentUpon>
     </Compile>
@@ -93,7 +99,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HeadsOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NamePrompt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

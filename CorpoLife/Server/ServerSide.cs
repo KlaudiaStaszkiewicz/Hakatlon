@@ -225,7 +225,6 @@ namespace Server
             DBConnection.Open();
             String command = "SELECT * FROM Team WHERE DepartmentName=" + request.TeamName;
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
-            //TODO
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
@@ -255,6 +254,19 @@ namespace Server
         {//TODO fire it up for a while and then remove the invite
             //inviter ... 
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "" });
+        }
+        public override Task<TeamDescription> GetDepHead(DepartmentDescription request, ServerCallContext context)
+        {
+            TeamDescription headDesc = new TeamDescription();
+            DBConnection.Open();
+            String command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index + "AND Level=Head";
+            SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            SqlDataReader dataReader = newCommand.ExecuteReader();
+            headDesc.Index = dataReader.GetInt32(0);
+            headDesc.Name = dataReader.GetString(1);
+            dataReader.Close();
+            DBConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(headDesc);
         }
     }
     class Server
