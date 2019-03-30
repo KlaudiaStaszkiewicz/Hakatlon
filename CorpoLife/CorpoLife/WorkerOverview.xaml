@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="WORKER OVERVIEW" Height="450" Width="800">
     <Grid>
-        <Button x:Name="RegisterWorker" Content="REGISTER &#xD;&#xA;WORKER" HorizontalAlignment="Left" VerticalAlignment="Top" Width="238" Margin="77,266,0,0" Click="Button_Click" Height="84"/>
+        <Canvas HorizontalAlignment="Left" Height="441" Margin="-23,-19,0,0" VerticalAlignment="Top" Width="818">
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE0FFF7" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+        </Canvas>
+
+        <Button x:Name="RegisterWorker" Content="REGISTER &#xA;WORKER" HorizontalAlignment="Left" VerticalAlignment="Top" Width="238" Margin="77,266,0,0" Click="Button_Click" Height="84" Background="#FFDDFAF6" BorderBrush="#FFD8D8D8"/>
+        <TextBox x:Name="Search" HorizontalAlignment="Left" Height="23" Margin="411,113,0,0" TextWrapping="Wrap" Text="Search..." VerticalAlignment="Top" Width="120" AutomationProperties.HelpText="Search..." TextChanged="Search_TextChanged" Background="#FFE7E7E7" HorizontalContentAlignment="Center" BorderBrush="#FFD6D6D6" SelectionBrush="White"/>
 
     </Grid>
 </Window>

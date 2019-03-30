@@ -7,26 +7,41 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
-        <TextBox Name="NameSelection" HorizontalAlignment="Left" Margin="263,100,0,0" VerticalAlignment="Top" Width="178"/>
+        <Canvas HorizontalAlignment="Left" Height="422" VerticalAlignment="Top" Width="795">
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF2F5FF" Offset="1"/>
+                    <GradientStop Color="#FFDCFFF2"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+        </Canvas>
+
+        <TextBox x:Name="NameSelection" HorizontalAlignment="Left" Margin="263,100,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="115,100,0,0" TextWrapping="Wrap" Text="Worker's Name:" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="115,140,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="24" Margin="115,180,0,0" TextWrapping="Wrap" Text="Department:" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="22" Margin="115,220,0,0" TextWrapping="Wrap" Text="Team:" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="DepartmentSelection" HorizontalAlignment="Left" Margin="263,180,0,0" VerticalAlignment="Top" Width="178">
-
-        </ComboBox>
-        <PasswordBox Name="PasswordSelection" HorizontalAlignment="Left" Margin="263,140,0,0" VerticalAlignment="Top" Width="178"/>
-        <ComboBox Name="TeamSelection" SelectionChanged="TeamSelection_SelectionChanged" HorizontalAlignment="Left" Margin="263,220,0,0" VerticalAlignment="Top" Width="178">
-
-        </ComboBox>
+        <ComboBox x:Name="DepartmentSelection" HorizontalAlignment="Left" Margin="263,180,0,0" VerticalAlignment="Top" Width="178" Height="24"/>
+        <PasswordBox x:Name="PasswordSelection" HorizontalAlignment="Left" Margin="263,140,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
+        <ComboBox x:Name="TeamSelection" SelectionChanged="TeamSelection_SelectionChanged" HorizontalAlignment="Left" Margin="263,220,0,0" VerticalAlignment="Top" Width="178"/>
         <TextBox HorizontalAlignment="Left" Height="24" Margin="115,260,0,0" TextWrapping="Wrap" Text="Level:" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="LevelSelection" HorizontalAlignment="Left" Margin="263,260,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="LevelSelection_SelectionChanged">
+        <ComboBox x:Name="LevelSelection" HorizontalAlignment="Left" Margin="263,260,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="LevelSelection_SelectionChanged" Height="24">
             <ComboBoxItem Content="Admin"/>
             <ComboBoxItem Content="Head"/>
             <ComboBoxItem Content="Leader"/>
             <ComboBoxItem Content="Slave"/>
         </ComboBox>
-        <Button Name="Confirm" Content="CONFIRM" HorizontalAlignment="Left" Margin="213,325,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.483,0.425" Click="Confirm_Click"/>
+        <Button x:Name="Confirm" Content="CONFIRM" HorizontalAlignment="Left" Margin="199,316.5,0,0" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.483,0.425" Click="Confirm_Click" Height="57" UseLayoutRounding="False" TextOptions.TextHintingMode="Animated" Cursor="Hand" BorderBrush="#FFEAF2F4" Foreground="#FF515151">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFC1E5EF"/>
+                    <GradientStop Color="#FFE5F0F3" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect Color="#FF96D3E8" Direction="250" BlurRadius="21" ShadowDepth="0"/>
+            </Button.Effect>
+        </Button>
 
     </Grid>
 </Window>
