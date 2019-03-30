@@ -198,6 +198,7 @@ namespace Server
             newCommand.Parameters.AddWithValue("@val2", request.TeamName);
             newCommand.Parameters.AddWithValue("@val3", GetDepIdFromName(request.DepartmentName));
             newCommand.Parameters.AddWithValue("@val4", request.DepartmentName);
+            newCommand.ExecuteNonQuery();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "New team added!" });
         }
@@ -206,6 +207,7 @@ namespace Server
             DBConnection.Open();
             String command = "DELETE FROM Team WHERE TeamName ="+request.Name;
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            newCommand.ExecuteNonQuery();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Team deleted sucesfully!" });
         }
@@ -216,6 +218,7 @@ namespace Server
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             newCommand.Parameters.AddWithValue("@val1", GetNewDepID());
             newCommand.Parameters.AddWithValue("@val2", request.DepName);
+            newCommand.ExecuteNonQuery();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "New department added!" });
         }
@@ -259,11 +262,19 @@ namespace Server
         {
             TeamDescription headDesc = new TeamDescription();
             DBConnection.Open();
-            String command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index + "AND Level=Head";
+            String command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index;
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
-            headDesc.Index = dataReader.GetInt32(0);
-            headDesc.Name = dataReader.GetString(1);
+            if (dataReader.Read())
+            {
+                headDesc.Index = dataReader.GetInt32(0);
+                headDesc.Name = dataReader.GetString(1);
+            }
+            else
+            {
+                headDesc.Index = -1;
+                headDesc.Name = "None"; 
+            }
             dataReader.Close();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(headDesc);

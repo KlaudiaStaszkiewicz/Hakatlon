@@ -44,6 +44,8 @@ namespace CorpoLife
                 tmpButton.Name = "button_" + item.Name;
                 tmpButton.Content = item.Name + "\n" + client.GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name;
                 MainGrid.Children.Add(tmpButton);
+                LastLeftCornerX += new Random().Next(-30, 30);
+                LastLeftCornerY += new Random().Next(65, 90);
             }            
         }
 
@@ -59,7 +61,7 @@ namespace CorpoLife
             dialog.Show();
             dialog.Closing += (_sender, _e) =>
             {
-                var d = sender as NamePrompt;
+                var d = _sender as NamePrompt;
                 if (!d.Canceled)
                 {
                     client.AddDepartment(new AddDepRequest { DepName = d.InputText });

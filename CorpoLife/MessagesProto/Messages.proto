@@ -17,7 +17,7 @@ service ServerEvents {
   rpc GetDepartmetTeams (NameRequest) returns (TeamListResp) {}					//ok
   rpc GetWorkerName (IntegerRequest) returns (WorkerEventResponse) {}			//ok
   //send departments info and get back head Name and ID
-  rpc GetDepHead (DepartmentDescription) returns (TeamDescription) {}
+  rpc GetDepHead (DepartmentDescription) returns (TeamDescription) {}			//ok
 }
 
 message IntegerRequest {
