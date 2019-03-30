@@ -7,26 +7,30 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
-        <TextBox Name="NameSelection" HorizontalAlignment="Left" Margin="263,100,0,0" VerticalAlignment="Top" Width="178"/>
+        <TextBox Name="NameSelection" HorizontalAlignment="Left" Margin="263,100,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="115,100,0,0" TextWrapping="Wrap" Text="Worker's Name:" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="115,140,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="24" Margin="115,180,0,0" TextWrapping="Wrap" Text="Department:" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="22" Margin="115,220,0,0" TextWrapping="Wrap" Text="Team:" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="DepartmentSelection" HorizontalAlignment="Left" Margin="263,180,0,0" VerticalAlignment="Top" Width="178">
+        <ComboBox Name="DepartmentSelection" HorizontalAlignment="Left" Margin="263,180,0,0" VerticalAlignment="Top" Width="178" Height="24">
 
         </ComboBox>
-        <PasswordBox Name="PasswordSelection" HorizontalAlignment="Left" Margin="263,140,0,0" VerticalAlignment="Top" Width="178"/>
+        <PasswordBox Name="PasswordSelection" HorizontalAlignment="Left" Margin="263,140,0,0" VerticalAlignment="Top" Width="178" Height="23"/>
         <ComboBox Name="TeamSelection" SelectionChanged="TeamSelection_SelectionChanged" HorizontalAlignment="Left" Margin="263,220,0,0" VerticalAlignment="Top" Width="178">
 
         </ComboBox>
         <TextBox HorizontalAlignment="Left" Height="24" Margin="115,260,0,0" TextWrapping="Wrap" Text="Level:" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="LevelSelection" HorizontalAlignment="Left" Margin="263,260,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="LevelSelection_SelectionChanged">
+        <ComboBox Name="LevelSelection" HorizontalAlignment="Left" Margin="263,260,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="LevelSelection_SelectionChanged" Height="24">
             <ComboBoxItem Content="Admin"/>
             <ComboBoxItem Content="Head"/>
             <ComboBoxItem Content="Leader"/>
             <ComboBoxItem Content="Slave"/>
         </ComboBox>
-        <Button Name="Confirm" Content="CONFIRM" HorizontalAlignment="Left" Margin="213,325,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.483,0.425" Click="Confirm_Click"/>
+        <Button Name="Confirm" Content="CONFIRM" HorizontalAlignment="Left" Margin="148,315,0,0" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.483,0.425" Click="Confirm_Click" Height="57" FontWeight="Bold" UseLayoutRounding="False" TextOptions.TextHintingMode="Animated">
+            <Button.Effect>
+                <DropShadowEffect Color="#FF96D3E8" Direction="250" BlurRadius="21" ShadowDepth="0"/>
+            </Button.Effect>
+        </Button>
 
     </Grid>
 </Window>
