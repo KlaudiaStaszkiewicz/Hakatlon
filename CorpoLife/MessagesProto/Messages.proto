@@ -22,8 +22,18 @@ service ServerEvents {
   rpc GetDepFromUser(IntegerRequest) returns (WorkerEventResponse) {}			//ok
   //Send status as string and workerID as int
   rpc GetTeamSPecificTasks (TeamDescription) returns (TaskListResponse) {}		//ok
+  rpc AddTask (Task) returns (WorkerEventResponse) {}							//ok
+  rpc InvokeEmergency (IntIntRequest) returns (WorkerEventResponse) {}			//ok
+  rpc PullEmergency (IntIntRequest) returns (WorkerEventResponse) {}			//ok
+  rpc PullCoffeBrake (CoffeBreakRequest) returns (WorkerEventResponse) {}		//ok
+  rpc RemoveTask (Task) returns (WorkerEventResponse) {}						//TODO
+  rpc GetAllWorkers (BlankMsg) returns (TeamListResp) {}						//ok get list of WORKERS NAME AND ID
 }
 
+message IntIntRequest {
+	int32 teamID = 1;
+	int32 workerID = 2;
+}
 message IntegerRequest {
 	int32 number = 1;
 }
