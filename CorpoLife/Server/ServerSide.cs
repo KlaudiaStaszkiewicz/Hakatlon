@@ -198,6 +198,7 @@ namespace Server
             newCommand.Parameters.AddWithValue("@val2", request.TeamName);
             newCommand.Parameters.AddWithValue("@val3", GetDepIdFromName(request.DepartmentName));
             newCommand.Parameters.AddWithValue("@val4", request.DepartmentName);
+            newCommand.ExecuteNonQuery();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "New team added!" });
         }
@@ -206,6 +207,7 @@ namespace Server
             DBConnection.Open();
             String command = "DELETE FROM Team WHERE TeamName ="+request.Name;
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            newCommand.ExecuteNonQuery();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Team deleted sucesfully!" });
         }
@@ -216,6 +218,7 @@ namespace Server
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             newCommand.Parameters.AddWithValue("@val1", GetNewDepID());
             newCommand.Parameters.AddWithValue("@val2", request.DepName);
+            newCommand.ExecuteNonQuery();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "New department added!" });
         }
@@ -250,6 +253,25 @@ namespace Server
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
+        public override Task<TaskListResponse> GetTeamSPecificTasks(TeamDescription request, ServerCallContext context)
+        {
+            TaskListResponse respList = new TaskListResponse();
+            DBConnection.Open();
+            String command = "SELECT DepartmentID FROM Worker WHERE WorkerID =" + request.Index;
+            SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            int teamID = (int)newCommand.ExecuteScalar();     
+            
+            command = "SELECT Team,TeamID, Status, Text FROM ScheduleItem WHERE Status=" + request.Name + " AND TeamID =" + teamID;
+            newCommand = new SqlCommand(command, DBConnection);
+            SqlDataReader dataReader = newCommand.ExecuteReader();
+            while (dataReader.Read())
+            {
+                respList.Tasks.Add(new MessagesPack.Task { Team = dataReader.GetString(0), TeamID = dataReader.GetInt32(1), Status = dataReader.GetString(2), Text = dataReader.GetString(3) });
+            }
+            dataReader.Close();
+            DBConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(respList);
+        }
         public override Task<WorkerEventResponse> CoffeBreak(CoffeBreakRequest request, ServerCallContext context)
         {//TODO fire it up for a while and then remove the invite
             //inviter ... 
@@ -259,14 +281,75 @@ namespace Server
         {
             TeamDescription headDesc = new TeamDescription();
             DBConnection.Open();
-            String command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index + "AND Level=Head";
+            String command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index;
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
-            headDesc.Index = dataReader.GetInt32(0);
-            headDesc.Name = dataReader.GetString(1);
+            if (dataReader.Read())
+            {
+                headDesc.Index = dataReader.GetInt32(0);
+                headDesc.Name = dataReader.GetString(1);
+            }
+            else
+            {
+                headDesc.Index = -1;
+                headDesc.Name = "None"; 
+            }
             dataReader.Close();
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(headDesc);
+        }
+        public override Task<TaskListResponse> GetAllDepTasks(NameRequest request, ServerCallContext context)
+        {//TODO 
+            //get all department teams
+            TeamListResp teams = new TeamListResp();
+            DBConnection.Open();
+            String command = "SELECT * FROM Team WHERE DepartmentName=" + request.TeamName;
+            SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            SqlDataReader dataReader = newCommand.ExecuteReader();
+            while (dataReader.Read())
+            {
+                teams.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
+            }
+            dataReader.Close();
+            //get all tasks for these teams
+            TaskListResponse taskList = new TaskListResponse();
+            foreach (var team in teams.TeamDesc)
+            {
+                
+                DBConnection.Open();
+                 command = "SELECT * FROM ScheduleItem WHERE Team =" + request.TeamName;
+                newCommand = new SqlCommand(command, DBConnection);
+                dataReader = newCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    taskList.Tasks.Add(new MessagesPack.Task { Status = dataReader.GetString(3), Team = dataReader.GetString(1), TeamID = dataReader.GetInt32(0), Text = dataReader.GetString(4) });
+                }
+                
+            }
+            dataReader.Close();
+            DBConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(taskList);
+        }
+        public override Task<WorkerEventResponse> GetDepFromUser(IntegerRequest request, ServerCallContext context)
+        {//TODO 
+            var resp = new WorkerEventResponse();
+            DBConnection.Open();
+            String command = "SELECT DepartmentName FROM Worker WHERE DepartmentID =" + request.Number;
+            SqlCommand newCommand = new SqlCommand(command, DBConnection);
+            SqlDataReader dataReader = newCommand.ExecuteReader();
+            if (dataReader.Read())
+            {
+                resp.Msg = dataReader.GetString(0);
+                resp.State = true;
+            }
+            else
+            {
+                resp.Msg = "Empty";
+                resp.State = false;
+            }
+            dataReader.Close();
+            DBConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(resp);
         }
     }
     class Server

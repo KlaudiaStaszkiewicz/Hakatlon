@@ -72,8 +72,14 @@
     <Compile Include="AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DepTasks.xaml.cs">
+      <DependentUpon>DepTasks.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HeadsOverview.xaml.cs">
       <DependentUpon>HeadsOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HeadTaskWindow.xaml.cs">
+      <DependentUpon>HeadTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="HeadView.xaml.cs">
       <DependentUpon>HeadView.xaml</DependentUpon>
@@ -105,7 +111,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DepTasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HeadsOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeadTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

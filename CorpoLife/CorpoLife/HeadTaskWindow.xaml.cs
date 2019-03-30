@@ -16,17 +16,16 @@ using MessagesPack;
 namespace CorpoLife
 {
     /// <summary>
-    /// Interaction logic for HeadsOverview.xaml
+    /// Interaction logic for HeadTaskWindow.xaml
     /// </summary>
-    public partial class HeadsOverview : Window
+    public partial class HeadTaskWindow : Window
     {
         DepartmentsListResp depList;
         ServerEvents.ServerEventsClient client;
-        public HeadsOverview()
+        public HeadTaskWindow()
         {
             InitializeComponent();
         }
-
         void UpdateView()
         {
             Button tmpButton = new Button();
@@ -34,7 +33,7 @@ namespace CorpoLife
             tmpButton.Width = 100;
             int LastLeftCornerX = 10;
             int LastLeftCornerY = 10;
-            foreach(var item in depList.DepsDesc)
+            foreach (var item in depList.DepsDesc)
             {
                 tmpButton = new Button();
                 tmpButton.Height = 60;
@@ -48,7 +47,7 @@ namespace CorpoLife
                 MainGrid.Children.Add(tmpButton);
                 LastLeftCornerX += new Random().Next(-40, 150);
                 LastLeftCornerY += new Random().Next(65, 80);
-            }            
+            }
         }
 
         private void MainGrid_Loaded(object sender, RoutedEventArgs e)
@@ -56,21 +55,6 @@ namespace CorpoLife
             client = GlobalUsage.Client();
             depList = client.GetDepartments(new BlankMsg { });
             UpdateView();
-        }
-        private void NewDep_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new NamePrompt("Add new department", "");
-
-            dialog.Closing += (_sender, _e) =>
-
-            {
-                var d = _sender as NamePrompt;
-                if (!d.Canceled)
-                {
-                    client.AddDepartment(new AddDepRequest { DepName = d.InputText });
-                }
-            };
-            dialog.Show();
         }
     }
 }
