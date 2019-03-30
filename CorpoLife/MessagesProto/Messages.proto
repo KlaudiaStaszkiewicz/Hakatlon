@@ -18,6 +18,10 @@ service ServerEvents {
   rpc GetWorkerName (IntegerRequest) returns (WorkerEventResponse) {}			//ok
   //send departments info and get back head Name and ID
   rpc GetDepHead (DepartmentDescription) returns (TeamDescription) {}			//ok
+  rpc GetAllDepTasks (NameRequest) returns (TaskListResponse) {}				//ok
+  rpc GetDepFromUser(IntegerRequest) returns (WorkerEventResponse) {}			//ok
+  //Send status as string and workerID as int
+  rpc GetTeamSPecificTasks (TeamDescription) returns (TaskListResponse) {}		//ok
 }
 
 message IntegerRequest {
