@@ -21,7 +21,7 @@ namespace CorpoLife
     {
         public TeamTaskWindow()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
