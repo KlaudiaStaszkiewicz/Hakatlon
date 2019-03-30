@@ -14,7 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CorpoLife
-{
+{  
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
