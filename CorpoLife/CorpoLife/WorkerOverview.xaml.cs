@@ -23,7 +23,13 @@ namespace CorpoLife
     {
         public WorkerOverview()
         {
-            //InitializeComponent();
+            /*InitializeComponent();
+            var listOfWorkers = GlobalUsage.Client();
+
+            foreach(var w in listOfWorkers.items)
+            {
+                listW.Items.Add(w.Name);
+            }*/
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -34,8 +40,8 @@ namespace CorpoLife
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            MessageBox.Show("I will find the worker you are looking for!");
         }
-
+        
     }
 }

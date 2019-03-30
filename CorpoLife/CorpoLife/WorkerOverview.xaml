@@ -15,7 +15,7 @@
                 </LinearGradientBrush>
             </Canvas.Background>
         </Canvas>
-        <ListBox Name="lbTodoList" HorizontalContentAlignment="Left" Margin="296,99,308,72.5">
+        <ListBox Name="listW" HorizontalContentAlignment="Left" Margin="296,99,308,72.5">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">

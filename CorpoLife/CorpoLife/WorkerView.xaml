@@ -22,7 +22,7 @@
     <Grid Loaded="Grid_Loaded">
         <Button Content="TASKS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="102,77,0,0" VerticalAlignment="Top" Width="112" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="111" Click="Tasks_Click"/>
         <Button Content="MAP" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="279,166,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="121" />
-        <Button Content="COFFEE" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="448,56,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132" />
+        <Button Content="COFFEE" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="448,56,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132" Click="Coffee_Click" />
         <Button Content="CALLENDAR" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="511,256,0,0" VerticalAlignment="Top" Width="104" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="104" />
         <Button Name="Ems" Content="EMERGENCY" Visibility="Hidden" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Margin="85,256,622,0" VerticalAlignment="Top" Width="88" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="88" Click="Ems_Click"></Button>
 

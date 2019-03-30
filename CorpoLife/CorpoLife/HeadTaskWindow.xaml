@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="HeadTaskWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="90" Background="#FFD9F9F3" BorderThickness="1" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Name="MainGrid">
-        
+        <Button Name="TeamOverview" Content="TEAM OVERVIEW" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="35,257,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132" Click="TeamOverview_Click" />
+        <Button Name="DepTasks" Content="DEPARTMENT TASKS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="601,257,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132" Click="DepTasks_Click" />
+
     </Grid>
 </Window>

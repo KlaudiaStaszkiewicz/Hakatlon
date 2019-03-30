@@ -35,13 +35,46 @@ namespace CorpoLife
 
         private void DeptTasks_Click(object sender, RoutedEventArgs e)
         {
-            DepTasks dt = new DepTasks();
-            dt.Show();
+            HeadTaskWindow head = new HeadTaskWindow();
+            head.Show();
         }
         private void ShowTasks()
         {
-            TaskListResponse listOfTasks = new TaskListResponse();
+            TaskListResponse listTodo = new TaskListResponse();
+            listTodo = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "todo" });
             
+            foreach(var i in listTodo.Tasks)
+            {
+                todo.Items.Add(i.Text);
+
+            }
+
+            TaskListResponse listInprogress = new TaskListResponse();
+            listInprogress = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "inprogress" });
+
+            foreach (var i in listInprogress.Tasks)
+            {
+                inprogress.Items.Add(i.Text);
+
+            }
+
+            TaskListResponse listTesting = new TaskListResponse();
+            listTesting = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "testing" });
+
+            foreach (var i in listTesting.Tasks)
+            {
+                testing.Items.Add(i.Text);
+
+            }
+
+            TaskListResponse listDone = new TaskListResponse();
+            listDone = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "done" });
+
+            foreach (var i in listDone.Tasks)
+            {
+                done.Items.Add(i.Text);
+
+            }
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {

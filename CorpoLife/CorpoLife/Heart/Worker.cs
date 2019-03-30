@@ -5,6 +5,7 @@ namespace CorpoLife
 {
     class Worker
     {
+        public bool coffee, emergency;
         public int workerID, teamID, level, status;
         public string name, teamName;
         enum Status { absent = 0, working, onCoffee }
@@ -13,6 +14,8 @@ namespace CorpoLife
         {
             level = 2;
             workerID = 1;
+            name = "Brajan";
+            teamID = 1;
         }
         
         public void CheckEmergency()
