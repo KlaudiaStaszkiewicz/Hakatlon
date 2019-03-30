@@ -17,9 +17,9 @@ namespace CorpoLife
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class WorkerView : Window
     {
-        public MainView()
+        public WorkerView()
         {
             //InitializeComponent();
         }

@@ -22,7 +22,7 @@ namespace CorpoLife
     {
         public RegisterWorker()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         public string depName, teamName, name, password, level;

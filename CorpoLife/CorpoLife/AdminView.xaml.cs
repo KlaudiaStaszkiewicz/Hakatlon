@@ -23,5 +23,50 @@ namespace CorpoLife
         {
             InitializeComponent();
         }
+        
+
+        private void Coffee_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Coffee");
+        }
+
+
+        private void Workers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Tasks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Deps_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Ems_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void More_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (Coffee.Visibility == Visibility.Hidden)
+            {
+                Coffee.Visibility = Visibility.Visible;
+                Callendar.Visibility = Visibility.Visible;
+                Workers.Visibility = Visibility.Visible;
+                Map.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Coffee.Visibility = Visibility.Hidden;
+                Callendar.Visibility = Visibility.Hidden;
+                Workers.Visibility = Visibility.Hidden;
+                Map.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }

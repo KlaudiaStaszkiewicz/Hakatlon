@@ -72,6 +72,9 @@
     <Compile Include="AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GlobalTaskWin.xaml.cs">
+      <DependentUpon>GlobalTaskWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Heart\Admin.cs" />
     <Compile Include="Heart\AdminSchedule.cs" />
     <Compile Include="Heart\DepartmentSchedule.cs" />
@@ -90,6 +93,10 @@
       <DependentUpon>RegisterWorker.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GlobalTaskWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
