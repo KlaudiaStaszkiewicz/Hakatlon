@@ -15,9 +15,24 @@
                 </LinearGradientBrush>
             </Canvas.Background>
         </Canvas>
+        <ListBox Name="lbTodoList" HorizontalContentAlignment="Left" Margin="296,99,308,72.5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="text" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBoxItem Background="#FF9BF2E1"/>
+            <ListBoxItem Background="#FFE8E8E8"/>
+        </ListBox>
 
-        <Button x:Name="RegisterWorker" Content="REGISTER &#xA;WORKER" HorizontalAlignment="Left" VerticalAlignment="Top" Width="238" Margin="77,266,0,0" Click="Button_Click" Height="84" Background="#FFDDFAF6" BorderBrush="#FFD8D8D8"/>
-        <TextBox x:Name="Search" HorizontalAlignment="Left" Height="23" Margin="411,113,0,0" TextWrapping="Wrap" Text="Search..." VerticalAlignment="Top" Width="120" AutomationProperties.HelpText="Search..." TextChanged="Search_TextChanged" Background="#FFE7E7E7" HorizontalContentAlignment="Center" BorderBrush="#FFD6D6D6" SelectionBrush="White"/>
+        <Button x:Name="RegisterWorker" Content="REGISTER &#xA;WORKER" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="77,266,0,0" Click="Button_Click" Height="84" Background="#FFDDFAF6" BorderBrush="#FFD8D8D8"/>
+        <TextBox x:Name="Search" HorizontalAlignment="Left" Height="22" Margin="296,58,0,0" TextWrapping="Wrap" Text="Search for worker..." VerticalAlignment="Top" Width="191" AutomationProperties.HelpText="Search for worker..." TextChanged="Search_TextChanged" Background="#FFE7E7E7" HorizontalContentAlignment="Center" BorderBrush="#FFD6D6D6" SelectionBrush="White"/>
 
     </Grid>
 </Window>
