@@ -88,7 +88,31 @@ namespace CorpoLife
         }*/
         private void DepTasks_Click(object sender, RoutedEventArgs e)
         {
-            
+            DepTasks dep = new DepTasks();
+            dep.Show();
+        }
+        private void TeamOverview_Click(object sender, RoutedEventArgs e)
+        {
+            Te.Visibility = Visibility.Visible;
+            Ty.Visibility = Visibility.Visible;
+            Ta.Visibility = Visibility.Visible;
+
+        }
+
+        private void Te_Click(object sender, RoutedEventArgs e)
+        {
+            TeamTaskWindow team = new TeamTaskWindow();
+            team.Show();
+        }
+        private void Ty_Click(object sender, RoutedEventArgs e)
+        {
+            TeamTaskWindow team = new TeamTaskWindow();
+            team.Show();
+        }
+        private void Ta_Click(object sender, RoutedEventArgs e)
+        {
+            TeamTaskWindow team = new TeamTaskWindow();
+            team.Show();
         }
     }
 }

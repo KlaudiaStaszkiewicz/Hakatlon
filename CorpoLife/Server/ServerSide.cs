@@ -396,7 +396,7 @@ namespace Server
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
-                tmp.TeamDesc.Add(new TeamDescription {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) })
+                tmp.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
             }
             dataReader.Close();
             DBConnection.Close();
