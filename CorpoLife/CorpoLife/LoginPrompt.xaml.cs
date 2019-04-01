@@ -47,9 +47,10 @@ namespace CorpoLife
         private void BtnOk_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var client = GlobalUsage.Client();
-            //var response = client.LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
-            //if (response.State)
-            if(true)
+            Console.WriteLine("Using Onclick");
+            var response = client.LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
+            Console.WriteLine("Passes login");
+            if (response.State)
             {
                 Canceled = false;
                 Close();

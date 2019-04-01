@@ -101,9 +101,13 @@ namespace Server
         {
             String command = "SELECT Name FROM Worker WHERE WorkerID =" + id;
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
-            SqlDataReader dataReader = newCommand.ExecuteReader();
-            string name = dataReader.GetString(0);
-            dataReader.Close();
+            string name = "";
+            SqlDataReader dataReader1 = newCommand.ExecuteReader();
+            if (dataReader1.Read())
+            {
+                name = dataReader1.GetString(0);
+            }
+            dataReader1.Close();
             return name;
         }
         public override Task<WorkerEventResponse> Register(RegisterRequest request, ServerCallContext context)
@@ -136,15 +140,15 @@ namespace Server
             SqlCommand newCommand = new SqlCommand(command, DBConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             bool correct = false;
-            if (dataReader.HasRows)
+            if (dataReader.Read())
             {
                 if (dataReader.GetString(0) == request.Password)
                 {
                     correct = true;
+                    dataReader.Close();
                     activeMembers.Add(new ActiveMember(request.Id, GetWorkerNameFromID(request.Id)));
                 }
             }
-            dataReader.Close();
             DBConnection.Close();
             if (correct)
             {
@@ -420,25 +424,25 @@ namespace Server
         }
         public override Task<WorkerEventResponse> InvokeEmergency(IntIntRequest request, ServerCallContext context)
         {
-            emergencyCaller.InviterId = request.WorkerID;
-            emergencyCaller.TeamId = request.TeamID;
-            System.Threading.Tasks.Task.Delay(50000).ContinueWith(_ =>
-            {
-                emergencyCaller.InviterId = -1;
-                emergencyCaller.TeamId = -1;
-            });
+            //emergencyCaller.InviterId = request.WorkerID;
+            //emergencyCaller.TeamId = request.TeamID;
+            //System.Threading.Tasks.Task.Delay(50000).ContinueWith(_ =>
+            //{
+            //    emergencyCaller.InviterId = -1;
+            //    emergencyCaller.TeamId = -1;
+            //});
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { Msg = "Emergency called!", State = true });
         }
         public override Task<WorkerEventResponse> CoffeBreak(CoffeBreakRequest request, ServerCallContext context)
         { 
-            coffieInviter.InviterName = request.Name;
-            coffieInviter.Inviting = true;
-            System.Threading.Tasks.Task.Delay(50000).ContinueWith(_ =>
-            {
-                coffieInviter.InviterName = "";
-                coffieInviter.Inviting = false;
-            }
-);
+            //coffieInviter.InviterName = request.Name;
+            //coffieInviter.Inviting = true;
+            //System.Threading.Tasks.Task.Delay(50000).ContinueWith(_ =>
+            //{
+            //    coffieInviter.InviterName = "";
+            //    coffieInviter.Inviting = false;
+            //}
+            //);
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Smacznego!" });
         }
     }

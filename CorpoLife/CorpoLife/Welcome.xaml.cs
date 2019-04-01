@@ -63,6 +63,7 @@ namespace CorpoLife
                 var d = _sender as LoginPrompt;
                 if (!(d.Canceled))
                 {
+                    //TODO get your login info and +
                     int level = GlobalUsage.currentUser.level;
 
                     switch (level)
