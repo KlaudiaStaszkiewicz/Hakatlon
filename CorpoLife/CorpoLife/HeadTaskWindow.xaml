@@ -20,8 +20,11 @@
         </Style>
     </Window.Resources>
     <Grid Name="MainGrid">
-        <Button Name="TeamOverview" Content="TEAM OVERVIEW" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="35,257,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132" />
-        <Button Name="DepTasks" Content="DEPARTMENT TASKS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="601,257,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132"/>
+        <Button Name="TeamOverview" Content="TEAM OVERVIEW" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="35,257,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132" Click="TeamOverview_Click" />
+        <Button Name="DepTasks" Content="DEPARTMENT TASKS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="601,257,0,0" VerticalAlignment="Top" Width="133" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="132" Click="DepTasks_Click" />
+        <Button Name="Ty" Content="TEAM 1" Visibility="Hidden" HorizontalAlignment="Left" Margin="152,232,0,0" VerticalAlignment="Top" Width="76" Click="Te_Click"/>
+        <Button Name="Ta" Content="TEAM 2" Visibility="Hidden" HorizontalAlignment="Left" Margin="193,298,0,0" VerticalAlignment="Top" Width="76" Click="Ta_Click"/>
+        <Button Name="Te" Content="TEAM 3" Visibility="Hidden" HorizontalAlignment="Left" Margin="168,369,0,0" VerticalAlignment="Top" Width="76" Click="Ty_Click"/>
 
     </Grid>
 </Window>

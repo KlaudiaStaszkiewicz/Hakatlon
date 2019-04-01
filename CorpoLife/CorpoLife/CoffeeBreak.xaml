@@ -14,6 +14,7 @@
             </RadialGradientBrush>
         </Grid.Background>
         <Image Source="CCC.png" HorizontalAlignment="Left" Height="231" Margin="281,90,0,0" VerticalAlignment="Top" Width="220" />
+        <TextBox HorizontalAlignment="Left" Height="282" Margin="126,140,0,0" TextWrapping="Wrap" Text="COFFEE BREAK" VerticalAlignment="Top" Width="534" SpellCheck.IsEnabled="True" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontSize="72" FontWeight="Bold" FontFamily="Showcard Gothic" Foreground="#FF373535"/>
 
     </Grid>
 </Window>

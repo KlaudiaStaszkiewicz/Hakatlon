@@ -21,6 +21,7 @@
                 </LinearGradientBrush>
             </Image.OpacityMask>
         </Image>
+        <TextBox HorizontalAlignment="Left" Height="261" Margin="173,139,0,0" TextWrapping="Wrap" Text="EMERGENCY" VerticalAlignment="Top" Width="497" SpellCheck.IsEnabled="True" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontSize="72" FontWeight="Bold" FontFamily="Showcard Gothic"/>
 
     </Grid>
 </Window>

@@ -72,6 +72,9 @@
     <Compile Include="AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Callendar.xaml.cs">
+      <DependentUpon>Callendar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CoffeeBreak.xaml.cs">
       <DependentUpon>CoffeeBreak.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <DependentUpon>RegisterWorker.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Callendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

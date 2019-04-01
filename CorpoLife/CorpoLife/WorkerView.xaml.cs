@@ -32,7 +32,9 @@ namespace CorpoLife
         
         private void Ems_Click(object sender, RoutedEventArgs e)
         {
-            GlobalUsage.Client().InvokeEmergency(new MessagesPack.IntIntRequest { TeamID = GlobalUsage.currentUser.teamID, WorkerID = GlobalUsage.currentUser.workerID });
+            Emergency em = new Emergency();
+            em.Show();
+            //GlobalUsage.Client().InvokeEmergency(new MessagesPack.IntIntRequest { TeamID = GlobalUsage.currentUser.teamID, WorkerID = GlobalUsage.currentUser.workerID });
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -50,8 +52,9 @@ namespace CorpoLife
 
         private void Coffee_Click(object sender, RoutedEventArgs e)
         {
-            GlobalUsage.Client().CoffeBreak(new MessagesPack.CoffeBreakRequest { Name = GlobalUsage.currentUser.name });
-
+            //GlobalUsage.Client().CoffeBreak(new MessagesPack.CoffeBreakRequest { Name = GlobalUsage.currentUser.name });
+            CoffeeBreak coff = new CoffeeBreak();
+            coff.Show();
         }
     }
 }
