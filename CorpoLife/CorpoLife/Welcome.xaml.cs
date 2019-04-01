@@ -54,9 +54,40 @@ namespace CorpoLife
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MainGrid_Loaded(object sender, RoutedEventArgs e)
         {
+            var dialog = new LoginPrompt();
+            var client = GlobalUsage.Client();
+            dialog.Closing += (_sender, _e) =>
+            {
+                var d = _sender as LoginPrompt;
+                if (!(d.Canceled))
+                {
+                    int level = GlobalUsage.currentUser.level;
 
+                    switch (level)
+                    {
+                        case 1:
+                            WorkerView workerwelcome = new WorkerView();
+                            workerwelcome.Show();
+                            break;
+                        case 2:
+                            WorkerView leaderwelcome = new WorkerView();
+                            leaderwelcome.Show();
+                            break;
+                        case 3:
+                            HeadView headwelcome = new HeadView();
+                            headwelcome.Show();
+                            break;
+                        case 4:
+                            HeadView adminwelcome = new HeadView();
+                            adminwelcome.Show();
+                            break;
+                    }
+                    Close();
+                }
+            };
+            dialog.Show();
         }
     }
 }
