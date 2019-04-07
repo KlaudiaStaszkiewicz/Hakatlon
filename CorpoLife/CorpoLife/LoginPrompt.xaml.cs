@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace CorpoLife
 {
@@ -26,14 +16,14 @@ namespace CorpoLife
 
         public string PasswordText
         {
-            get { return PasswrdInput.Text; }
-            set { PasswrdInput.Text = value; }
+            get => PasswrdInput.Text;
+            set => PasswrdInput.Text = value;
         }
 
         public string IdText
         {
-            get { return InputTextBox.Text; }
-            set { InputTextBox.Text = value; }
+            get => InputTextBox.Text;
+            set => InputTextBox.Text = value;
         }
 
         public bool Canceled { get; set; }
@@ -46,10 +36,7 @@ namespace CorpoLife
 
         private void BtnOk_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var client = GlobalUsage.Client();
-            Console.WriteLine("Using Onclick");
-            var response = client.LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
-            Console.WriteLine("Passes login");
+            var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
             if (response.State)
             {
                 Canceled = false;

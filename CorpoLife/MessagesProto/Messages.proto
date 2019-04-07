@@ -4,14 +4,14 @@ package MessagesPack;
 
 service ServerEvents {
   rpc Register (RegisterRequest) returns (WorkerEventResponse) {}				//ok
-  rpc LogIn (LoginRequest) returns (WorkerEventResponse) {}						//ok
+  rpc LogIn (LoginRequest) returns (LogInResponse) {}							//ok
   rpc LogOut (LogOutRequest) returns (WorkerEventResponse) {}					//ok
-  rpc CoffeBreak (CoffeBreakRequest) returns (WorkerEventResponse) {}			
+  rpc CallCoffeeBreak (CoffeBreakRequest) returns (WorkerEventResponse) {}			
   rpc GetTaskList (TaskListRequest) returns (TaskListResponse) {}				//ok
   rpc AddTeam (AddTeamRequest) returns (WorkerEventResponse) {}					//ok
   rpc RemoveTeam (TeamDescription) returns (WorkerEventResponse) {}				//ok
   rpc AddDepartment (AddDepRequest) returns (WorkerEventResponse) {}			//ok
-  rpc RemoveDepartment (DepartmentDescription) returns (WorkerEventResponse) {}
+  rpc RemoveDepartment (DepartmentDescription) returns (WorkerEventResponse) {}	//TODO
   rpc GetTeamID (NameRequest) returns  (IntegerResponse) {}						//ok
   rpc GetDepartments (BlankMsg) returns (DepartmentsListResp) {}				//OK
   rpc GetDepartmetTeams (NameRequest) returns (TeamListResp) {}					//ok
@@ -21,11 +21,11 @@ service ServerEvents {
   rpc GetAllDepTasks (NameRequest) returns (TaskListResponse) {}				//ok
   rpc GetDepFromUser(IntegerRequest) returns (WorkerEventResponse) {}			//ok
   //Send status as string and workerID as int
-  rpc GetTeamSPecificTasks (TeamDescription) returns (TaskListResponse) {}		//ok
+  rpc GetTeamSpecificTasks (TeamDescription) returns (TaskListResponse) {}		//ok
   rpc AddTask (Task) returns (WorkerEventResponse) {}							//ok
-  rpc InvokeEmergency (IntIntRequest) returns (WorkerEventResponse) {}			//ok
+  rpc CallEmergency (IntIntRequest) returns (WorkerEventResponse) {}			//ok
   rpc PullEmergency (IntIntRequest) returns (WorkerEventResponse) {}			//ok
-  rpc PullCoffeBrake (CoffeBreakRequest) returns (WorkerEventResponse) {}		//ok
+  rpc PullCoffeeBrake (CoffeBreakRequest) returns (WorkerEventResponse) {}		//ok
   rpc RemoveTask (Task) returns (WorkerEventResponse) {}						//TODO
   rpc GetAllWorkers (BlankMsg) returns (TeamListResp) {}						//ok get list of WORKERS NAME AND ID
 }
@@ -110,6 +110,14 @@ message WorkerEventResponse {
   bool state = 2;
 }
 
+message LogInResponse {
+	string msg = 1;
+	bool state = 2;
+	int32 level = 3;
+	string name = 4;
+	int32 teamId = 5;
+	string team = 6;
+}
 message RegisterRequest {
 	string name = 1;
 	string password = 2;

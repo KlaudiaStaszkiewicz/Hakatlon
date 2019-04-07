@@ -25,59 +25,55 @@ namespace CorpoLife
             //InitializeComponent();
         }
 
-        public string depName, teamName, name, password, level;
+        public string DepName, TeamName, Name, Password, Level;
 
         
         private void DepartmentSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //get department list and show them in ComboBox
-            var client = CorpoLife.GlobalUsage.Client();
-            var depList = client.GetDepartments(new MessagesPack.BlankMsg());
+            var depList = GlobalUsage.GetInfClient().GetDepartments(new MessagesPack.BlankMsg());
             foreach (var dep in depList.DepsDesc)
             {
                 DepartmentSelection.Items.Add(dep.Name);
             }
             //remember chosen department
-            depName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
-            
+            DepName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             GetName();
             GetPassword();
-            var client = GlobalUsage.Client();//TODO change to level
-            var resp = client.Register(new RegisterRequest { Level = level, Name = name, Password = password, TeamName = teamName, DepName = depName });
+            var resp = GlobalUsage.GetIntClient().Register(new RegisterRequest { Level = Level, Name = Name, Password = Password, TeamName = TeamName, DepName = DepName });
             MessageBox.Show(resp.Msg);
         }
 
         private void GetName()
         {
-            name = NameSelection.Text;
+            Name = NameSelection.Text;
 
         }
         private void GetPassword()
         {
-            password = PasswordSelection.Password;
+            Password = PasswordSelection.Password;
         }
         private void TeamSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //get teams for this department and show them in ComboBox
-            var client = CorpoLife.GlobalUsage.Client();
-            var teamList = client.GetDepartmetTeams(new NameRequest {TeamName = depName });
+            var teamList = GlobalUsage.GetInfClient().GetDepartmetTeams(new NameRequest {TeamName = DepName });
             foreach (var t in teamList.TeamDesc)
             {
                 TeamSelection.Items.Add(t.Name);
             }
             //remember chosen team
-            teamName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
+            TeamName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
             
         }
 
         private void LevelSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //remember selected level
-            level = ((ComboBoxItem)LevelSelection.SelectedItem).Content.ToString();
+            //remember selected Level
+            Level = ((ComboBoxItem)LevelSelection.SelectedItem).Content.ToString();
 
         }
 

@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MessagesPack;
+﻿using MessagesPack;
 using Grpc.Core;
 
 namespace CorpoLife
 {
     static class GlobalUsage
     {
-        static public Worker currentUser = new Worker();
-        
-        public static ServerEvents.ServerEventsClient Client()
+        static public Worker CurrentUser = new Worker();
+
+        public static ServerEvents.ServerEventsClient GetRtClient()
         {
-            Channel channel = new Channel("192.168.52.55:50051", ChannelCredentials.Insecure);
-            return new ServerEvents.ServerEventsClient(channel);
+            return new ServerEvents.ServerEventsClient(new Channel("192.168.52.55:50051", ChannelCredentials.Insecure));
+        }
+        public static ServerEvents.ServerEventsClient GetInfClient()
+        {
+            return new ServerEvents.ServerEventsClient(new Channel("192.168.52.55:50052", ChannelCredentials.Insecure));
+        }
+        public static ServerEvents.ServerEventsClient GetIntClient()
+        {
+            return new ServerEvents.ServerEventsClient(new Channel("192.168.52.55:50053", ChannelCredentials.Insecure));
         }
     }
 }

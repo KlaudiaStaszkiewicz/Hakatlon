@@ -133,7 +133,7 @@ namespace Server
             return System.Threading.Tasks.Task.FromResult(resp);
         }
 
-        public override Task<WorkerEventResponse> LogIn(LoginRequest request, ServerCallContext context)
+        public override Task<LogInResponse> LogIn(LoginRequest request, ServerCallContext context)
         {
             DBConnection.Open();
             String command = "SELECT Password FROM Worker WHERE WorkerID =" + request.Id;
@@ -152,11 +152,11 @@ namespace Server
             DBConnection.Close();
             if (correct)
             {
-                return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "Worker logged in succesfuly." });
+                return System.Threading.Tasks.Task.FromResult(new LogInResponse { State = true, Msg = "Worker logged in succesfuly." });
             }
             else
             {
-                return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = false, Msg = "Unable to log in." });
+                return System.Threading.Tasks.Task.FromResult(new LogInResponse { State = false, Msg = "Unable to log in." });
             }
         }
 
@@ -275,7 +275,7 @@ namespace Server
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
-        public override Task<TaskListResponse> GetTeamSPecificTasks(TeamDescription request, ServerCallContext context)
+        public override Task<TaskListResponse> GetTeamSpecificTasks(TeamDescription request, ServerCallContext context)
         {
             TaskListResponse respList = new TaskListResponse();
             int teamID = -1;
@@ -406,7 +406,7 @@ namespace Server
             DBConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
-        public override Task<WorkerEventResponse> PullCoffeBrake(CoffeBreakRequest request, ServerCallContext context)
+        public override Task<WorkerEventResponse> PullCoffeeBrake(CoffeBreakRequest request, ServerCallContext context)
         {
             if (coffieInviter.Inviting && coffieInviter.InviterName != request.Name)
             {
@@ -422,7 +422,7 @@ namespace Server
             }
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { Msg = "Read status of emergency", State = false });
         }
-        public override Task<WorkerEventResponse> InvokeEmergency(IntIntRequest request, ServerCallContext context)
+        public override Task<WorkerEventResponse> CallEmergency(IntIntRequest request, ServerCallContext context)
         {
             //emergencyCaller.InviterId = request.WorkerID;
             //emergencyCaller.TeamId = request.TeamID;
@@ -433,7 +433,7 @@ namespace Server
             //});
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { Msg = "Emergency called!", State = true });
         }
-        public override Task<WorkerEventResponse> CoffeBreak(CoffeBreakRequest request, ServerCallContext context)
+        public override Task<WorkerEventResponse> CallCoffeeBreak(CoffeBreakRequest request, ServerCallContext context)
         { 
             //coffieInviter.InviterName = request.Name;
             //coffieInviter.Inviting = true;

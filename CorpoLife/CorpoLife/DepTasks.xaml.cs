@@ -19,7 +19,7 @@ namespace CorpoLife
     /// </summary>
     public partial class DepTasks : Window
     {
-        ServerEvents.ServerEventsClient client = GlobalUsage.Client();
+        ServerEvents.ServerEventsClient client = GlobalUsage.GetInfClient();
         TaskListResponse taskList = new TaskListResponse();
         public DepTasks()
         {
@@ -49,7 +49,7 @@ namespace CorpoLife
         }
         void Update()
         {
-            taskList = client.GetAllDepTasks(new MessagesPack.NameRequest { TeamName = (client.GetDepFromUser(new MessagesPack.IntegerRequest { Number = GlobalUsage.currentUser.workerID }).Msg) });
+            taskList = client.GetAllDepTasks(new MessagesPack.NameRequest { TeamName = (client.GetDepFromUser(new MessagesPack.IntegerRequest { Number = GlobalUsage.CurrentUser.workerID }).Msg) });
             UpdateVisuals();
         }
         private void MainGrid_Loaded(object sender, RoutedEventArgs e)

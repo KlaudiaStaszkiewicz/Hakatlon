@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using MessagesPack;
+
 
 namespace CorpoLife
 {
@@ -26,66 +17,79 @@ namespace CorpoLife
 
         
         
-        private void LogIn_Click(object sender, RoutedEventArgs e)
-        {
-            int level = GlobalUsage.currentUser.level;
-
-            switch (level)
-            {
-                case 1:
-                    WorkerView workerwelcome = new WorkerView();
-                    workerwelcome.Show();
-                    break;
-                case 2:
-                    WorkerView leaderwelcome = new WorkerView();
-                    leaderwelcome.Show();
-                    break;
-                case 3:
-                    HeadView headwelcome = new HeadView();
-                    headwelcome.Show();
-                    break;
-                case 4:
-                    HeadView adminwelcome = new HeadView();
-                    adminwelcome.Show();
-                    break;
-
-            }
-            this.Close();
-
-        }
-
+       // private void LogIn_Click(object sender, RoutedEventArgs e)
+       // {
+       //     int level = GlobalUsage.CurrentUser.level;
+       //
+       //     switch (level)
+       //     {
+       //         case 1:
+       //             WorkerView workerwelcome = new WorkerView();
+       //             workerwelcome.Show();
+       //             break;
+       //         case 2:
+       //             WorkerView leaderwelcome = new WorkerView();
+       //             leaderwelcome.Show();
+       //             break;
+       //         case 3:
+       //             HeadView headwelcome = new HeadView();
+       //             headwelcome.Show();
+       //             break;
+       //         case 4:
+       //             HeadView adminwelcome = new HeadView();
+       //             adminwelcome.Show();
+       //             break;
+       //
+       //     }
+       //     this.Close();
+       //
+       // }
+       //
         private void MainGrid_Loaded(object sender, RoutedEventArgs e)
         {
             var dialog = new LoginPrompt();
-            var client = GlobalUsage.Client();
+            var client = GlobalUsage.GetRtClient();
             dialog.Closing += (_sender, _e) =>
             {
                 var d = _sender as LoginPrompt;
                 if (!(d.Canceled))
                 {
-                    //TODO get your login info and +
-                    int level = GlobalUsage.currentUser.level;
 
-                    switch (level)
+                    var id = Convert.ToInt32(d.InputTextBox.Text);
+                    var password = d.PasswrdInput.Text;
+                    var response = client.LogIn(new LoginRequest {Id = id, Password = password});
+                    if (response.State)
                     {
-                        case 1:
-                            WorkerView workerwelcome = new WorkerView();
-                            workerwelcome.Show();
-                            break;
-                        case 2:
-                            WorkerView leaderwelcome = new WorkerView();
-                            leaderwelcome.Show();
-                            break;
-                        case 3:
-                            HeadView headwelcome = new HeadView();
-                            headwelcome.Show();
-                            break;
-                        case 4:
-                            HeadView adminwelcome = new HeadView();
-                            adminwelcome.Show();
-                            break;
+                        GlobalUsage.CurrentUser.level = response.Level;
+                        GlobalUsage.CurrentUser.workerID = id;
+                        GlobalUsage.CurrentUser.coffee = false;
+                        GlobalUsage.CurrentUser.emergency = false;
+                        GlobalUsage.CurrentUser.teamName = response.Team;
+                        GlobalUsage.CurrentUser.name = response.Name;
+                        GlobalUsage.CurrentUser.teamID = response.TeamId;
+
+                        switch (GlobalUsage.CurrentUser.level)
+                        {
+                            case 1:
+                                var workerWelcome = new WorkerView();
+                                workerWelcome.Show();
+                                break;
+                            case 2:
+                                var leaderWelcome = new WorkerView();
+                                leaderWelcome.Show();
+                                break;
+                            case 3:
+                                var headWelcome = new HeadView();
+                                headWelcome.Show();
+                                break;
+                            case 4:
+                                var adminWelcome = new HeadView();
+                                adminWelcome.Show();
+                                break;
+                        }
+
+                        Close();
                     }
-                    Close();
                 }
             };
             dialog.Show();

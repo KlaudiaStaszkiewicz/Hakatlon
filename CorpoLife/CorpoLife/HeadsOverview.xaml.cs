@@ -21,7 +21,6 @@ namespace CorpoLife
     public partial class HeadsOverview : Window
     {
         DepartmentsListResp depList;
-        ServerEvents.ServerEventsClient client;
         public HeadsOverview()
         {
             InitializeComponent();
@@ -44,7 +43,7 @@ namespace CorpoLife
                 tmpButton.Name = "button_" + item.Name;
                 tmpButton.HorizontalAlignment = HorizontalAlignment.Left;
                 tmpButton.VerticalAlignment = VerticalAlignment.Top;
-                tmpButton.Content = item.Name + "\n" + client.GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name;
+                tmpButton.Content = item.Name + "\n" + GlobalUsage.GetInfClient().GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name;
                 MainGrid.Children.Add(tmpButton);
                 LastLeftCornerX += new Random().Next(-40, 150);
                 LastLeftCornerY += new Random().Next(65, 80);
@@ -53,8 +52,7 @@ namespace CorpoLife
 
         private void MainGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            client = GlobalUsage.Client();
-            depList = client.GetDepartments(new BlankMsg { });
+            depList = GlobalUsage.GetInfClient().GetDepartments(new BlankMsg { });
             UpdateView();
         }
         private void NewDep_Click(object sender, RoutedEventArgs e)
@@ -67,7 +65,7 @@ namespace CorpoLife
                 var d = _sender as NamePrompt;
                 if (!d.Canceled)
                 {
-                    client.AddDepartment(new AddDepRequest { DepName = d.InputText });
+                    GlobalUsage.GetIntClient().AddDepartment(new AddDepRequest { DepName = d.InputText });
                 }
             };
             dialog.Show();

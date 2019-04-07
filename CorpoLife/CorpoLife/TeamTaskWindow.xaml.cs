@@ -41,7 +41,7 @@ namespace CorpoLife
         /*private void ShowTasks()
         {
             TaskListResponse listTodo = new TaskListResponse();
-            listTodo = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "todo" });
+            listTodo = GlobalUsage.Client().GetTeamSpecificTasks(new TeamDescription { Index = GlobalUsage.CurrentUser.workerID, Name = "todo" });
             
             foreach(var i in listTodo.Tasks)
             {
@@ -50,7 +50,7 @@ namespace CorpoLife
             }
 
             TaskListResponse listInprogress = new TaskListResponse();
-            listInprogress = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "inprogress" });
+            listInprogress = GlobalUsage.Client().GetTeamSpecificTasks(new TeamDescription { Index = GlobalUsage.CurrentUser.workerID, Name = "inprogress" });
 
             foreach (var i in listInprogress.Tasks)
             {
@@ -59,7 +59,7 @@ namespace CorpoLife
             }
 
             TaskListResponse listTesting = new TaskListResponse();
-            listTesting = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "testing" });
+            listTesting = GlobalUsage.Client().GetTeamSpecificTasks(new TeamDescription { Index = GlobalUsage.CurrentUser.workerID, Name = "testing" });
 
             foreach (var i in listTesting.Tasks)
             {
@@ -68,7 +68,7 @@ namespace CorpoLife
             }
 
             TaskListResponse listDone = new TaskListResponse();
-            listDone = GlobalUsage.Client().GetTeamSPecificTasks(new TeamDescription { Index = GlobalUsage.currentUser.workerID, Name = "done" });
+            listDone = GlobalUsage.Client().GetTeamSpecificTasks(new TeamDescription { Index = GlobalUsage.CurrentUser.workerID, Name = "done" });
 
             foreach (var i in listDone.Tasks)
             {
@@ -78,7 +78,7 @@ namespace CorpoLife
         }*/
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            int _level = GlobalUsage.currentUser.level;
+            int _level = GlobalUsage.CurrentUser.level;
             if (_level == 2)
             {
                 DeptTasks.Visibility = Visibility.Visible;

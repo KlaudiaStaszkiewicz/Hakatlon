@@ -21,29 +21,32 @@ namespace CorpoLife
     public partial class HeadTaskWindow : Window
     {
         DepartmentsListResp depList;
-        ServerEvents.ServerEventsClient client;
         public HeadTaskWindow()
         {
             InitializeComponent();
         }
         void UpdateView()
         {
-            Button tmpButton = new Button();
-            tmpButton.Height = 60;
-            tmpButton.Width = 100;
-            int LastLeftCornerX = 10;
-            int LastLeftCornerY = 10;
+            var tmpButton = new Button
+            {
+                Height = 60,
+                Width = 100
+            };
+            var LastLeftCornerX = 10;
+            var LastLeftCornerY = 10;
             foreach (var item in depList.DepsDesc)
             {
-                tmpButton = new Button();
-                tmpButton.Height = 60;
-                tmpButton.Width = 100;
-                tmpButton.Margin = new Thickness(LastLeftCornerX, LastLeftCornerY, 0, 0);
-                tmpButton.Background = new SolidColorBrush(Color.FromArgb(50, (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160))));
-                tmpButton.Name = "button_" + item.Name;
-                tmpButton.HorizontalAlignment = HorizontalAlignment.Left;
-                tmpButton.VerticalAlignment = VerticalAlignment.Top;
-                tmpButton.Content = item.Name + "\n" + client.GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name;
+                tmpButton = new Button
+                {
+                    Height = 60,
+                    Width = 100,
+                    Margin = new Thickness(LastLeftCornerX, LastLeftCornerY, 0, 0),
+                    Background = new SolidColorBrush(Color.FromArgb(50, (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160)))),
+                    Name = "button_" + item.Name,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Content = item.Name + "\n" + GlobalUsage.GetInfClient().GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name
+                };
                 MainGrid.Children.Add(tmpButton);
                 LastLeftCornerX += new Random().Next(-40, 150);
                 LastLeftCornerY += new Random().Next(65, 80);
@@ -70,7 +73,7 @@ namespace CorpoLife
             tmpButton.Width = 100;
             int LastLeftCornerX = 10;
             int LastLeftCornerY = 10;
-            var teamslist = GlobalUsage.Client().GetDepartmetTeams(new NameRequest { TeamName = GlobalUsage.currentUser.teamName });
+            var teamslist = GlobalUsage.Client().GetDepartmetTeams(new NameRequest { TeamName = GlobalUsage.CurrentUser.teamName });
             foreach(var item in teamslist.TeamDesc)
             {
                 tmpButton = new Button();
@@ -96,7 +99,6 @@ namespace CorpoLife
             Te.Visibility = Visibility.Visible;
             Ty.Visibility = Visibility.Visible;
             Ta.Visibility = Visibility.Visible;
-
         }
 
         private void Te_Click(object sender, RoutedEventArgs e)

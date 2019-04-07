@@ -11,33 +11,26 @@ namespace CorpoLife
         public string name, teamName;
         enum Status { absent = 0, working, onCoffee }
         enum Level { casual = 1, leader, head, admin };
-        public Worker()
-        {
-            level = 2;
-            workerID = 1;
-            name = "Brajan";
-            teamID = 1;
-        }
         Timer timer = new System.Timers.Timer(TimeSpan.FromSeconds(40).TotalMilliseconds);
         void Init()
         {
             timer.AutoReset = true;
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(MyMethod);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(CheckEventsStatus);
             timer.Start();
         }
 
-        public static void MyMethod(object sender, ElapsedEventArgs e)
+        public static void CheckEventsStatus(object sender, ElapsedEventArgs e)
         {
-            var responceEm = GlobalUsage.Client().PullEmergency(new IntIntRequest { TeamID = GlobalUsage.currentUser.teamID, WorkerID = GlobalUsage.currentUser.workerID });
-            var responceCo = GlobalUsage.Client().PullCoffeBrake(new CoffeBreakRequest { Name = GlobalUsage.currentUser.name });
-            if(responceCo.State)
+            var responseEm = GlobalUsage.GetRtClient().PullEmergency(new IntIntRequest { TeamID = GlobalUsage.CurrentUser.teamID, WorkerID = GlobalUsage.CurrentUser.workerID });
+            var responseCo = GlobalUsage.GetRtClient().PullCoffeeBrake(new CoffeBreakRequest { Name = GlobalUsage.CurrentUser.name });
+            if(responseCo.State)
             {
-                CoffeeBreak coffee = new CoffeeBreak();
+                var coffee = new CoffeeBreak();
                 coffee.Show();
             }
-            if (responceEm.State)
+            if (responseEm.State)
             {
-                Emergency emer = new Emergency();
+                var emer = new Emergency();
                 emer.Show();
             }
         }
