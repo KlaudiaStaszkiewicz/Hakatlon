@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorpoLife", "CorpoLife\Corp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagesProto", "MessagesProto\MessagesProto.csproj", "{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{144B34A8-A984-4F10-A525-A8BA06B106A1}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ProjectDatabase", "ProjectDatabase\ProjectDatabase.sqlproj", "{C2E72473-F20C-4866-BBCD-27D6B85068CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBInformationService", "DBInformationService\DBInformationService.csproj", "{052B89E1-BE1D-442A-8C92-EB595E3B833C}"
@@ -31,10 +29,6 @@ Global
 		{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B1E1773-82F2-4DB2-9FF9-BB89DC161062}.Release|Any CPU.Build.0 = Release|Any CPU
-		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{144B34A8-A984-4F10-A525-A8BA06B106A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E72473-F20C-4866-BBCD-27D6B85068CE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
