@@ -13,7 +13,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="TitleTextBox" Margin="0,0,20,0" Text="Login" HorizontalAlignment="Right"/>
+                <TextBlock Name="TitleTextBox" Margin="0,0,20,0" Text="ID" HorizontalAlignment="Right"/>
                 <TextBox Grid.Column="1" Name="InputTextBox" Padding="3,3,3,3" />
             </Grid>
             <Grid>
@@ -22,7 +22,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="PsswrdText" Margin="0,0,20,0" Text="Password" HorizontalAlignment="Right"/>
-                <TextBox Grid.Column="1" Name="PasswrdInput" Padding="3,3,3,3" />
+                <PasswordBox Grid.Column="1" Name="PasswrdInput" Padding="3,3,3,3" />
             </Grid>
             <Grid Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>

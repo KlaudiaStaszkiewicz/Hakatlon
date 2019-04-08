@@ -56,8 +56,8 @@ namespace CorpoLife
                 {
 
                     var id = Convert.ToInt32(d.InputTextBox.Text);
-                    var password = d.PasswrdInput.Text;
-                    var response = client.LogIn(new LoginRequest {Id = id, Password = password});
+                    var password = d.PasswrdInput.Password;
+                    /*var response = client.LogIn(new LoginRequest {Id = id, Password = password});
                     if (response.State)
                     {
                         GlobalUsage.CurrentUser.level = response.Level;
@@ -67,8 +67,9 @@ namespace CorpoLife
                         GlobalUsage.CurrentUser.teamName = response.Team;
                         GlobalUsage.CurrentUser.name = response.Name;
                         GlobalUsage.CurrentUser.teamID = response.TeamId;
-
-                        switch (GlobalUsage.CurrentUser.level)
+                        */
+                    GlobalUsage.CurrentUser.level = 2;
+                    switch (GlobalUsage.CurrentUser.level)
                         {
                             case 1:
                                 var workerWelcome = new WorkerView();
@@ -89,7 +90,7 @@ namespace CorpoLife
                         }
 
                         Close();
-                    }
+                    //}
                 }
             };
             dialog.Show();

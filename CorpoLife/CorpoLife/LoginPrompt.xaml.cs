@@ -16,8 +16,8 @@ namespace CorpoLife
 
         public string PasswordText
         {
-            get => PasswrdInput.Text;
-            set => PasswrdInput.Text = value;
+            get => PasswrdInput.Password;
+            set => PasswrdInput.Password = value;
         }
 
         public string IdText
@@ -36,8 +36,10 @@ namespace CorpoLife
 
         private void BtnOk_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
-            if (response.State)
+            //TODO response.State instead of true
+            //var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
+            //response.State
+            if (true)
             {
                 Canceled = false;
                 Close();
