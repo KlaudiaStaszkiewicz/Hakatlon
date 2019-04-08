@@ -9,15 +9,15 @@ namespace CorpoLife
 
         public static ServerEvents.ServerEventsClient GetRtClient()
         {
-            return new ServerEvents.ServerEventsClient(new Channel("192.168.52.55:50051", ChannelCredentials.Insecure));
+            return new ServerEvents.ServerEventsClient(new Channel("192.168.44.138:50051", ChannelCredentials.Insecure));
         }
         public static ServerEvents.ServerEventsClient GetInfClient()
         {
-            return new ServerEvents.ServerEventsClient(new Channel("192.168.52.55:50052", ChannelCredentials.Insecure));
+            return new ServerEvents.ServerEventsClient(new Channel("192.168.44.138:50052", ChannelCredentials.Insecure));
         }
         public static ServerEvents.ServerEventsClient GetIntClient()
         {
-            return new ServerEvents.ServerEventsClient(new Channel("192.168.52.55:50053", ChannelCredentials.Insecure));
+            return new ServerEvents.ServerEventsClient(new Channel("192.168.44.138:50053", ChannelCredentials.Insecure));
         }
     }
 }

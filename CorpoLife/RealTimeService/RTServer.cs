@@ -74,27 +74,30 @@ namespace RealTimeService
     {
         EmergencyCaller _emergencyCaller = new EmergencyCaller();
         CoffieInviter _coffieInviter = new CoffieInviter();
-        SqlConnection _DBConnection =
+        SqlConnection _DbConnection =
             new SqlConnection("Server=localhost;Integrated security=SSPI;database=ProjectDatabase2");
         private List<ActiveMember> _activeMembers = new List<ActiveMember>();
 
         private int GetWorkerTeamIdFromId(int id)
         {
+            _DbConnection.Open();
             var command = "SELECT TeamID FROM Worker WHERE WorkerID =" + id;
-            var newCommand = new SqlCommand(command, _DBConnection);
+            var newCommand = new SqlCommand(command, _DbConnection);
             var teamId = -1;
             var dataReader1 = newCommand.ExecuteReader();
             if (dataReader1.Read())
             {
-                teamId = Convert.ToInt32(dataReader1.GetString(0));
+                teamId = dataReader1.GetInt32(0);
             }
             dataReader1.Close();
+            _DbConnection.Close();
             return teamId;
         }
         private string GetWorkerTeamFromId(int id)
         {
+            _DbConnection.Open();
             var command = "SELECT TeamName FROM Worker WHERE WorkerID =" + id;
-            var newCommand = new SqlCommand(command, _DBConnection);
+            var newCommand = new SqlCommand(command, _DbConnection);
             var name = "";
             var dataReader1 = newCommand.ExecuteReader();
             if (dataReader1.Read())
@@ -102,12 +105,14 @@ namespace RealTimeService
                 name = dataReader1.GetString(0);
             }
             dataReader1.Close();
+            _DbConnection.Close();
             return name;
         }
         private string GetWorkerNameFromId(int id)
         {
+            _DbConnection.Open();
             var command = "SELECT Name FROM Worker WHERE WorkerID =" + id;
-            var newCommand = new SqlCommand(command, _DBConnection);
+            var newCommand = new SqlCommand(command, _DbConnection);
             var name = "";
             var dataReader1 = newCommand.ExecuteReader();
             if (dataReader1.Read())
@@ -115,26 +120,29 @@ namespace RealTimeService
             name = dataReader1.GetString(0);
             }
             dataReader1.Close();
+            _DbConnection.Close();
             return name;
         }
         private int GetWorkerLevelFromId(int id)
         {
+            _DbConnection.Open();
             var command = "SELECT Level FROM Worker WHERE WorkerID =" + id;
-            var newCommand = new SqlCommand(command, _DBConnection);
+            var newCommand = new SqlCommand(command, _DbConnection);
             var lvl = -1;
             var dataReader1 = newCommand.ExecuteReader();
             if (dataReader1.Read())
             {
-                lvl = Convert.ToInt32(dataReader1.GetString(0));
+                lvl = dataReader1.GetInt32(0);
             }
             dataReader1.Close();
+            _DbConnection.Close();
             return lvl;
         }
         public override Task<LogInResponse> LogIn(LoginRequest request, ServerCallContext context)
         {
-            _DBConnection.Open();
+            _DbConnection.Open();
             var command = "SELECT Password FROM Worker WHERE WorkerID =" + request.Id;
-            var newCommand = new SqlCommand(command, _DBConnection);
+            var newCommand = new SqlCommand(command, _DbConnection);
             var dataReader = newCommand.ExecuteReader();
             var correct = false;
             var lvl = -1;
@@ -144,11 +152,21 @@ namespace RealTimeService
                 {
                     correct = true;
                     dataReader.Close();
+                    _DbConnection.Close();
                     _activeMembers.Add(new ActiveMember(request.Id, GetWorkerNameFromId(request.Id)));
                     lvl = GetWorkerLevelFromId(request.Id);
                 }
+                else
+                {
+                    dataReader.Close();
+                    _DbConnection.Close();
+                }
             }
-            _DBConnection.Close();
+            else
+            {
+                dataReader.Close();
+                _DbConnection.Close();
+            }
             return System.Threading.Tasks.Task.FromResult(correct
                 ? new LogInResponse { State = true, Msg = "Worker logged in successfully.", Level = lvl, Name = GetWorkerNameFromId(request.Id),
                     TeamId = GetWorkerTeamIdFromId(request.Id), Team = GetWorkerTeamFromId(request.Id)}

@@ -27,22 +27,25 @@ namespace DBInformationService
 
     class TalkImpl : ServerEvents.ServerEventsBase
     {
-        SqlConnection _DbConnection =
+        private readonly SqlConnection _dbConnection =
             new SqlConnection("Server=localhost;Integrated security=SSPI;database=ProjectDatabase2");
 
         int GetTeamIdFromName(string name)
         {
+            _dbConnection.Open();
             var command = "SELECT TeamID FROM Team WHERE TeamName =" + name;
-            var newCommand = new SqlCommand(command, _DbConnection);
+            var newCommand = new SqlCommand(command, _dbConnection);
             var dataReader = newCommand.ExecuteReader();
             var number = dataReader.GetInt32(0);
             dataReader.Close();
+            _dbConnection.Close();
             return number;
         }
         string GetWorkerNameFromId(int id)
         {
+            _dbConnection.Open();
             String command = "SELECT Name FROM Worker WHERE WorkerID =" + id;
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
+            SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             string name = "";
             SqlDataReader dataReader1 = newCommand.ExecuteReader();
             if (dataReader1.Read())
@@ -50,83 +53,84 @@ namespace DBInformationService
                 name = dataReader1.GetString(0);
             }
             dataReader1.Close();
+            _dbConnection.Close();
             return name;
         }
         public override Task<TaskListResponse> GetTaskList(TaskListRequest request, ServerCallContext context)
         {
             TaskListResponse taskList = new TaskListResponse();
-            _DbConnection.Open();
+            _dbConnection.Open();
             String command = "SELECT * FROM ScheduleItem WHERE Team =" + request.TeamName;
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
+            SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
                 taskList.Tasks.Add(new MessagesPack.Task { Status = dataReader.GetString(3), Team = dataReader.GetString(1), TeamID = dataReader.GetInt32(0), Text = dataReader.GetString(4) });
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(taskList);
         }
 
         public override Task<DepartmentsListResp> GetDepartments(BlankMsg request, ServerCallContext context)
         {
             DepartmentsListResp tmp = new DepartmentsListResp();
-            _DbConnection.Open();
+            _dbConnection.Open();
             String command = "SELECT * FROM Department";
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
+            SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
                 tmp.DepsDesc.Add(new DepartmentDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
         public override Task<TeamListResp> GetDepartmetTeams(NameRequest request, ServerCallContext context)
         {
             TeamListResp tmp = new TeamListResp();
-            _DbConnection.Open();
+            _dbConnection.Open();
             String command = "SELECT * FROM Team WHERE DepartmentName=" + request.TeamName;
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
+            SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
                 tmp.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
         public override Task<IntegerResponse> GetTeamID(NameRequest request, ServerCallContext context)
         {
-            IntegerResponse tmp = new IntegerResponse();
-            _DbConnection.Open();
-            tmp.Number = GetTeamIdFromName(request.TeamName);
-            _DbConnection.Close();
+            var tmp = new IntegerResponse
+            {
+                Number = GetTeamIdFromName(request.TeamName)
+            };
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
         public override Task<WorkerEventResponse> GetWorkerName(IntegerRequest request, ServerCallContext context)
         {
-            WorkerEventResponse tmp = new WorkerEventResponse();
-            _DbConnection.Open();
-            tmp.Msg = GetWorkerNameFromId(request.Number);
-            _DbConnection.Close();
+            var tmp = new WorkerEventResponse
+            {
+                Msg = GetWorkerNameFromId(request.Number)
+            };
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
         public override Task<TaskListResponse> GetTeamSpecificTasks(TeamDescription request, ServerCallContext context)
         {
-            TaskListResponse respList = new TaskListResponse();
-            int teamID = -1;
-            _DbConnection.Open();
-            String command = "SELECT TeamID FROM Worker WHERE WorkerID =" + request.Index;
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
-            SqlDataReader dataReader = newCommand.ExecuteReader();
+            var respList = new TaskListResponse();
+            var teamID = -1;
+            _dbConnection.Open();
+            var command = "SELECT TeamID FROM Worker WHERE WorkerID =" + request.Index;
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
             if (dataReader.Read())
             {
                 teamID = dataReader.GetInt32(0);
                 command = "SELECT Team, TeamID, Status, Text FROM ScheduleItem WHERE Status=" + request.Name + " AND TeamID =" + teamID;
-                newCommand = new SqlCommand(command, _DbConnection);
+                newCommand = new SqlCommand(command, _dbConnection);
                 dataReader = newCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
@@ -134,16 +138,16 @@ namespace DBInformationService
                 }
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(respList);
         }
         public override Task<TeamDescription> GetDepHead(DepartmentDescription request, ServerCallContext context)
         {
-            TeamDescription headDesc = new TeamDescription();
-            _DbConnection.Open();
-            String command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index;
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
-            SqlDataReader dataReader = newCommand.ExecuteReader();
+            var headDesc = new TeamDescription();
+            _dbConnection.Open();
+            var command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index;
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
             if (dataReader.Read())
             {
                 headDesc.Index = dataReader.GetInt32(0);
@@ -155,27 +159,26 @@ namespace DBInformationService
                 headDesc.Name = "None";
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(headDesc);
         }
         public override Task<TaskListResponse> GetAllDepTasks(NameRequest request, ServerCallContext context) //TODO this throws error when invoked
         {
-            //get all department teams
-            TeamListResp teams = new TeamListResp();
-            _DbConnection.Open();
-            String command = "SELECT TeamID, TeamName FROM Team WHERE DepartmentName =" + request.TeamName;
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
-            SqlDataReader dataReader = newCommand.ExecuteReader();
+            var teams = new TeamListResp();
+            _dbConnection.Open();
+            var command = "SELECT TeamID, TeamName FROM Team WHERE DepartmentName =" + request.TeamName;
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
                 teams.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
             }
             //get all tasks for these teams
-            TaskListResponse taskList = new TaskListResponse();
+            var taskList = new TaskListResponse();
             foreach (var team in teams.TeamDesc)
             {
                 command = "SELECT * FROM ScheduleItem WHERE Team =" + team.Name;
-                newCommand = new SqlCommand(command, _DbConnection);
+                newCommand = new SqlCommand(command, _dbConnection);
                 dataReader = newCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
@@ -183,16 +186,16 @@ namespace DBInformationService
                 }
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(taskList);
         }
         public override Task<WorkerEventResponse> GetDepFromUser(IntegerRequest request, ServerCallContext context)
         {
             var resp = new WorkerEventResponse();
-            _DbConnection.Open();
-            String command = "SELECT DepartmentName FROM Worker WHERE DepartmentID =" + request.Number;
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
-            SqlDataReader dataReader = newCommand.ExecuteReader();
+            _dbConnection.Open();
+            var command = "SELECT DepartmentName FROM Worker WHERE DepartmentID =" + request.Number;
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
             if (dataReader.Read())
             {
                 resp.Msg = dataReader.GetString(0);
@@ -204,22 +207,22 @@ namespace DBInformationService
                 resp.State = false;
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(resp);
         }
         public override Task<TeamListResp> GetAllWorkers(BlankMsg request, ServerCallContext context)
         {
-            TeamListResp tmp = new TeamListResp();
-            _DbConnection.Open();
-            String command = "SELECT WorkerID, Name FROM Worker";
-            SqlCommand newCommand = new SqlCommand(command, _DbConnection);
-            SqlDataReader dataReader = newCommand.ExecuteReader();
+            var tmp = new TeamListResp();
+            _dbConnection.Open();
+            var command = "SELECT WorkerID, Name FROM Worker";
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
                 tmp.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
             }
             dataReader.Close();
-            _DbConnection.Close();
+            _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
     }
