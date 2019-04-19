@@ -38,45 +38,31 @@ namespace CorpoLife
         private void BtnOk_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //TODO response.State instead of true
-            //var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
-            //response.State
-            if (true)
+            var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
+            if (response.State)
             {
+                GlobalUsage.CurrentUser.name = response.Name;
+                GlobalUsage.CurrentUser.level = response.Level;
+                GlobalUsage.CurrentUser.teamID = response.TeamId;
+                GlobalUsage.CurrentUser.teamName = response.Team;
+                GlobalUsage.CurrentUser.workerID = Convert.ToInt32(IdText);
+                GlobalUsage.CurrentUser.coffee = false;
+                GlobalUsage.CurrentUser.emergency = false;
+                GlobalUsage.CurrentUser.status = 1;
                 Canceled = false;
+                switch (GlobalUsage.CurrentUser.level)
+                {
+                    case 1:
+                    case 2:
+                        new WorkerView().Show();
+                        break;
+                    case 3:
+                    case 4:
+                       new HeadView().Show();
+                       break;
+                }
                 Close();
             }
-        }
-
-        // private void LogIn_Click(object sender, RoutedEventArgs e)
-        // {
-        //     int level = GlobalUsage.CurrentUser.level;
-        //
-        //     switch (level)
-        //     {
-        //         case 1:
-        //             WorkerView workerwelcome = new WorkerView();
-        //             workerwelcome.Show();
-        //             break;
-        //         case 2:
-        //             WorkerView leaderwelcome = new WorkerView();
-        //             leaderwelcome.Show();
-        //             break;
-        //         case 3:
-        //             HeadView headwelcome = new HeadView();
-        //             headwelcome.Show();
-        //             break;
-        //         case 4:
-        //             HeadView adminwelcome = new HeadView();
-        //             adminwelcome.Show();
-        //             break;
-        //
-        //     }
-        //     this.Close();
-        //
-        // }
-        //
-        private void MainGrid_Loaded(object sender, RoutedEventArgs e)
-        {
         }
     }
 }
