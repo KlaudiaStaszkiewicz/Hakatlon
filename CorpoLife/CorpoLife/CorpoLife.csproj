@@ -104,9 +104,6 @@
     <Compile Include="Heart\TeamSchedule.cs" />
     <Compile Include="Heart\Worker.cs" />
     <Compile Include="Heart\WorkerOnMap.cs" />
-    <Compile Include="LoginPrompt.xaml.cs">
-      <DependentUpon>LoginPrompt.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
@@ -148,10 +145,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HeadView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LoginPrompt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
