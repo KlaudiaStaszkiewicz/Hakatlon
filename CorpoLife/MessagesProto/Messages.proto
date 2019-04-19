@@ -74,7 +74,6 @@ message IntegerResponse {
 
 message TaskListRequest {
 	string teamName = 1;
-
 }
 
 message NameRequest {
@@ -123,5 +122,5 @@ message RegisterRequest {
 	string password = 2;
 	string teamName = 3;
 	string DepName = 4;
-	string level = 5;
+	int32 level = 5;
 }

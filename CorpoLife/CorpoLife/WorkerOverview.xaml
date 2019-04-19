@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="WORKER OVERVIEW" Height="450" Width="800">
-    <Grid>
+    <Grid Loaded="Window_loaded">
         <Canvas HorizontalAlignment="Left" Height="441" Margin="-23,-19,0,0" VerticalAlignment="Top" Width="818">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -20,15 +20,14 @@
                 <DataTemplate>
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20" />
-                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="5*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="text" />
+                        <TextBlock Text="{Binding Id}" TextAlignment="Left"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Name}" TextAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            <ListBoxItem Background="#FF9BF2E1"/>
-            <ListBoxItem Background="#FFE8E8E8"/>
         </ListBox>
 
         <Button x:Name="RegisterWorker" Content="REGISTER &#xA;WORKER" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="77,266,0,0" Click="Button_Click" Height="84" Background="#FFDDFAF6" BorderBrush="#FFD8D8D8"/>

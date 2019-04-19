@@ -27,13 +27,13 @@ namespace CorpoLife
 
         private void Coffee_Click(object sender, RoutedEventArgs e)
         {
+
         }
 
 
         private void Workers_Click(object sender, RoutedEventArgs e)
         {
-            WorkerOverview workerOver = new WorkerOverview();
-            workerOver.Show();
+            new WorkerOverview().Show();
         }
 
         private void Tasks_Click(object sender, RoutedEventArgs e)
@@ -43,8 +43,7 @@ namespace CorpoLife
 
         private void Deps_Click(object sender, RoutedEventArgs e)
         {
-            HeadsOverview headsOver = new HeadsOverview();
-            headsOver.Show();
+            new HeadsOverview().Show();
         }
 
         private void Ems_Click(object sender, RoutedEventArgs e)

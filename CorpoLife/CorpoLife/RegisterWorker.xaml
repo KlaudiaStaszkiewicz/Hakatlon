@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
-    <Grid>
+    <Grid Loaded="Window_loaded">
         <Canvas HorizontalAlignment="Left" Height="422" VerticalAlignment="Top" Width="795">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

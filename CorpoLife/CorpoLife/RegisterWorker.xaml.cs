@@ -22,22 +22,22 @@ namespace CorpoLife
     {
         public RegisterWorker()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
 
-        public string DepName, TeamName, Name, Password, Level;
-
+        public string DepName, TeamName, Name, Password;
+        public int Level;
         
         private void DepartmentSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //get department list and show them in ComboBox
-            var depList = GlobalUsage.GetInfClient().GetDepartments(new MessagesPack.BlankMsg());
-            foreach (var dep in depList.DepsDesc)
-            {
-                DepartmentSelection.Items.Add(dep.Name);
-            }
             //remember chosen department
             DepName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
+            //get teams for this department and show them in ComboBox
+            var teamList = GlobalUsage.GetInfClient().GetDepartmetTeams(new NameRequest { TeamName = DepName });
+            foreach (var t in teamList.TeamDesc)
+            {
+                TeamSelection.Items.Add(t.Name);
+            }
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
@@ -59,12 +59,6 @@ namespace CorpoLife
         }
         private void TeamSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //get teams for this department and show them in ComboBox
-            var teamList = GlobalUsage.GetInfClient().GetDepartmetTeams(new NameRequest {TeamName = DepName });
-            foreach (var t in teamList.TeamDesc)
-            {
-                TeamSelection.Items.Add(t.Name);
-            }
             //remember chosen team
             TeamName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
             
@@ -73,10 +67,19 @@ namespace CorpoLife
         private void LevelSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //remember selected Level
-            Level = ((ComboBoxItem)LevelSelection.SelectedItem).Content.ToString();
+            Level = ((ComboBoxItem)LevelSelection.SelectedItem).TabIndex + 1;
 
         }
 
-        
+
+        private void Window_loaded(object sender, RoutedEventArgs e)
+        {
+            //get department list and show them in ComboBox
+            var depList = GlobalUsage.GetInfClient().GetDepartments(new MessagesPack.BlankMsg());
+            foreach (var dep in depList.DepsDesc)
+            {
+                DepartmentSelection.Items.Add(dep.Name);
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessagesPack;
 
 namespace CorpoLife
 {  
@@ -21,27 +22,36 @@ namespace CorpoLife
     /// </summary>
     public partial class WorkerOverview : Window
     {
+        public class WorkerItem
+        {
+            public string Name { get; set; }
+            public int Id { get; set; }
+        }
         public WorkerOverview()
         {
-            /*InitializeComponent();
-            var listOfWorkers = GlobalUsage.Client();
-
-            foreach(var w in listOfWorkers.items)
-            {
-                listW.Items.Add(w.Name);
-            }*/
+            InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWorker register = new RegisterWorker();
-            register.Show();
+            new RegisterWorker().Show();
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             MessageBox.Show("I will find the worker you are looking for!");
         }
-        
+
+        private void Window_loaded(object sender, RoutedEventArgs e)
+        {
+            var listOfWorkers = GlobalUsage.GetInfClient().GetAllWorkers(new BlankMsg());
+            var itemList = new List<WorkerItem>();
+            foreach (var w in listOfWorkers.TeamDesc)
+            {
+                itemList.Add(new WorkerItem() { Name = w.Name, Id = w.Index });
+            }
+
+            listW.ItemsSource = itemList;
+        }
     }
 }
