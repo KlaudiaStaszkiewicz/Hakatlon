@@ -57,9 +57,11 @@ namespace CorpoLife
                         new WorkerView().Show();
                         break;
                     case 3:
-                    case 4:
                        new HeadView().Show();
                        break;
+                    case 4:
+                        new AdminView().Show();
+                        break;
                 }
                 Close();
             }
