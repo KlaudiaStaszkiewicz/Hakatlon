@@ -20,6 +20,11 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.Background>
+            <Button Name="BtnCancel" Content="Cancel" Grid.Column="1" Padding="8" Click="BtnCancel_Click" Canvas.Left="242" Canvas.Top="175" />
+            <TextBox Grid.Column="1" Name="InputTextBox" Padding="3,3,3,3" Canvas.Left="196" Canvas.Top="105" Width="99" />
+            <PasswordBox Grid.Column="1" Name="PasswrdInput" Padding="3,3,3,3" Width="99" Canvas.Left="196" Canvas.Top="134" />
+            <Label Content="ID:" Canvas.Left="167" Canvas.Top="106" />
+            <Label Content="Password:" Canvas.Left="129" Canvas.Top="132"/>
         </Canvas>
         <Canvas HorizontalAlignment="Left" Height="242" Margin="0,52,0,0" VerticalAlignment="Top" Width="238">
             <Canvas.Background>
@@ -28,6 +33,7 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.Background>
+            <Button Name="BtnOk" Content="OK" Grid.Column="0" Padding="8" Click="BtnOk_Click" Canvas.Left="572" Canvas.Top="220" />
         </Canvas>
         <Canvas HorizontalAlignment="Left" Height="163" Margin="563,0,0,0" VerticalAlignment="Top" Width="232">
             <Canvas.Background>
@@ -37,7 +43,7 @@
                 </LinearGradientBrush>
             </Canvas.Background>
         </Canvas>
-        <TextBox HorizontalAlignment="Center" Height="124" Margin="272,10,271,288.5" TextWrapping="Wrap" Text="S&amp;S" VerticalAlignment="Center" Width="252" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" FontSize="72" SpellCheck.IsEnabled="True" FontWeight="Bold" FontFamily="Matura MT Script Capitals"/>
+        <TextBox HorizontalAlignment="Center" Height="121" Margin="0,52,550,249.5" TextWrapping="Wrap" Text="S&amp;S" VerticalAlignment="Center" Width="245" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" FontSize="72" SpellCheck.IsEnabled="True" FontWeight="Bold" FontFamily="Matura MT Script Capitals" RenderTransformOrigin="0.482,1.603"/>
         <TextBox HorizontalAlignment="Center" HorizontalContentAlignment="Center" Height="32" Margin="187,0,164,50.5" TextWrapping="Wrap" Text="We are updating your informations. This may take a while..." VerticalAlignment="Bottom" Width="444" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="White" FontSize="14"/>
 
     </Grid>
