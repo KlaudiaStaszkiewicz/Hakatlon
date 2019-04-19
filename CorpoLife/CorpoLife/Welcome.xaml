@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="Welcome" Height="450" Width="800">
-    <Grid Name="MainGrid" Loaded="MainGrid_Loaded">
+    <Grid KeyDown="OnKeyPress">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFD7D6D6" Offset="0"/>
@@ -34,6 +34,7 @@
                 </LinearGradientBrush>
             </Canvas.Background>
             <Button Name="BtnOk" Content="OK" Grid.Column="0" Padding="8" Click="BtnOk_Click" Canvas.Left="572" Canvas.Top="220" />
+            <Label Content="S&amp;S" Canvas.Left="32" Canvas.Top="30" FontSize="50" Width="150" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi"/>
         </Canvas>
         <Canvas HorizontalAlignment="Left" Height="163" Margin="563,0,0,0" VerticalAlignment="Top" Width="232">
             <Canvas.Background>
@@ -43,8 +44,7 @@
                 </LinearGradientBrush>
             </Canvas.Background>
         </Canvas>
-        <TextBox HorizontalAlignment="Center" Height="121" Margin="0,52,550,249.5" TextWrapping="Wrap" Text="S&amp;S" VerticalAlignment="Center" Width="245" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" FontSize="72" SpellCheck.IsEnabled="True" FontWeight="Bold" FontFamily="Matura MT Script Capitals" RenderTransformOrigin="0.482,1.603"/>
-        <TextBox HorizontalAlignment="Center" HorizontalContentAlignment="Center" Height="32" Margin="187,0,164,50.5" TextWrapping="Wrap" Text="We are updating your informations. This may take a while..." VerticalAlignment="Bottom" Width="444" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="White" FontSize="14"/>
+        <Label Content="We are updating your informations. This may take a while..." HorizontalAlignment="Left" Margin="230,340,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

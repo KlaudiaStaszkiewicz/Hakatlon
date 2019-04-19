@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using MessagesPack;
 
 
@@ -37,7 +38,21 @@ namespace CorpoLife
 
         private void BtnOk_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //TODO response.State instead of true
+            var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
+            if (response.State)
+            {
+                CheckLogIn();
+            }
+        }
+        private void OnKeyPress(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Return)
+            {
+                CheckLogIn();
+            }
+        }
+        private void CheckLogIn()
+        {
             var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
             if (response.State)
             {
@@ -58,8 +73,8 @@ namespace CorpoLife
                         break;
                     case 3:
                     case 4:
-                       new HeadView().Show();
-                       break;
+                        new HeadView().Show();
+                        break;
                 }
                 Close();
             }
