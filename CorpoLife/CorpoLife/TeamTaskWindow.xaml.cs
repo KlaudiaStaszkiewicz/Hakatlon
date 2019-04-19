@@ -87,8 +87,20 @@ namespace CorpoLife
             {
                 DeptTasks.Visibility = Visibility.Hidden;
             }
+            team.Content = GlobalUsage.CurrentUser.teamName;
             //ShowTasks();
          
+        }
+        private void Update()
+        {
+            var tasks = GlobalUsage.GetInfClient().GetTaskList(new MessagesPack.TaskListRequest { TeamName = GlobalUsage.CurrentUser.teamName });
+            foreach( var i in tasks.Tasks)
+            {
+                if(i.Status == "todo")
+                {
+
+                }
+            }
         }
     }
 }

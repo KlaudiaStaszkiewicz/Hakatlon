@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:CorpoLife"
         mc:Ignorable="d"
         Title="Welcome" Height="450" Width="800">
-    <Grid KeyDown="OnKeyPress">
+    <Grid Name="MainGrid" KeyDown="OnKeyPress">
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFD7D6D6" Offset="0"/>
-                <GradientStop Color="#FFF8FFE2" Offset="1"/>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="White"/>
+                <GradientStop Color="#FFCFFFDB" Offset="0.592"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Canvas HorizontalAlignment="Left" Height="326" Margin="376,96,0,0" VerticalAlignment="Top" Width="419">
@@ -34,7 +35,6 @@
                 </LinearGradientBrush>
             </Canvas.Background>
             <Button Name="BtnOk" Content="OK" Grid.Column="0" Padding="8" Click="BtnOk_Click" Canvas.Left="572" Canvas.Top="220" />
-            <Label Content="S&amp;S" Canvas.Left="32" Canvas.Top="30" FontSize="50" Width="150" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" FontFamily="Berlin Sans FB Demi"/>
         </Canvas>
         <Canvas HorizontalAlignment="Left" Height="163" Margin="563,0,0,0" VerticalAlignment="Top" Width="232">
             <Canvas.Background>
@@ -44,7 +44,8 @@
                 </LinearGradientBrush>
             </Canvas.Background>
         </Canvas>
-        <Label Content="We are updating your informations. This may take a while..." HorizontalAlignment="Left" Margin="230,340,0,0" VerticalAlignment="Top"/>
+        <Label Content="We are updating your informations. This may take a while..." HorizontalAlignment="Left" Margin="412,370,0,0" VerticalAlignment="Top" Width="332"/>
+        <Label Content="SnS" FontSize="72" HorizontalAlignment="Left" Margin="29,178,0,0" VerticalAlignment="Top" Height="94" Width="176" Foreground="#FF595959" FontFamily="Proxy 9" FontWeight="Bold"/>
 
     </Grid>
 </Window>

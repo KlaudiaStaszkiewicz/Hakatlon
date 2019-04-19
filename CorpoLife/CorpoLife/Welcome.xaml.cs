@@ -35,22 +35,20 @@ namespace CorpoLife
             Canceled = true;
             Close();
         }
-
         private void BtnOk_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
-            if (response.State)
-            {
+            
                 CheckLogIn();
-            }
+            
         }
         private void OnKeyPress(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Return)
+            if (e.Key == Key.Return)
             {
                 CheckLogIn();
             }
         }
+
         private void CheckLogIn()
         {
             var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
@@ -72,8 +70,10 @@ namespace CorpoLife
                         new WorkerView().Show();
                         break;
                     case 3:
-                    case 4:
                         new HeadView().Show();
+                        break;
+                    case 4:
+                        new AdminView().Show();
                         break;
                 }
                 Close();
