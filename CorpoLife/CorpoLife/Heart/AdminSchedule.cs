@@ -13,7 +13,6 @@ namespace CorpoLife
 
         public void AssignTask()
         {
-
         }
 
         public void Update()

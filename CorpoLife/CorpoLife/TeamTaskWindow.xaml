@@ -21,29 +21,29 @@
     </Window.Resources>
 
     <Grid Name="Grid" Loaded="Grid_Loaded">
-        <Button Name="DeptTasks" Visibility="Hidden" HorizontalContentAlignment="Center" Content="HEAD &#xD;&#xA;VIEW" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="313,30,0,0" VerticalAlignment="Top" Width="86" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="88" Click="DeptTasks_Click" FontWeight="Bold" Foreground="#FF5C5C5C" FlowDirection="RightToLeft"/>
-        <ListView Name="todo" HorizontalAlignment="Left" Height="239" Margin="68,99,0,0" VerticalAlignment="Top" Width="119">
+        <Button Name="DeptTasks" Visibility="Visible" HorizontalContentAlignment="Center" Content="HEAD &#xD;&#xA;VIEW" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="606,75,0,0" VerticalAlignment="Top" Width="86" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="86" Click="DeptTasks_Click" FontWeight="Bold" Foreground="#FF5C5C5C" FlowDirection="RightToLeft"/>
+        <ListView Name="todo" HorizontalAlignment="Left" Height="239" Margin="70,115,0,0" VerticalAlignment="Top" Width="119">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Name="testing" HorizontalAlignment="Left" Height="176" Margin="369,162,0,0" VerticalAlignment="Top" Width="119">
+        <ListView Name="testing" HorizontalAlignment="Left" Height="176" Margin="390,178,0,0" VerticalAlignment="Top" Width="120">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Name="inprogress" HorizontalAlignment="Left" Height="239" Margin="549,99,0,0" VerticalAlignment="Top" Width="119">
+        <ListView Name="inprogress" HorizontalAlignment="Left" Height="239" Margin="230,115,0,0" VerticalAlignment="Top" Width="119">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Name="done" HorizontalAlignment="Left" Height="124" Margin="226,214,0,0" VerticalAlignment="Top" Width="119">
+        <ListView Name="done" HorizontalAlignment="Left" Height="124" Margin="550,230,0,0" VerticalAlignment="Top" Width="119">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -51,9 +51,10 @@
             </ListView.View>
         </ListView>
         <Label Content="TO DO" HorizontalContentAlignment="Center" Margin="68,61,608,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
-        <Label Content="DONE" HorizontalContentAlignment="Center" Margin="226,162,450,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
-        <Label Content="TESTING" HorizontalContentAlignment="Center" Margin="369,118,307,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
-        <Label Content="IN PROGRESS" HorizontalContentAlignment="Center" Margin="549,53,127,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
+        <Label Content="DONE" HorizontalContentAlignment="Center" Margin="550,178,126,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
+        <Label Content="TESTING" HorizontalContentAlignment="Center" Margin="390,123,286,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
+        <Label Content="IN PROGRESS" HorizontalContentAlignment="Center" Margin="230,69,446,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
+        <Label Name="team" Content="" FontSize="25" HorizontalAlignment="Left" Margin="374,22,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
 
 
     </Grid>

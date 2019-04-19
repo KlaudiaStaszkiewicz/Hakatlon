@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using MessagesPack;
 
 
@@ -34,10 +35,22 @@ namespace CorpoLife
             Canceled = true;
             Close();
         }
-
         private void BtnOk_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //TODO response.State instead of true
+            
+                CheckLogIn();
+            
+        }
+        private void OnKeyPress(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                CheckLogIn();
+            }
+        }
+
+        private void CheckLogIn()
+        {
             var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
             if (response.State)
             {
@@ -57,8 +70,8 @@ namespace CorpoLife
                         new WorkerView().Show();
                         break;
                     case 3:
-                       new HeadView().Show();
-                       break;
+                        new HeadView().Show();
+                        break;
                     case 4:
                         new AdminView().Show();
                         break;
