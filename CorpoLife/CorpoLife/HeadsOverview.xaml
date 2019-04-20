@@ -20,7 +20,30 @@
         </Style>
     </Window.Resources>
     <Grid Name="MainGrid" Loaded="MainGrid_Loaded">
-        <Button Style="{DynamicResource ResourceKey=RoundedButtonStyle}" Height="100" VerticalAlignment="Top" Content="New Department" Width="100" Margin="10,310,683.6,0" Click="NewDep_Click"></Button>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" Height="100" VerticalAlignment="Top" Content="New Department" Width="100" Margin="10,310,22,0" Click="NewDep_Click"></Button>
+        <ListBox Name="DepsList" Grid.Column="1" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="1,4,1,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Id}" TextAlignment="Left"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Name}" TextAlignment="Right"/>
+                        <TextBlock Text="{Binding Head}" TextAlignment="Left"/>
+                        <TextBlock Text="{Binding NumOfTeams}" TextAlignment="Left"/>
+                        <TextBlock Text="{Binding NumOfMembers}" TextAlignment="Left"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

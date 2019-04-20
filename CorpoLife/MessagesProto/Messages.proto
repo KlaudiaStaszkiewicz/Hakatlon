@@ -2,7 +2,8 @@
 
 package MessagesPack;
 
-service ServerEvents {
+service ServerEvents	{
+  rpc GetLeaders (BlankMsg) returns (GetLeadersResponse) {}
   rpc Register (RegisterRequest) returns (WorkerEventResponse) {}				//ok
   rpc LogIn (LoginRequest) returns (LogInResponse) {}							//ok
   rpc LogOut (LogOutRequest) returns (WorkerEventResponse) {}					//ok
@@ -15,6 +16,7 @@ service ServerEvents {
   rpc GetTeamID (NameRequest) returns  (IntegerResponse) {}						//ok
   rpc GetDepartments (BlankMsg) returns (DepartmentsListResp) {}				//OK
   rpc GetDepartmetTeams (NameRequest) returns (TeamListResp) {}					//ok
+  rpc GetDepartmentWorkers (NameRequest) returns (TeamListResp) {}				//ok
   rpc GetWorkerName (IntegerRequest) returns (WorkerEventResponse) {}			//ok
   //send departments info and get back head Name and ID
   rpc GetDepHead (DepartmentDescription) returns (TeamDescription) {}			//ok
@@ -123,4 +125,15 @@ message RegisterRequest {
 	string teamName = 3;
 	string DepName = 4;
 	int32 level = 5;
+}
+
+message leaderItem {
+	string leaderName = 1;
+	string teamName = 2;
+	int32 teamId = 3;
+	int32 leaderId = 4;
+}
+
+message GetLeadersResponse {
+	repeated leaderItem leaders = 1;
 }

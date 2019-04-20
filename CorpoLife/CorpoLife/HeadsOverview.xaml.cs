@@ -20,7 +20,24 @@ namespace CorpoLife
     /// </summary>
     public partial class HeadsOverview : Window
     {
-        DepartmentsListResp depList;
+        public class DepsListItem
+        {
+            public int Id;
+            public string Name;
+            public string Head;
+            public int NumOfMembers;
+            public int NumOfTeams;
+
+            public DepsListItem(int id, string name, int numOfTeams, int numOfMembers, string head = "")
+            {
+                Id = id;
+                Name = name;
+                Head = head;
+                NumOfMembers = numOfMembers;
+                NumOfTeams = numOfTeams;
+            }
+        }
+        private DepartmentsListResp _depList;
         public HeadsOverview()
         {
             InitializeComponent();
@@ -28,31 +45,21 @@ namespace CorpoLife
 
         void UpdateView()
         {
-            Button tmpButton = new Button();
-            tmpButton.Height = 60;
-            tmpButton.Width = 100;
-            int LastLeftCornerX = 10;
-            int LastLeftCornerY = 10;
-            foreach(var item in depList.DepsDesc)
+            var itemList = new List<DepsListItem>();
+
+            foreach (var w in _depList.DepsDesc)
             {
-                tmpButton = new Button();
-                tmpButton.Height = 60;
-                tmpButton.Width = 100;
-                tmpButton.Margin = new Thickness(LastLeftCornerX, LastLeftCornerY, 0, 0);
-                tmpButton.Background = new SolidColorBrush(Color.FromArgb(50, (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160)), (byte)(new Random().Next(55, 160))));
-                tmpButton.Name = "button_" + item.Name;
-                tmpButton.HorizontalAlignment = HorizontalAlignment.Left;
-                tmpButton.VerticalAlignment = VerticalAlignment.Top;
-                tmpButton.Content = item.Name + "\n" + GlobalUsage.GetInfClient().GetDepHead(new DepartmentDescription { Index = item.Index, Name = item.Name }).Name;
-                MainGrid.Children.Add(tmpButton);
-                LastLeftCornerX += new Random().Next(-40, 150);
-                LastLeftCornerY += new Random().Next(65, 80);
-            }            
+                itemList.Add(new DepsListItem(w.Index, w.Name,
+                    GlobalUsage.GetInfClient().GetDepartmetTeams(new NameRequest() { TeamName = w.Name}).TeamDesc.Count,
+                    GlobalUsage.GetInfClient().GetDepartmentWorkers(new NameRequest() { TeamName = w.Name }).TeamDesc.Count,
+                    GlobalUsage.GetInfClient().GetDepHead(new DepartmentDescription(){Index = w.Index, Name = w.Name}).Name));
+            }
+            DepsList.ItemsSource = itemList;
         }
 
         private void MainGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            depList = GlobalUsage.GetInfClient().GetDepartments(new BlankMsg { });
+            _depList = GlobalUsage.GetInfClient().GetDepartments(new BlankMsg { });
             UpdateView();
         }
         private void NewDep_Click(object sender, RoutedEventArgs e)
