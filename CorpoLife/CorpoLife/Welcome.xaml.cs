@@ -65,14 +65,12 @@ namespace CorpoLife
                 Canceled = false;
                 switch (GlobalUsage.CurrentUser.level)
                 {
+                    case 0:
                     case 1:
                     case 2:
                         new WorkerView().Show();
                         break;
                     case 3:
-                        new HeadView().Show();
-                        break;
-                    case 4:
                         new AdminView().Show();
                         break;
                 }
