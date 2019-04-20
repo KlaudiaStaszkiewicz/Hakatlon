@@ -41,6 +41,7 @@ namespace DBInformationService
             _dbConnection.Close();
             return number;
         }
+
         string GetWorkerNameFromId(int id)
         {
             _dbConnection.Open();
@@ -52,10 +53,12 @@ namespace DBInformationService
             {
                 name = dataReader1.GetString(0);
             }
+
             dataReader1.Close();
             _dbConnection.Close();
             return name;
         }
+
         public override Task<TaskListResponse> GetTaskList(TaskListRequest request, ServerCallContext context)
         {
             TaskListResponse taskList = new TaskListResponse();
@@ -65,8 +68,13 @@ namespace DBInformationService
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
-                taskList.Tasks.Add(new MessagesPack.Task { Status = dataReader.GetString(3), Team = dataReader.GetString(1), TeamID = dataReader.GetInt32(0), Text = dataReader.GetString(4) });
+                taskList.Tasks.Add(new MessagesPack.Task
+                {
+                    Status = dataReader.GetString(3), Team = dataReader.GetString(1), TeamID = dataReader.GetInt32(0),
+                    Text = dataReader.GetString(4)
+                });
             }
+
             dataReader.Close();
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(taskList);
@@ -81,12 +89,32 @@ namespace DBInformationService
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
-                tmp.DepsDesc.Add(new DepartmentDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
+                tmp.DepsDesc.Add(new DepartmentDescription
+                    {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1)});
             }
+
             dataReader.Close();
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
+
+        public override Task<TeamListResp> GetDepartmentWorkers(NameRequest request, ServerCallContext context)
+        {
+            var tmp = new TeamListResp();
+            _dbConnection.Open();
+            var command = "SELECT * FROM Worker WHERE DepartmentName=" + request.TeamName;
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
+            while (dataReader.Read())
+            {
+                tmp.TeamDesc.Add(new TeamDescription {Index = dataReader.GetInt32(0), Name = dataReader.GetString(2)});
+            }
+
+            dataReader.Close();
+            _dbConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(tmp);
+        }
+
         public override Task<TeamListResp> GetDepartmetTeams(NameRequest request, ServerCallContext context)
         {
             TeamListResp tmp = new TeamListResp();
@@ -96,12 +124,14 @@ namespace DBInformationService
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
-                tmp.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
+                tmp.TeamDesc.Add(new TeamDescription {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1)});
             }
+
             dataReader.Close();
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
+
         public override Task<IntegerResponse> GetTeamID(NameRequest request, ServerCallContext context)
         {
             var tmp = new IntegerResponse
@@ -110,6 +140,7 @@ namespace DBInformationService
             };
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
+
         public override Task<WorkerEventResponse> GetWorkerName(IntegerRequest request, ServerCallContext context)
         {
             var tmp = new WorkerEventResponse
@@ -118,6 +149,7 @@ namespace DBInformationService
             };
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
+
         public override Task<TaskListResponse> GetTeamSpecificTasks(TeamDescription request, ServerCallContext context)
         {
             var respList = new TaskListResponse();
@@ -129,18 +161,25 @@ namespace DBInformationService
             if (dataReader.Read())
             {
                 teamID = dataReader.GetInt32(0);
-                command = "SELECT Team, TeamID, Status, Text FROM ScheduleItem WHERE Status=" + request.Name + " AND TeamID =" + teamID;
+                command = "SELECT Team, TeamID, Status, Text FROM ScheduleItem WHERE Status=" + request.Name +
+                          " AND TeamID =" + teamID;
                 newCommand = new SqlCommand(command, _dbConnection);
                 dataReader = newCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    respList.Tasks.Add(new MessagesPack.Task { Team = dataReader.GetString(0), TeamID = dataReader.GetInt32(1), Status = dataReader.GetString(2), Text = dataReader.GetString(3) });
+                    respList.Tasks.Add(new MessagesPack.Task
+                    {
+                        Team = dataReader.GetString(0), TeamID = dataReader.GetInt32(1),
+                        Status = dataReader.GetString(2), Text = dataReader.GetString(3)
+                    });
                 }
             }
+
             dataReader.Close();
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(respList);
         }
+
         public override Task<TeamDescription> GetDepHead(DepartmentDescription request, ServerCallContext context)
         {
             var headDesc = new TeamDescription();
@@ -156,13 +195,16 @@ namespace DBInformationService
             else
             {
                 headDesc.Index = -1;
-                headDesc.Name = "None";
+                headDesc.Name = "";
             }
+
             dataReader.Close();
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(headDesc);
         }
-        public override Task<TaskListResponse> GetAllDepTasks(NameRequest request, ServerCallContext context) //TODO this throws error when invoked
+
+        public override Task<TaskListResponse>
+            GetAllDepTasks(NameRequest request, ServerCallContext context) //TODO this throws error when invoked
         {
             var teams = new TeamListResp();
             _dbConnection.Open();
@@ -171,8 +213,10 @@ namespace DBInformationService
             var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
-                teams.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
+                teams.TeamDesc.Add(new TeamDescription
+                    {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1)});
             }
+
             //get all tasks for these teams
             var taskList = new TaskListResponse();
             foreach (var team in teams.TeamDesc)
@@ -182,13 +226,19 @@ namespace DBInformationService
                 dataReader = newCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    taskList.Tasks.Add(new MessagesPack.Task { Status = dataReader.GetString(3), Team = dataReader.GetString(1), TeamID = dataReader.GetInt32(0), Text = dataReader.GetString(4) });
+                    taskList.Tasks.Add(new MessagesPack.Task
+                    {
+                        Status = dataReader.GetString(3), Team = dataReader.GetString(1),
+                        TeamID = dataReader.GetInt32(0), Text = dataReader.GetString(4)
+                    });
                 }
             }
+
             dataReader.Close();
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(taskList);
         }
+
         public override Task<WorkerEventResponse> GetDepFromUser(IntegerRequest request, ServerCallContext context)
         {
             var resp = new WorkerEventResponse();
@@ -206,10 +256,12 @@ namespace DBInformationService
                 resp.Msg = "Empty";
                 resp.State = false;
             }
+
             dataReader.Close();
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(resp);
         }
+
         public override Task<TeamListResp> GetAllWorkers(BlankMsg request, ServerCallContext context)
         {
             var tmp = new TeamListResp();
@@ -219,7 +271,24 @@ namespace DBInformationService
             var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
             {
-                tmp.TeamDesc.Add(new TeamDescription { Index = dataReader.GetInt32(0), Name = dataReader.GetString(1) });
+                tmp.TeamDesc.Add(new TeamDescription {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1)});
+            }
+
+            dataReader.Close();
+            _dbConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(tmp);
+        }
+
+        public override Task<GetLeadersResponse> GetLeaders(BlankMsg request, ServerCallContext context)
+        {
+            var tmp = new GetLeadersResponse();
+            _dbConnection.Open();
+            var command = "SELECT WorkerID, Name, TeamName, TeamID FROM Worker";
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
+            while (dataReader.Read())
+            {
+                tmp.Leaders.Add(new leaderItem { LeaderId = dataReader.GetInt32(0), LeaderName = dataReader.GetString(1), TeamName = dataReader.GetString(2), TeamId = dataReader.GetInt32(3)});
             }
             dataReader.Close();
             _dbConnection.Close();
