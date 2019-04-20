@@ -39,22 +39,40 @@ namespace CorpoLife
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            LeadersList.Visibility = Visibility.Hidden;
+            Close.Visibility = Visibility.Hidden;
             int _level = GlobalUsage.CurrentUser.level;
             if(_level == 2)
             {
                 Ems.Visibility = Visibility.Visible;
+                Leads.Visibility = Visibility.Visible;
             }
             else
             {
                 Ems.Visibility = Visibility.Hidden;
+                Leads.Visibility = Visibility.Hidden;
             }
+
         }
 
         private void Coffee_Click(object sender, RoutedEventArgs e)
         {
-            //GlobalUsage.Client().CallCoffeeBreak(new MessagesPack.CoffeBreakRequest { Name = GlobalUsage.CurrentUser.name });
-            CoffeeBreak coff = new CoffeeBreak();
-            coff.Show();
+            GlobalUsage.GetRtClient().PullCoffeeBrake(new MessagesPack.CoffeBreakRequest() { Name = GlobalUsage.CurrentUser.name});
+            
+        }
+        private void Leaders_Click(object sender, RoutedEventArgs e)
+        {
+            LeadersList.Visibility = Visibility.Visible;
+            Close.Visibility = Visibility.Visible;
+
+            //TOTO method GetLeaders here
+
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            LeadersList.Visibility = Visibility.Hidden;
+            Close.Visibility = Visibility.Hidden;
         }
     }
 }
