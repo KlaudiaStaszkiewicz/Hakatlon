@@ -82,7 +82,7 @@ namespace DBInformationService
 
         public override Task<DepartmentsListResp> GetDepartments(BlankMsg request, ServerCallContext context)
         {
-            DepartmentsListResp tmp = new DepartmentsListResp();
+            var tmp = new DepartmentsListResp();
             _dbConnection.Open();
             String command = "SELECT * FROM Department";
             SqlCommand newCommand = new SqlCommand(command, _dbConnection);
@@ -119,7 +119,7 @@ namespace DBInformationService
         {
             TeamListResp tmp = new TeamListResp();
             _dbConnection.Open();
-            String command = "SELECT * FROM Team WHERE DepartmentName=" + request.TeamName;
+            String command = "SELECT * FROM Team WHERE DepartmentName =" + request.TeamName;
             SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
@@ -217,6 +217,8 @@ namespace DBInformationService
                     {Index = dataReader.GetInt32(0), Name = dataReader.GetString(1)});
             }
 
+            dataReader.Close();
+            _dbConnection.Close();
             //get all tasks for these teams
             var taskList = new TaskListResponse();
             foreach (var team in teams.TeamDesc)
