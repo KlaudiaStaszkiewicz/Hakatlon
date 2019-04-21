@@ -94,7 +94,7 @@ namespace CorpoLife
             {
                 DeptTasks.Visibility = Visibility.Hidden;
             }
-            team.Content = GlobalUsage.CurrentUser.teamName;
+            team.Content = "Team: " + GlobalUsage.CurrentUser.teamName;
             //ShowTasks();
             Update();
          
@@ -142,11 +142,11 @@ namespace CorpoLife
                 {
                     lsDone.Add(new TaskItem { teamName = i.Team, status = i.Status, teamID = i.TeamID, text = i.Text });
                 }
-                ListT.ItemsSource = lsTesting;
-                ListTD.ItemsSource = lsTodo;
-                ListIP.ItemsSource = lsInprogress;
-                ListD.ItemsSource = lsDone;
             }
+            ListT.ItemsSource = lsTesting;
+            ListTD.ItemsSource = lsTodo;
+            ListIP.ItemsSource = lsInprogress;
+            ListD.ItemsSource = lsDone;
         }
     }
 }
