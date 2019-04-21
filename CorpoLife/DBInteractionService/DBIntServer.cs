@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using MessagesPack;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DBInteractionService
 {
@@ -68,7 +69,7 @@ namespace DBInteractionService
         int GetTeamIdFromName(string name)
         {
             _DbConnection.Open();
-            var command = "SELECT TeamID FROM Team WHERE TeamName =" + name;
+            var command = "SELECT TeamID FROM Team WHERE TeamName = '" + name + "'";
             var newCommand = new SqlCommand(command, _DbConnection);
             var dataReader = newCommand.ExecuteReader();
             var number = dataReader.GetInt32(0);
@@ -79,7 +80,7 @@ namespace DBInteractionService
         int GetDepIdFromName(string name)
         {
             _DbConnection.Open();
-            var command = "SELECT DepartmentID FROM Department WHERE DepName =" + name;
+            var command = "SELECT DepartmentID FROM Department WHERE DepName = '" + name + "'";
             var newCommand = new SqlCommand(command, _DbConnection);
             var dataReader = newCommand.ExecuteReader();
             var number = dataReader.GetInt32(0);
@@ -91,7 +92,7 @@ namespace DBInteractionService
         {
             var command =
                 "INSERT INTO Worker (WorkerID, Password, Name, TeamName, TeamID, DepartmentID, Level, DepartmentName) VALUES (@Val1, @val2, @val3, @val4, @val5, @val6, @val7, @val8)";
-            var newCommand = new SqlCommand(command, _DbConnection);
+            var newCommand = new SqlCommand(command);
             var newWorkerId = GetNewWorkerId();
             newCommand.Parameters.AddWithValue("@val1", newWorkerId);
             newCommand.Parameters.AddWithValue("@val2", request.Password);
@@ -103,9 +104,13 @@ namespace DBInteractionService
             newCommand.Parameters.AddWithValue("@val8", request.DepName);
             var resp = new WorkerEventResponse {State = false, Msg = "Worker cannot be created."};
             _DbConnection.Open();
+            var actCommand = new SqlCommand(command, _DbConnection);
+            var arr = new SqlParameter[newCommand.Parameters.Count];
+            newCommand.Parameters.CopyTo(arr, 0);
+            actCommand.Parameters.AddRange(arr);
             try
             {
-                newCommand.ExecuteNonQuery();
+                actCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -120,20 +125,24 @@ namespace DBInteractionService
         public override Task<WorkerEventResponse> AddTeam(AddTeamRequest request, ServerCallContext context)
         {
             var command = "INSERT INTO Team (TeamID, TeamName, DepartmentID, DepartmentName) VALUES (@val1, @val2, @val3, @val4)";
-            var newCommand = new SqlCommand(command, _DbConnection);
+            var newCommand = new SqlCommand(command);
             newCommand.Parameters.AddWithValue("@val1", GetNewTeamId());
             newCommand.Parameters.AddWithValue("@val2", request.TeamName);
             newCommand.Parameters.AddWithValue("@val3", GetDepIdFromName(request.DepartmentName));
             newCommand.Parameters.AddWithValue("@val4", request.DepartmentName);
             _DbConnection.Open();
-            newCommand.ExecuteNonQuery();
+            var actCommand = new SqlCommand(command, _DbConnection);
+            var arr = new SqlParameter[newCommand.Parameters.Count];
+            newCommand.Parameters.CopyTo(arr, 0);
+            actCommand.Parameters.AddRange(arr);
+            actCommand.ExecuteNonQuery();
             _DbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "New team added!" });
         }
         public override Task<WorkerEventResponse> RemoveTeam(TeamDescription request, ServerCallContext context)
         {
             _DbConnection.Open();
-            var command = "DELETE FROM Team WHERE TeamName =" + request.Name;
+            var command = "DELETE FROM Team WHERE TeamName = '" + request.Name + "'";
             var newCommand = new SqlCommand(command, _DbConnection);
             newCommand.ExecuteNonQuery();
             _DbConnection.Close();
@@ -142,11 +151,15 @@ namespace DBInteractionService
         public override Task<WorkerEventResponse> AddDepartment(AddDepRequest request, ServerCallContext context)
         {
             var command = "INSERT INTO Department (DepartmentID, DepName) VALUES (@val1, @val2)";
-            var newCommand = new SqlCommand(command, _DbConnection);
+            var newCommand = new SqlCommand(command);
             newCommand.Parameters.AddWithValue("@val1", GetNewDepId());
             newCommand.Parameters.AddWithValue("@val2", request.DepName);
             _DbConnection.Open();
-            newCommand.ExecuteNonQuery();
+            var actCommand = new SqlCommand(command, _DbConnection);
+            var arr = new SqlParameter[newCommand.Parameters.Count];
+            newCommand.Parameters.CopyTo(arr, 0);
+            actCommand.Parameters.AddRange(arr);
+            actCommand.ExecuteNonQuery();
             _DbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(new WorkerEventResponse { State = true, Msg = "New department added!" });
         }
@@ -154,16 +167,20 @@ namespace DBInteractionService
         {
             var resp = new WorkerEventResponse();
             var command = "INSERT INTO ScheduleItem (Id, Team, TeamID, Status, Text) VALUES (@val1, @val2, @val3,@val4, @val5)";
-            var newCommand = new SqlCommand(command, _DbConnection);
+            var newCommand = new SqlCommand(command);
             newCommand.Parameters.AddWithValue("@val1", GetNewTaskId());
             newCommand.Parameters.AddWithValue("@val2", request.Team);
             newCommand.Parameters.AddWithValue("@val3", request.TeamID);
             newCommand.Parameters.AddWithValue("@val4", request.Status);
             newCommand.Parameters.AddWithValue("@val5", request.Text);
             _DbConnection.Open();
+            var actCommand = new SqlCommand(command, _DbConnection);
+            var arr = new SqlParameter[newCommand.Parameters.Count];
+            newCommand.Parameters.CopyTo(arr, 0);
+            actCommand.Parameters.AddRange(arr);
             try
             {
-                newCommand.ExecuteNonQuery();
+                actCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

@@ -22,11 +22,11 @@ namespace CorpoLife
     {
         public class DepsListItem
         {
-            public int Id;
-            public string Name;
-            public string Head;
-            public int NumOfMembers;
-            public int NumOfTeams;
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Head { get; set; }
+            public int NumOfMembers { get; set; }
+            public int NumOfTeams { get; set; }
 
             public DepsListItem(int id, string name, int numOfTeams, int numOfMembers, string head = "")
             {

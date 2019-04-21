@@ -33,7 +33,7 @@ namespace DBInformationService
         int GetTeamIdFromName(string name)
         {
             _dbConnection.Open();
-            var command = "SELECT TeamID FROM Team WHERE TeamName =" + name;
+            var command = "SELECT TeamID FROM Team WHERE TeamName = '" + name + "'";
             var newCommand = new SqlCommand(command, _dbConnection);
             var dataReader = newCommand.ExecuteReader();
             var number = dataReader.GetInt32(0);
@@ -63,7 +63,7 @@ namespace DBInformationService
         {
             TaskListResponse taskList = new TaskListResponse();
             _dbConnection.Open();
-            String command = "SELECT * FROM ScheduleItem WHERE Team =" + request.TeamName;
+            String command = "SELECT * FROM ScheduleItem WHERE Team = '" + request.TeamName + "'";
             SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
@@ -84,7 +84,7 @@ namespace DBInformationService
         {
             var tmp = new DepartmentsListResp();
             _dbConnection.Open();
-            String command = "SELECT * FROM Department;";
+            String command = "SELECT * FROM Department";
             SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
@@ -204,7 +204,7 @@ namespace DBInformationService
         }
 
         public override Task<TaskListResponse>
-            GetAllDepTasks(NameRequest request, ServerCallContext context) //TODO this throws error when invoked
+            GetAllDepTasks(NameRequest request, ServerCallContext context)
         {
             var teams = new TeamListResp();
             _dbConnection.Open();
@@ -223,7 +223,7 @@ namespace DBInformationService
             var taskList = new TaskListResponse();
             foreach (var team in teams.TeamDesc)
             {
-                command = "SELECT * FROM ScheduleItem WHERE Team =" + team.Name;
+                command = "SELECT * FROM ScheduleItem WHERE Team = '" + team.Name +"'";
                 newCommand = new SqlCommand(command, _dbConnection);
                 dataReader = newCommand.ExecuteReader();
                 while (dataReader.Read())
@@ -285,7 +285,7 @@ namespace DBInformationService
         {
             var tmp = new GetLeadersResponse();
             _dbConnection.Open();
-            var command = "SELECT WorkerID, Name, TeamName, TeamID FROM Worker WHERE Level = 1;";
+            var command = "SELECT WorkerID, Name, TeamName, TeamID FROM Worker WHERE Level = 1";
             var newCommand = new SqlCommand(command, _dbConnection);
             var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
