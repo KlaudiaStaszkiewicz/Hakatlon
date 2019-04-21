@@ -27,7 +27,7 @@
         <Button Name="Ems" Content="EMERGENCY" Visibility="Visible" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Margin="85,256,622,0" VerticalAlignment="Top" Width="88" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="88" Click="Ems_Click"></Button>
         <Button Name="Leads" Content="LEADERS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="634,166,0,0" VerticalAlignment="Top" Width="94" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="95" Click="Leaders_Click"/>
 
-        <Popup  Name="LStatus" AllowsTransparency="True"
+        <Popup  Name="LStatus" AllowsTransparency="True" 
                Width="100" Height="50"
                Placement="RelativePoint"
                IsOpen="True"

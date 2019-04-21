@@ -86,16 +86,17 @@ namespace CorpoLife
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             int _level = GlobalUsage.CurrentUser.level;
-            if (_level == 2)
+            if (_level == 1 )
             {
                 DeptTasks.Visibility = Visibility.Visible;
             }
             else
             {
+                
                 DeptTasks.Visibility = Visibility.Hidden;
             }
             team.Content = "Team: " + GlobalUsage.CurrentUser.teamName;
-            //ShowTasks();
+            
             Update();
          
         }

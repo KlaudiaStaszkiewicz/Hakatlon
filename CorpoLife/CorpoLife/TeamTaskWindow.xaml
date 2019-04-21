@@ -39,16 +39,19 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Popup x:Name="Pops"  Width="100" Height="50"
-           IsOpen="False" 
-           Placement="Right" 
-           PlacementTarget="{Binding ElementName=txtBxitem}" 
-           HorizontalAlignment="Right">
-            <StackPanel>
-                <TextBox Text="{Binding XPath=color}"/>
-                <TextBox Text="{Binding XPath=size}"/>
-
-            </StackPanel>
+        <Popup  Name="Pops" AllowsTransparency="True" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+               Width="100" Height="50"
+               Placement="RelativePoint"
+               IsOpen="True"
+               PopupAnimation="Fade"  >
+            <Grid Background="Transparent">
+                <Rectangle RadiusX="30" RadiusY="50" >
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="#FFDEFFF9"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Label Name="StatusLab" Content="Deadline" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
         </Popup>
         <ListBox Name="ListIP" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="259" Margin="230,100,0,0" VerticalAlignment="Top" Width="119">
             <ListBox.ItemTemplate>

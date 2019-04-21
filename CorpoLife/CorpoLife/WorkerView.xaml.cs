@@ -51,7 +51,7 @@ namespace CorpoLife
         {
             LeadersList.Visibility = Visibility.Hidden;
             Close.Visibility = Visibility.Hidden;
-            LStatus.Visibility = Visibility.Hidden;
+            LStatus.IsOpen = false;
             int _level = GlobalUsage.CurrentUser.level;
             if(_level == 2)
             {
