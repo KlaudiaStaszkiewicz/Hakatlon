@@ -84,7 +84,7 @@ namespace DBInformationService
         {
             var tmp = new DepartmentsListResp();
             _dbConnection.Open();
-            String command = "SELECT * FROM Department";
+            String command = "SELECT * FROM Department;";
             SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
@@ -102,7 +102,7 @@ namespace DBInformationService
         {
             var tmp = new TeamListResp();
             _dbConnection.Open();
-            var command = "SELECT * FROM Worker WHERE DepartmentName=" + request.TeamName;
+            var command = "SELECT * FROM Worker WHERE DepartmentName = '" + request.TeamName + "'";
             var newCommand = new SqlCommand(command, _dbConnection);
             var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
@@ -119,7 +119,7 @@ namespace DBInformationService
         {
             TeamListResp tmp = new TeamListResp();
             _dbConnection.Open();
-            String command = "SELECT * FROM Team WHERE DepartmentName =" + request.TeamName;
+            String command = "SELECT * FROM Team WHERE DepartmentName = '" + request.TeamName + "'";
             SqlCommand newCommand = new SqlCommand(command, _dbConnection);
             SqlDataReader dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
@@ -161,8 +161,8 @@ namespace DBInformationService
             if (dataReader.Read())
             {
                 teamID = dataReader.GetInt32(0);
-                command = "SELECT Team, TeamID, Status, Text FROM ScheduleItem WHERE Status=" + request.Name +
-                          " AND TeamID =" + teamID;
+                command = "SELECT Team, TeamID, Status, Text FROM ScheduleItem WHERE Status = '" + request.Name +
+                          "' AND TeamID =" + teamID;
                 newCommand = new SqlCommand(command, _dbConnection);
                 dataReader = newCommand.ExecuteReader();
                 while (dataReader.Read())
@@ -184,7 +184,7 @@ namespace DBInformationService
         {
             var headDesc = new TeamDescription();
             _dbConnection.Open();
-            var command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID =" + request.Index;
+            var command = "SELECT WorkerID, Name FROM Worker WHERE DepartmentID = " + request.Index;
             var newCommand = new SqlCommand(command, _dbConnection);
             var dataReader = newCommand.ExecuteReader();
             if (dataReader.Read())
@@ -208,7 +208,7 @@ namespace DBInformationService
         {
             var teams = new TeamListResp();
             _dbConnection.Open();
-            var command = "SELECT TeamID, TeamName FROM Team WHERE DepartmentName =" + request.TeamName;
+            var command = "SELECT TeamID, TeamName FROM Team WHERE DepartmentName = '" + request.TeamName + "'";
             var newCommand = new SqlCommand(command, _dbConnection);
             var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
@@ -285,7 +285,7 @@ namespace DBInformationService
         {
             var tmp = new GetLeadersResponse();
             _dbConnection.Open();
-            var command = "SELECT WorkerID, Name, TeamName, TeamID FROM Worker";
+            var command = "SELECT WorkerID, Name, TeamName, TeamID FROM Worker WHERE Level = 1;";
             var newCommand = new SqlCommand(command, _dbConnection);
             var dataReader = newCommand.ExecuteReader();
             while (dataReader.Read())
