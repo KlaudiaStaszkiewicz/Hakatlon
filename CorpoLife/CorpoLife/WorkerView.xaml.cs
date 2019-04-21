@@ -19,6 +19,11 @@ namespace CorpoLife
     /// </summary>
     public partial class WorkerView : Window
     {
+        public class LeaderListItem
+        {
+            public int LID, LteamID;
+            public string LName, LteamName;
+        }
         public WorkerView()
         {
             InitializeComponent();
@@ -64,9 +69,13 @@ namespace CorpoLife
         {
             LeadersList.Visibility = Visibility.Visible;
             Close.Visibility = Visibility.Visible;
-
-            //TOTO method GetLeaders here
-
+            var ls = GlobalUsage.GetInfClient().GetLeaders(new MessagesPack.BlankMsg());
+            var lsItems = new List<LeaderListItem>();
+            foreach(var l in ls.Leaders)
+            {
+                lsItems.Add(new LeaderListItem { LID = l.LeaderId, LName = l.LeaderName, LteamID = l.TeamId, LteamName = l.TeamName});
+            }
+            LeadersList.ItemsSource = lsItems;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

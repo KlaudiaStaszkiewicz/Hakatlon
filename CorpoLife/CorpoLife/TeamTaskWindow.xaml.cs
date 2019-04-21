@@ -89,16 +89,17 @@ namespace CorpoLife
             }
             team.Content = GlobalUsage.CurrentUser.teamName;
             //ShowTasks();
+            Update();
          
         }
         private void Update()
         {
             var tasks = GlobalUsage.GetInfClient().GetTaskList(new MessagesPack.TaskListRequest { TeamName = GlobalUsage.CurrentUser.teamName });
-            foreach( var i in tasks.Tasks)
+            
+            foreach ( var i in tasks.Tasks)
             {
                 if(i.Status == "todo")
                 {
-
                 }
             }
         }
