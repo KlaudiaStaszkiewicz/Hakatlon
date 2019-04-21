@@ -20,6 +20,11 @@ namespace CorpoLife
     /// </summary>
     public partial class TeamTaskWindow : Window
     {
+        public class TaskItem
+        {
+            public string teamName, status, text;
+            public int teamID;
+        }
         public TeamTaskWindow()
         {
             InitializeComponent();
@@ -95,12 +100,14 @@ namespace CorpoLife
         private void Update()
         {
             var tasks = GlobalUsage.GetInfClient().GetTaskList(new MessagesPack.TaskListRequest { TeamName = GlobalUsage.CurrentUser.teamName });
-            
+            var lsItems = new List<TaskItem>();
             foreach ( var i in tasks.Tasks)
             {
                 if(i.Status == "todo")
                 {
+                    lsItems.Add(new TaskItem { teamName = i.Team, status = i.Status, teamID = i.TeamID, text = i.Text });
                 }
+                ListTD.ItemsSource = lsItems;
             }
         }
     }
