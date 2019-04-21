@@ -102,14 +102,19 @@ namespace CorpoLife
 
         private void item_MouseEnter(object sender, MouseEventArgs e)
         {
-            Pops.DataContext = (sender as FrameworkElement).DataContext;
-            Pops.PlacementTarget = (sender as UIElement);
-            Pops.IsOpen = true;
+            if (!Pops.IsOpen)
+            {
+                Pops.DataContext = (sender as FrameworkElement).DataContext;
+                Pops.PlacementTarget = (sender as UIElement);
+                Pops.IsOpen = true;
+            }
         }
 
         private void item_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Pops.IsOpen = false;
+            var textB = sender as FrameworkElement;
+            if (textB.IsMouseOver || Pops.IsMouseOver) return;
+            Pops.IsOpen = false;
         }
 
         private void Update()
