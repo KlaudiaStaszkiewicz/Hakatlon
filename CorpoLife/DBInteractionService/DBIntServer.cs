@@ -48,14 +48,16 @@ namespace DBInteractionService
             _DbConnection.Close();
             return number;
         }
-        int GetNewWorkerId()
+        int GetNewWorkerId(int level)
         {
+            level += 1;
             _DbConnection.Open();
-            var command = "SELECT COUNT(*) FROM Worker";
+            var command = "SELECT COUNT(*) FROM Worker WHERE Level = " + (level - 1);
             var newCommand = new SqlCommand(command, _DbConnection);
-            var number = (int)newCommand.ExecuteScalar();
+            var number = (int)newCommand.ExecuteScalar() + 1;
             _DbConnection.Close();
-            return number;
+            string myNuber = Convert.ToString(level) + Convert.ToString(number);
+            return Convert.ToInt32(myNuber);
         }
         int GetNewTaskId()
         {
@@ -91,7 +93,7 @@ namespace DBInteractionService
             var command =
                 "INSERT INTO Worker (WorkerID, Password, Name, TeamName, TeamID, DepartmentID, Level, DepartmentName) VALUES (@Val1, @val2, @val3, @val4, @val5, @val6, @val7, @val8)";
             var newCommand = new SqlCommand(command, _DbConnection);
-            var newWorkerId = GetNewWorkerId();
+            var newWorkerId = GetNewWorkerId(request.Level);
             newCommand.Parameters.AddWithValue("@val1", newWorkerId);
             newCommand.Parameters.AddWithValue("@val2", request.Password);
             newCommand.Parameters.AddWithValue("@val3", request.Name);

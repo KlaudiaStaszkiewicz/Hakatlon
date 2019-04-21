@@ -296,6 +296,21 @@ namespace DBInformationService
             _dbConnection.Close();
             return System.Threading.Tasks.Task.FromResult(tmp);
         }
+        public override Task<GetLeadersResponse> GetDepLeaders(IntegerRequest request, ServerCallContext context)
+        {
+            var tmp = new GetLeadersResponse();
+            _dbConnection.Open();
+            var command = "SELECT WorkerID, Name, TeamName, TeamID FROM Worker WHERE Level = 1 AND DepartmentID = " + request.Number;
+            var newCommand = new SqlCommand(command, _dbConnection);
+            var dataReader = newCommand.ExecuteReader();
+            while (dataReader.Read())
+            {
+                tmp.Leaders.Add(new leaderItem { LeaderId = dataReader.GetInt32(0), LeaderName = dataReader.GetString(1), TeamName = dataReader.GetString(2), TeamId = dataReader.GetInt32(3) });
+            }
+            dataReader.Close();
+            _dbConnection.Close();
+            return System.Threading.Tasks.Task.FromResult(tmp);
+        }
     }
 }
 

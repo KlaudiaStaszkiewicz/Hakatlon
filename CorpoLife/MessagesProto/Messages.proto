@@ -3,7 +3,9 @@
 package MessagesPack;
 
 service ServerEvents	{
-  rpc GetLeaders (BlankMsg) returns (GetLeadersResponse) {}
+  rpc GetWorkerStatus (IntegerRequest) returns (StringResponse) {}
+  rpc GetDepLeaders (IntegerRequest) returns (GetLeadersResponse) {}
+  rpc GetLeaders (BlankMsg) returns (GetLeadersResponse) {}						//ok
   rpc Register (RegisterRequest) returns (WorkerEventResponse) {}				//ok
   rpc LogIn (LoginRequest) returns (LogInResponse) {}							//ok
   rpc LogOut (LogOutRequest) returns (WorkerEventResponse) {}					//ok
@@ -39,7 +41,9 @@ message IntIntRequest {
 message IntegerRequest {
 	int32 number = 1;
 }
-
+message StringResponse {
+	string resp = 1;
+}
 message AddDepRequest {
 	string depName = 1;
 }
