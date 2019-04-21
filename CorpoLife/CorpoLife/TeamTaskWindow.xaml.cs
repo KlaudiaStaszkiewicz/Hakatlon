@@ -22,8 +22,10 @@ namespace CorpoLife
     {
         public class TaskItem
         {
-            public string teamName, status, text;
-            public int teamID;
+            public string teamName { get; set; }
+            public string status { get; set; }
+            public string text { get; set; }
+            public int teamID { get; set; }
         }
         public TeamTaskWindow()
         {
@@ -100,14 +102,32 @@ namespace CorpoLife
         private void Update()
         {
             var tasks = GlobalUsage.GetInfClient().GetTaskList(new MessagesPack.TaskListRequest { TeamName = GlobalUsage.CurrentUser.teamName });
-            var lsItems = new List<TaskItem>();
+            var lsTodo = new List<TaskItem>();
+            var lsInprogress = new List<TaskItem>();
+            var lsTesting = new List<TaskItem>();
+            var lsDone = new List<TaskItem>();
             foreach ( var i in tasks.Tasks)
             {
                 if(i.Status == "todo")
                 {
-                    lsItems.Add(new TaskItem { teamName = i.Team, status = i.Status, teamID = i.TeamID, text = i.Text });
+                    lsTodo.Add(new TaskItem { teamName = i.Team, status = i.Status, teamID = i.TeamID, text = i.Text });
                 }
-                ListTD.ItemsSource = lsItems;
+                else if (i.Status == "inprogress")
+                {
+                    lsInprogress.Add(new TaskItem { teamName = i.Team, status = i.Status, teamID = i.TeamID, text = i.Text });
+                }
+                else if (i.Status == "testing")
+                {
+                    lsTesting.Add(new TaskItem { teamName = i.Team, status = i.Status, teamID = i.TeamID, text = i.Text });
+                }
+                else if (i.Status == "done")
+                {
+                    lsDone.Add(new TaskItem { teamName = i.Team, status = i.Status, teamID = i.TeamID, text = i.Text });
+                }
+                ListT.ItemsSource = lsTesting;
+                ListTD.ItemsSource = lsTodo;
+                ListIP.ItemsSource = lsInprogress;
+                ListD.ItemsSource = lsDone;
             }
         }
     }

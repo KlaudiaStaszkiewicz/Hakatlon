@@ -21,8 +21,10 @@ namespace CorpoLife
     {
         public class LeaderListItem
         {
-            public int LID, LteamID;
-            public string LName, LteamName;
+            public int LID { get; set;}
+            public int LteamID { get; set; }
+            public string LName { get; set; }
+            public string LteamName { get; set; }
         }
         public WorkerView()
         {
