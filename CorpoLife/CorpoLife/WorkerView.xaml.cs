@@ -21,11 +21,12 @@ namespace CorpoLife
     {
         public class LeaderListItem
         {
-            public int LID { get; set;}
-            public int LteamID { get; set; }
+            public string LID { get; set;}
+            public string LteamID { get; set; }
             public string LName { get; set; }
             public string LteamName { get; set; }
         }
+        public LeaderListItem tmpl = new LeaderListItem { LID = "ID", LName="LEADER", LteamID="ID", LteamName="TEAM" };
         public WorkerView()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace CorpoLife
         {
             Emergency em = new Emergency();
             em.Show();
-            //GlobalUsage.Client().CallEmergency(new MessagesPack.IntIntRequest { TeamID = GlobalUsage.CurrentUser.teamID, WorkerID = GlobalUsage.CurrentUser.workerID });
+            GlobalUsage.GetRtClient().CallEmergency(new MessagesPack.IntIntRequest());
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -73,9 +74,11 @@ namespace CorpoLife
             Close.Visibility = Visibility.Visible;
             var ls = GlobalUsage.GetInfClient().GetLeaders(new MessagesPack.BlankMsg());
             var lsItems = new List<LeaderListItem>();
+            lsItems.Add(tmpl);
+
             foreach(var l in ls.Leaders)
             {
-                lsItems.Add(new LeaderListItem { LID = l.LeaderId, LName = l.LeaderName, LteamID = l.TeamId, LteamName = l.TeamName});
+                lsItems.Add(new LeaderListItem { LID = Convert.ToString(l.LeaderId), LName = l.LeaderName, LteamID = Convert.ToString(l.TeamId), LteamName = l.TeamName});
             }
             LeadersList.ItemsSource = lsItems;
         }
