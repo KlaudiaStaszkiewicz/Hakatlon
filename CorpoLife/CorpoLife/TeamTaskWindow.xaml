@@ -39,10 +39,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Popup x:Name="Pops" 
+        <Popup x:Name="Pops"  Width="100" Height="50"
            IsOpen="False" 
            Placement="Right" 
-           StaysOpen="False" 
            PlacementTarget="{Binding ElementName=txtBxitem}" 
            HorizontalAlignment="Right">
             <StackPanel>
