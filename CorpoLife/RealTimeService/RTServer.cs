@@ -27,17 +27,23 @@ namespace RealTimeService
         }
     }
 
-    class ActiveMember
+    class ActiveMember      //TODO DEFINE WHERE MEMBERS GOES FOR A COFFEE AND WHEN HE'S COMING BACK (no 'oncoffee' status)
     {
         public int ID;
-
+        public string Status;
         public string Name;
-
+        public ActiveMember()
+        {
+            ID = -1;
+            Name = "";
+            Status = "working";
+        }
         //public GeoCoordinate coords;
-        public ActiveMember(int id, string name)
+        public ActiveMember(int id, string name, string status = "working")
         {
             ID = id;
             Name = name;
+            Status = status;
         }
 
         //void UpdateCoords(GeoCoordinate cords)
@@ -123,6 +129,7 @@ namespace RealTimeService
             _DbConnection.Close();
             return name;
         }
+
         private int GetWorkerLevelFromId(int id)
         {
             _DbConnection.Open();
@@ -134,10 +141,20 @@ namespace RealTimeService
             {
                 lvl = dataReader1.GetInt32(0);
             }
+
             dataReader1.Close();
             _DbConnection.Close();
             return lvl;
         }
+
+        public override Task<StringResponse> GetWorkerStatus(IntegerRequest request, ServerCallContext context)
+        {
+            var response = new StringResponse();
+            var user = _activeMembers.Find(member => member.ID == IntegerRequest.NumberFieldNumber);
+            response.Resp = user.ID == -1 ? "absent" : user.Status;
+            return System.Threading.Tasks.Task.FromResult(response);
+        }
+
         public override Task<LogInResponse> LogIn(LoginRequest request, ServerCallContext context)
         {
             _DbConnection.Open();
