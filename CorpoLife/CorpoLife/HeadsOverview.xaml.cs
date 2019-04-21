@@ -59,7 +59,7 @@ namespace CorpoLife
 
         private void MainGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            _depList = GlobalUsage.GetInfClient().GetDepartments(new BlankMsg { });
+            _depList = GlobalUsage.GetInfClient().GetDepartments(new BlankMsg() {});
             UpdateView();
         }
         private void NewDep_Click(object sender, RoutedEventArgs e)

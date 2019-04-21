@@ -51,7 +51,7 @@ namespace CorpoLife
 
         private void CheckLogIn()
         {
-            var response = GlobalUsage.GetRtClient().LogIn(new MessagesPack.LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
+            var response = GlobalUsage.GetRtClient().LogIn(new LoginRequest { Id = Convert.ToInt32(IdText), Password = PasswordText });
             if (response.State)
             {
                 GlobalUsage.CurrentUser.name = response.Name;

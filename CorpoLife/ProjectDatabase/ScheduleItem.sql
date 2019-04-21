@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[ScheduleItem]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-    [Team] TEXT NOT NULL, 
+    [Team] VARCHAR(MAX) NOT NULL, 
     [TeamID] INT NOT NULL, 
-    [Status] TEXT NOT NULL, 
-    [Text] TEXT NOT NULL 
+    [Status] VARCHAR(MAX) NOT NULL, 
+    [Text] VARCHAR(MAX) NOT NULL 
 )
