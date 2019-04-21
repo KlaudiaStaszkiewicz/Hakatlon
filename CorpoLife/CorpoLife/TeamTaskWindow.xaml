@@ -33,16 +33,48 @@
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="5*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding ElementName}" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox HorizontalAlignment="Left" Height="259" Margin="230,100,0,0" VerticalAlignment="Top" Width="119"/>
-        <ListBox HorizontalAlignment="Left" Height="205" Margin="390,154,0,0" VerticalAlignment="Top" Width="119"/>
-        <ListBox HorizontalAlignment="Left" Height="150" Margin="550,209,0,0" VerticalAlignment="Top" Width="119"/>
+        <ListBox Name="ListIP" HorizontalAlignment="Left" Height="259" Margin="230,100,0,0" VerticalAlignment="Top" Width="119">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="ListT" HorizontalAlignment="Left" Height="205" Margin="390,154,0,0" VerticalAlignment="Top" Width="119">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="ListD" HorizontalAlignment="Left" Height="150" Margin="550,209,0,0" VerticalAlignment="Top" Width="119">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
 
     </Grid>
