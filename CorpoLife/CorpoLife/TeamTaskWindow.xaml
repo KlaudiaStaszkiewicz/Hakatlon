@@ -27,55 +27,66 @@
         <Label Content="TESTING" HorizontalContentAlignment="Center" Margin="390,123,286,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
         <Label Content="IN PROGRESS" HorizontalContentAlignment="Center" Margin="230,69,446,0" VerticalAlignment="Top" Background="#FFD2F4EB" Width="119" FontWeight="Bold"/>
         <Label Name="team" Content="" FontSize="25" HorizontalAlignment="Left" Margin="374,22,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
-        <ListBox Name="ListTD" HorizontalAlignment="Left" Height="267" Margin="68,92,0,0" VerticalAlignment="Top" Width="119">
+        <ListBox Name="ListTD" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="267" Margin="68,92,0,0" VerticalAlignment="Top" Width="119">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
+                        <TextBlock MouseEnter="item_MouseEnter" MouseLeave="item_MouseLeave" Text="{Binding text}" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="ListIP" HorizontalAlignment="Left" Height="259" Margin="230,100,0,0" VerticalAlignment="Top" Width="119">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Name="ListT" HorizontalAlignment="Left" Height="205" Margin="390,154,0,0" VerticalAlignment="Top" Width="119">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Name="ListD" HorizontalAlignment="Left" Height="150" Margin="550,209,0,0" VerticalAlignment="Top" Width="119">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding text}" TextAlignment="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Popup x:Name="Pops" 
+           IsOpen="False" 
+           Placement="Right" 
+           StaysOpen="False" 
+           PlacementTarget="{Binding ElementName=txtBxitem}" 
+           HorizontalAlignment="Right">
+            <StackPanel>
+                <TextBox Text="{Binding XPath=color}"/>
+                <TextBox Text="{Binding XPath=size}"/>
 
-
+            </StackPanel>
+        </Popup>
+        <ListBox Name="ListIP" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="259" Margin="230,100,0,0" VerticalAlignment="Top" Width="119">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding text}" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="ListT" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="205" Margin="390,154,0,0" VerticalAlignment="Top" Width="119">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding text}" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="ListD" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="150" Margin="550,209,0,0" VerticalAlignment="Top" Width="119">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding text}" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
     </Grid>
 </Window>
