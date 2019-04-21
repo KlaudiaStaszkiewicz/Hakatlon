@@ -30,8 +30,9 @@ namespace CorpoLife
         
         private void DepartmentSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            TeamSelection.Items.Clear();
             //remember chosen department
-            DepName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
+            DepName = (string)(DepartmentSelection.SelectedItem);
             //get teams for this department and show them in ComboBox
             var teamList = GlobalUsage.GetInfClient().GetDepartmetTeams(new NameRequest { TeamName = DepName });
             foreach (var t in teamList.TeamDesc)
@@ -60,7 +61,7 @@ namespace CorpoLife
         private void TeamSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //remember chosen team
-            TeamName = ((ComboBoxItem)TeamSelection.SelectedItem).Content.ToString();
+            TeamName = ((string)TeamSelection.SelectedItem);
             
         }
 
@@ -68,7 +69,6 @@ namespace CorpoLife
         {
             //remember selected Level
             Level = ((ComboBoxItem)LevelSelection.SelectedItem).TabIndex + 1;
-
         }
 
 
