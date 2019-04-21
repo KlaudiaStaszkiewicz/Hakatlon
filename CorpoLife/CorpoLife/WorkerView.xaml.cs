@@ -25,7 +25,9 @@ namespace CorpoLife
             public string LteamID { get; set; }
             public string LName { get; set; }
             public string LteamName { get; set; }
+            public string LStatus { get; set; }
         }
+
         public LeaderListItem tmpl = new LeaderListItem { LID = "ID", LName="LEADER", LteamID="ID", LteamName="TEAM" };
         public WorkerView()
         {
@@ -49,6 +51,7 @@ namespace CorpoLife
         {
             LeadersList.Visibility = Visibility.Hidden;
             Close.Visibility = Visibility.Hidden;
+            LStatus.Visibility = Visibility.Hidden;
             int _level = GlobalUsage.CurrentUser.level;
             if(_level == 2)
             {
@@ -88,5 +91,23 @@ namespace CorpoLife
             LeadersList.Visibility = Visibility.Hidden;
             Close.Visibility = Visibility.Hidden;
         }
+        private void item_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!LStatus.IsOpen)
+            {
+                StatusLab.Content = //TODO
+                LStatus.DataContext = (sender as FrameworkElement).DataContext;
+                LStatus.PlacementTarget = (sender as UIElement);
+                LStatus.IsOpen = true;
+            }
+        }
+
+        private void item_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var textB = sender as FrameworkElement;
+            if (textB.IsMouseOver || LStatus.IsMouseOver) return;
+            LStatus.IsOpen = false;
+        }
+
     }
 }

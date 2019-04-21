@@ -26,6 +26,22 @@
         <Button Content="CALLENDAR" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="511,256,0,0" VerticalAlignment="Top" Width="104" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="104" />
         <Button Name="Ems" Content="EMERGENCY" Visibility="Visible" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Margin="85,256,622,0" VerticalAlignment="Top" Width="88" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="88" Click="Ems_Click"></Button>
         <Button Name="Leads" Content="LEADERS" Style="{DynamicResource ResourceKey=RoundedButtonStyle}" BorderThickness="0" HorizontalAlignment="Left" Margin="634,166,0,0" VerticalAlignment="Top" Width="94" Background="{x:Null}" RenderTransformOrigin="1.648,1.93" Height="95" Click="Leaders_Click"/>
+
+        <Popup  Name="LStatus" AllowsTransparency="True"
+               Width="100" Height="50"
+               Placement="RelativePoint"
+               IsOpen="True"
+               PopupAnimation="Fade"  >
+            <Grid Background="Transparent">
+                <Rectangle RadiusX="30" RadiusY="50" >
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Label Name="StatusLab" Content="{Binding }" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Popup>
+
         <ListBox Name="LeadersList" Visibility="Visible" HorizontalAlignment="Left" Height="304" Margin="238,56,0,0" VerticalAlignment="Top" Width="360" BorderBrush="White">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -37,7 +53,7 @@
                             <ColumnDefinition Width="30" />
                         </Grid.ColumnDefinitions>
                        <TextBlock Text="{Binding LID}" Margin="2,2,2,2" TextAlignment="Left"/>
-                        <TextBlock Grid.Column="1" Margin="2,2,2,2" Text="{Binding LName}" TextAlignment="Center"/>
+                        <TextBlock Grid.Column="1" MouseEnter="item_MouseEnter" MouseLeave="item_MouseLeave" Margin="2,2,2,2" Text="{Binding LName}" TextAlignment="Center"/>
                         <TextBlock Grid.Column="3" Margin="2,2,2,2" Text="{Binding LteamID}" TextAlignment="Left"/>
                         <TextBlock Grid.Column="2" Margin="2,2,2,2" Text="{Binding LteamName}" TextAlignment="Center"/>
 
@@ -52,7 +68,7 @@
                 </LinearGradientBrush>
             </ListBox.Background>
         </ListBox>
-        <Button Name="Close" Visibility="Visible" Content="Close"  HorizontalAlignment="Left" Margin="360,340,0,0" VerticalAlignment="Top" Width="74" Background="#FFF1FFFD" BorderBrush="White" Click="Close_Click"/>
+        <Button Name="Close" Visibility="Visible" Content="Close"  HorizontalAlignment="Left" Margin="390,340,0,0" VerticalAlignment="Top" Width="74" Background="#FFF1FFFD" BorderBrush="White" Click="Close_Click"/>
 
     </Grid>
 </Window>
